@@ -11,7 +11,7 @@ const NewReleases = async () => {
             <div className="releases">
                 <ul className="new-release-list">
                     {newReleases.map((album, albumIndex) => (
-                        <li className="new-release-list-item">
+                        <li className="new-release-list-item" key={albumIndex}>
                             <img src={album.images[0]?.url} alt={album.name} />
                             <div className="album-info">
                                 <p className="capitalize">{album.album_type}</p>
