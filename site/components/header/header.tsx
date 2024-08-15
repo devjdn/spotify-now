@@ -5,7 +5,7 @@ export default function Header() {
     <header className="global-header">
       <a href="/">
         <span className="logo">
-          gate<span className="brand">keep</span>
+          Gate<span className="brand">keep</span>
         </span>
       </a>
       

@@ -16,19 +16,21 @@
 //------COLOUR SCHEMES------//
 :root {
   //---BRAND---//
-  --brand: #e8003e;
+  --brand: #960c0c;
 
   //---BACKGROUNDS---//
   --bg-1: #fff;
   --bg-2: #fafafa;
-  --translucent: #ffffffc4;
+  --translucent: #111111c4;
+  --popup: #050505;
 
   //---TEXT---//
   --t-1: #000;
-  --t-2: #acacac;
+  --t-2: #858585;
 
   //---BORDERS---//
   --bd-1: 1px solid #ebebeb;
+  --popup-border: 1px solid #1a1a1a;
 
   //---MISC---//
   --filter: blur(10px) saturate(1);
@@ -40,9 +42,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     //---BACKGROUNDS---//
-    --bg-1: #111;
+    --bg-1: #0a0a0a;
     --bg-2: #050505;
-    --translucent: #111111c4;
 
     //---TEXT---//
     --t-1: #fff;
@@ -94,13 +95,41 @@ input,textarea,button{
 span.note{
   color: var(--t-2);
   font-size: .75em;
+  font-weight: 500;
 }
 
 h1{
   font-size: 3em;
-  font-weight: 800;
-  color: var(--brand);
-  letter-spacing: -.03em;
+  font-weight: 700;
+  color: #960c0cb5;
+  line-height: 1.1em;
+}
+h2{
+  font-size: 2.25em;
+  font-weight: 600;
+  color: var(--t-1);
+  margin-bottom: 10px;
+}
+h3{
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--t-1);
+  line-height: 1em;
+}
+h4{
+  font-weight: 500;
+  color: var(--t-1);
+}
+p{
+  font-weight: 500;
+  color: var(--t-2);
+}
+
+a{
+  span{
+    color: var(--brand);
+    width: fit-content;
+  }
 }
 
 
@@ -126,14 +155,17 @@ header.global-header{
   justify-content: space-between;
   align-items: center;
   height: 54px;
-  background: var(--bg-2);
-  border-bottom: var(--bd-1);
+  background: #000;
+
+  svg{
+    stroke: #fff;
+  }
 }
 
 span.logo{
   font-size: 1.5em;
   font-weight: 500;
-  color: var(--t-1);
+  color: #fff;
 }
 
 
@@ -166,9 +198,9 @@ span.logo{
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 5;
-  background: var(--bg-1);
+  background: var(--popup);
   border-radius: 10px;
-  border: var(--bd-1);
+  border: var(--popup-border);
   width: calc(100% - 20px);
   max-width: 600px;
   box-shadow: var(--shadow);
@@ -181,23 +213,23 @@ span.logo{
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: var(--bd-1);
+    border-bottom: var(--popup-border);
 
     input{
       width: 100%;
       font-size: 1.1em;
+      color: #fff;
     }
 
     kbd{
-      background: var(--bg-2);
-      border: var(--bd-1);
+      border: var(--popup-border);
       border-radius: 4px;
       height: 100%;
       padding-inline: 4px;
       aspect-ratio: 1;
       text-align: center;
       font-size: .75em;
-      color: var(--t-2);
+      color: #777777;
     }
   }
 
@@ -208,7 +240,7 @@ span.logo{
       gap: 10px;
 
       li{
-        color: var(--t-2);
+        color: #fff;
       }
     }
   }
@@ -221,17 +253,100 @@ span.logo{
 
 //------SECTIONS------//
 section{
-  padding: 20px;
+  padding: 50px 0;
+
+  >*{
+    padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+  }
 }
 
 section.intro{
   display: grid;
-  place-items: center;
   grid-template-columns: repeat(2,1fr);
+  place-items: center flex-start;
   height: 500px;
+  padding: 0;
+  position: relative;
+
+  img{
+    object-fit: cover;
+    object-position: 30% 30%;
+    padding: 0;
+    grid-area: 1/1/2/3;
+    z-index: 1;
+  }
   
   .intro-text{
-    max-width: 500px;
+    grid-area: 1/1/2/3;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center flex-start;
+    z-index: 2;
+    background: linear-gradient(to bottom, #000000ad, #050505e4);
+
+    h1{
+      max-width: 500px;
+    }
+  }
+}
+
+section.new-releases{
+  background: var(--bg-2);
+
+  .releases{
+    display: grid;
+    grid-template-columns: max-content;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+    scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+
+    ul.new-release-list{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 320px);
+      grid-auto-flow: column;
+      width: fit-content;
+      gap: 20px;
+      scroll-snap-type: x mandatory;
+
+
+      li.new-release-list-item{
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 320px;
+
+        img{
+          width: 100%;
+          border-radius: 6px;
+          border: var(--bd-1);
+        }
+
+        .album-info{
+          text-wrap-mode: wrap;
+
+          .artist-list{
+            display: flex;
+            gap: 10px;
+          }
+
+          span{
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--t-1);
+          }
+
+          a{
+            span{
+              color: var(--brand);
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -240,3 +355,25 @@ section.intro{
 
 
 
+//------MEDIA QUERIES------//
+@media screen and (max-width: 550px) {
+  h1{
+    font-size: 2.5em;
+  }
+  h2{
+    font-size: 1.75em;
+  }
+  section.new-releases{
+
+    .releases{
+  
+      ul.new-release-list{
+        grid-template-columns: repeat(auto-fill, 250px);
+
+        li.new-release-list-item{
+          width: 250px;
+        }
+      }
+    }
+  }
+}
