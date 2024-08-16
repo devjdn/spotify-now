@@ -1,5 +1,5 @@
-import { fetchNewReleases } from "@/lib/spotify";
-import { Album } from "@/lib/spotify-items";
+import { fetchNewReleases } from "@/api/spotify";
+import { Album } from "@/lib/global";
 
 const NewReleases = async () => {
     const newReleases: Album[] = await fetchNewReleases();
