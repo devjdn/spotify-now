@@ -1,17 +1,15 @@
 import NewReleases from "@/components/spotify/new-releases";
 import Image from "next/image";
 import WeekndHero from "@/public/weeknd-hero.webp";
+import FeaturedPlaylists from "@/components/spotify/featured-playlists";
+import GlobalTop50 from "@/components/spotify/top-50";
 
 export default function Home() {
   return (
     <main className="home-main">
-      <section className="intro">
-        <Image layout="fill" src={WeekndHero} alt="Hero image of The Weeknd from his After Hours Til Dawn Tour"/>
-        <div className="intro-text">
-          <h1>No more gatekeeping your music</h1>
-        </div>
-      </section>
+      <GlobalTop50/>
       <NewReleases/>
+      <FeaturedPlaylists/>
     </main>
   );
 }

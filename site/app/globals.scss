@@ -16,7 +16,7 @@
 //------COLOUR SCHEMES------//
 :root {
   //---BRAND---//
-  --brand: #960c0c;
+  --brand: #0c9631;
 
   //---BACKGROUNDS---//
   --bg-1: #fff;
@@ -101,7 +101,7 @@ span.note{
 h1{
   font-size: 3em;
   font-weight: 700;
-  color: #960c0cb5;
+  color: #13960cb5;
   line-height: 1.1em;
 }
 h2{
@@ -147,7 +147,7 @@ body {
 
 
 
-//------HEADER------//
+//------HEADER AND FOOTER------//
 header.global-header{
   display: flex;
   gap: 20px;
@@ -166,8 +166,23 @@ span.logo{
   font-size: 1.5em;
   font-weight: 500;
   color: #fff;
+  display: flex;
+  gap: 4px;
 }
 
+footer.global-footer{
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px calc(50vw - min(1680px, 87.5vw)/2) 50px;
+
+  .powered-by{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 
 
 
@@ -260,33 +275,28 @@ section{
   }
 }
 
-section.intro{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  place-items: center flex-start;
-  height: 500px;
-  padding: 0;
-  position: relative;
+section.global-top-50{
+  .grid-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-  img{
-    object-fit: cover;
-    object-position: 30% 30%;
-    padding: 0;
-    grid-area: 1/1/2/3;
-    z-index: 1;
-  }
+    header.grid-header{
+      display: grid;
+      grid-template-columns: 20px 50px 1fr 1fr;
+      gap: 20px;
+    }
+    ul.grid-ul{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
   
-  .intro-text{
-    grid-area: 1/1/2/3;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    place-items: center flex-start;
-    z-index: 2;
-    background: linear-gradient(to bottom, #000000ad, #050505e4);
-
-    h1{
-      max-width: 500px;
+      li.grid-li{
+        display: grid;
+        grid-template-columns: 20px 50px 1fr 1fr;
+        gap: 20px;
+        align-items: center;
+      }
     }
   }
 }
@@ -295,21 +305,10 @@ section.new-releases{
   background: var(--bg-2);
 
   .releases{
-    display: grid;
-    grid-template-columns: max-content;
-    grid-auto-flow: column;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 20px;
-    scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+    
 
     ul.new-release-list{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 320px);
-      grid-auto-flow: column;
-      width: fit-content;
-      gap: 20px;
-      scroll-snap-type: x mandatory;
+      
 
 
       li.new-release-list-item{
@@ -324,33 +323,65 @@ section.new-releases{
           border-radius: 6px;
           border: var(--bd-1);
         }
+      }
+    }
+  }
+}
 
-        .album-info{
-          text-wrap-mode: wrap;
+//------SCROLL COMPONENTS------//
+.scroll-container{
+  display: grid;
+  grid-template-columns: max-content;
+  grid-auto-flow: column;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+  scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
 
-          .artist-list{
-            display: flex;
-            gap: 10px;
-          }
+  ul.scroll-ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 320px);
+    grid-auto-flow: column;
+    width: fit-content;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
 
+    li.scroll-li{
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 320px;
+
+      img{
+        width: 100%;
+        border-radius: 6px;
+        border: var(--bd-1);
+      }
+
+      .info{
+        text-wrap-mode: wrap;
+
+        .artist-list{
+          display: flex;
+          gap: 10px;
+        }
+
+        span{
+          font-size: 1.1em;
+          font-weight: 500;
+          color: var(--t-1);
+        }
+
+        a:hover{
           span{
-            font-size: 1.1em;
-            font-weight: 500;
-            color: var(--t-1);
-          }
-
-          a{
-            span{
-              color: var(--brand);
-            }
+            color: var(--brand);
           }
         }
       }
     }
   }
 }
-
-
 
 
 
@@ -363,16 +394,12 @@ section.new-releases{
   h2{
     font-size: 1.75em;
   }
-  section.new-releases{
+  .scroll-container{
+    ul.scroll-ul{
+      grid-template-columns: repeat(auto-fill, 250px);
 
-    .releases{
-  
-      ul.new-release-list{
-        grid-template-columns: repeat(auto-fill, 250px);
-
-        li.new-release-list-item{
-          width: 250px;
-        }
+      li.scroll-li{
+        width: 250px;
       }
     }
   }

@@ -1,5 +1,6 @@
 import { fetchNewReleases } from "@/api/spotify";
 import { Album } from "@/lib/global";
+import { ScrollContainer, ScrollList, ScrollListItem } from "../scroll/scroll-container";
 
 const NewReleases = async () => {
     const newReleases: Album[] = await fetchNewReleases();
@@ -8,28 +9,28 @@ const NewReleases = async () => {
     return(
         <section className="new-releases">
             <h2>New drops</h2>
-            <div className="releases">
-                <ul className="new-release-list">
+            <ScrollContainer>
+                <ScrollList>
                     {newReleases.map((album, albumIndex) => (
-                        <li className="new-release-list-item" key={albumIndex}>
+                        <ScrollListItem key={albumIndex}>
                             <img src={album.images[0]?.url} alt={album.name} />
-                            <div className="album-info">
-                                <p className="capitalize">{album.album_type}</p>
+                            <div className="info">
                                 <a href={album.external_urls.spotify}>
-                                    <span className="album-name">{album.name}</span>
+                                    <span className="name">{album.name}</span>
                                 </a>
                                 <div className="artist-list">
                                     {album.artists.map((artist, index) => (
                                       <a key={index} href={artist.external_urls.spotify}>
-                                        <span className="artist-name">{artist.name}</span>
+                                        <span className="name">{artist.name}</span>
                                       </a>
                                     ))}
                                 </div>
+                                <p className="capitalize">{album.album_type}</p>
                             </div>
-                        </li>
+                        </ScrollListItem>
                     ))}
-                </ul>
-            </div>
+                </ScrollList>
+            </ScrollContainer>
         </section>
     );
 }
