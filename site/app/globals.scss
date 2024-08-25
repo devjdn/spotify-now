@@ -148,7 +148,7 @@ body {
 
 
 
-//------HEADER AND FOOTER------//
+//------HEADER, FOOTER AND NAV------//
 header.global-header{
   display: flex;
   gap: 20px;
@@ -163,6 +163,14 @@ header.global-header{
   svg{
     stroke: #fff;
   }
+
+  button.mobile-header-nav-btn{
+    display: none;
+  }
+}
+
+.mobile-header-nav-wrapper{
+  display: none;
 }
 
 span.logo{
@@ -175,15 +183,41 @@ span.logo{
 
 footer.global-footer{
   background: #000;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
   padding: 20px calc(50vw - min(1680px, 87.5vw)/2) 50px;
 
   .powered-by{
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    strong{
+      color: #fff;
+    }
+  }
+}
+
+nav{
+  ul.nav-ul{
+    display: flex;
+    gap: 20px;
+
+    li.nav-li{
+      
+      a{
+
+        &:hover{
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &.footer-nav{
+    ul.nav-ul{
+      flex-direction: column;
+    }
   }
 }
 
@@ -195,10 +229,6 @@ section{
     padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
   }
 
-  // &:nth-of-type(even){
-  //   background: var(--bg-2);
-  // }
-
   &.intro{
     padding: 100px 0;
   }
@@ -208,12 +238,14 @@ section{
 .grid-container{
   display: flex;
   flex-direction: column;
+  padding-inline: 0;
 
   header.grid-header{
     display: grid;
     grid-template-columns: 20px 1fr 1fr 75px;
     gap: 20px;
     padding: 10px 20px;
+    padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
     border-bottom: var(--bd-1);
   }
   ul.grid-ul{
@@ -226,6 +258,7 @@ section{
       grid-template-columns: 20px 1fr 1fr 75px;
       gap: 20px;
       padding: 10px 20px;
+      padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
       align-items: center;
 
     &:nth-of-type(even){
@@ -275,6 +308,49 @@ section{
   }
   h2{
     font-size: 1.75em;
+  }
+  
+  header.global-header{
+    button.mobile-header-nav-btn{
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  nav{
+    &.header-nav{
+      display: none;
+    }
+  }
+
+  .mobile-header-nav-wrapper{
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    background: #000;
+    padding: 10px 25px;
+    display: block;
+
+    nav{
+      ul.nav-ul{
+        flex-direction: column;
+      }
+    }
+
+    &[aria-expanded="false"] {
+      display: none;
+    }
+    &[aria-expanded="true"] {
+      display: block;
+    }
+  }
+
+  footer.global-footer{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
   }
 
   .grid-container{
