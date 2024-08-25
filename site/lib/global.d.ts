@@ -97,7 +97,7 @@ export interface Top50 {
         href: string;
         id: string;
         is_playable: boolean;
-        linked_from?: object; // Linked from is an empty object, but you can define its structure if needed
+        linked_from?: object;
         restrictions?: {
           reason: string;
         };

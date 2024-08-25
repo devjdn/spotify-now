@@ -1,6 +1,6 @@
 import { fetchFeaturedPlaylists } from "@/api/spotify";
 import { Playlist } from "@/lib/global";
-import { ScrollContainer, ScrollList, ScrollListItem } from "../scroll/scroll-container";
+import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../grid-to-scroll/grid-to-scroll";
 
 export default async function FeaturedPlaylists() {
     const featuredPlaylists: Playlist[] = await fetchFeaturedPlaylists();
@@ -8,22 +8,22 @@ export default async function FeaturedPlaylists() {
     return(
         <section className="featured-playlists">
             <h2>Featured playlists</h2>
-            <ScrollContainer>
-                <ScrollList>
+            <GridToScrollContainer>
+                <GridToScrollUl>
                     {featuredPlaylists.map((playlist, playlistIndex) => (
                         
-                            <ScrollListItem key={playlistIndex}>
+                            <GridToScrollLi key={playlistIndex}>
                                 <img src={playlist.images[0]?.url} alt={playlist.name} />
                                 <div className="info">
                                     <a href={playlist.external_urls.spotify} target="_blank">
-                                        <span>{playlist.name}</span>
+                                        <strong>{playlist.name}</strong>
                                     </a>
                                     <p className="capitalize">{playlist.collaborative ? 'Collaborative' : 'Non-collaborative'}</p>
                                 </div>
-                            </ScrollListItem>
+                            </GridToScrollLi>
                     ))}
-                </ScrollList>
-            </ScrollContainer>
+                </GridToScrollUl>
+            </GridToScrollContainer>
         </section>
     );
 }

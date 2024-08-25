@@ -1,6 +1,6 @@
 import { fetchGlobalTop50 } from "@/api/spotify";
 import { Top50 } from "@/lib/global";
-import { GridContainer, GridHeader, GridList, GridRow } from "../grid/grid";
+import { GridContainer, GridHeader, GridList, GridRow } from "../playlist-grid/playlist-grid";
 import { Clock } from "lucide-react";
 
 export default async function GlobalTop50() {
@@ -11,24 +11,38 @@ export default async function GlobalTop50() {
             <h2>Spotify Global Top 50</h2>
             <GridContainer>
                 <GridHeader>
-                    <h4>#</h4>
-                    <h4>Title</h4>
-                    <h4>Album</h4>
-                    <Clock/>
+                    <div className="grid-col">
+                        <h4>#</h4>
+                    </div>
+                    <div className="grid-col">
+                        <h4>Title</h4>
+                    </div>
+                    <div className="grid-col">
+                        <h4>Album</h4>
+                    </div>
+                    <div className="grid-col">
+                        <Clock/>
+                    </div>
                 </GridHeader>
                 <GridList>
                     {top50.map((top50, trackIndex) => (
                         <GridRow key={trackIndex}>
-                            <p>{trackIndex + 1}</p>
-                            <div className="track-info">
+                            <div className="grid-col">
+                                <p>{trackIndex + 1}</p>
+                            </div>
+                            <div className="grid-col">
                                 <img loading="lazy" src={top50.track.album.images[0]?.url} alt={top50.track.name}/>
                                 <div className="info">
-                                    <span>{top50.track.name}</span>
+                                    <strong>{top50.track.name}</strong>
                                     <p>{top50.track.artists[0]?.name}</p>
                                 </div>
                             </div>
-                            <p>{top50.track.album.name}</p>
-                            <p>{formatDuration(top50.track.duration_ms)}</p>
+                            <div className="grid-col">
+                                <p>{top50.track.album.name}</p>
+                            </div>
+                            <div className="grid-col">
+                                <p>{formatDuration(top50.track.duration_ms)}</p>
+                            </div>
                         </GridRow>
                     ))}
                 </GridList>

@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={interTight.className}>
+      <body className={dm.className}>
         <Header/>
         {children}
         <Footer/>
