@@ -39,15 +39,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
     //---BACKGROUNDS---//
-    --bg-1: #1a1a1a;
-    --bg-2: #242424;
-      
-    //---TEXT---//
-    --t-1: #ffffff;
-    --t-2: #b0b0b0;
-      
-    //---BORDERS---//
-    --bd-1: 1px solid #252525;
+--bg-1: #0f0f0f;
+--bg-2: #181818;
+
+//---TEXT---//
+--t-1: #e0e0e0;
+--t-2: #909090;
+
+//---BORDERS---//
+--bd-1: 1px solid #1a1a1a;
 
     //---MISC---//
     --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;  
@@ -99,13 +99,15 @@ h1{
   color: var(--brand);
   line-height: 1.1em;
 }
-h2,h3,h4,strong{
+h3,h4,strong{
   font-weight: 600;
   color: var(--t-1);
 }
 h2{
+  font-weight: 700;
   font-size: 2.25em;
   margin-bottom: 10px;
+  color: var(--t-1);
 }
 h3{
   font-size: 1.5em;

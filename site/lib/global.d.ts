@@ -16,27 +16,31 @@ export interface Album {
     }[];
 }
 
-export interface Playlist {
+export interface FeaturedPlaylist {
+  collaborative: boolean;
+  description: string;
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: Array<{
+    url: string;
+    height: number;
+    width: number;
+  }>;
+  name: string;
+  owner: {
     id: string;
-    name: string;
-    collaborative: boolean;
-    href: string;
-    owner: {
-        external_urls: {
-            spotify: string;
-        },
-        display_name: string;
-    }[];
-    description: string;
-    external_urls: {
-        spotify: string;
-    }
-    images: {
-        url: string;
-    }[];
+    display_name: string;
+  };
+  tracks: {
+    total: number;
+  };
+  uri: string;
 }
 
-export interface Top50 {
+export interface Playlist {
     id: number;
     track: {
         album: {

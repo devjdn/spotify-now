@@ -91,3 +91,28 @@ export const fetchGlobalTop50 = async () => {
         throw error;
     }
 }
+
+export const fetchNewMusicFriday = async () => {
+    try {
+        const accessToken = await getSpotifyAccessToken();
+
+        const response = await fetch('https://api.spotify.com/v1/playlists/37i9dQZF1DX4JAvHpjipBk', {
+            headers : {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`Failed to fetch top hits: ${response.status} ${errorBody}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data.tracks.items;
+    } catch (error) {
+        console.error('Error in fetchNewMusicFriday:', error);
+        throw error;
+    }
+}

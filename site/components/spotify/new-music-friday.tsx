@@ -1,14 +1,14 @@
-import { fetchGlobalTop50 } from "@/api/spotify";
+import { fetchNewMusicFriday } from "@/api/spotify";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "../playlist-grid/playlist-grid";
 import { Clock } from "lucide-react";
 
-export default async function GlobalTop50() {
-    const top50: Playlist[] = await fetchGlobalTop50();
+export default async function NMF() {
+    const nmf: Playlist[] = await fetchNewMusicFriday();
 
     return (
-        <section className="global-top-50">
-            <h2>Spotify Global Top 50</h2>
+        <section className="nmf" id="nmf">
+            <h2>New Music Friday</h2>
             <GridContainer>
                 <GridHeader>
                     <div className="grid-col">
@@ -25,23 +25,23 @@ export default async function GlobalTop50() {
                     </div>
                 </GridHeader>
                 <GridList>
-                    {top50.map((top50, trackIndex) => (
+                    {nmf.map((nmf, trackIndex) => (
                         <GridRow key={trackIndex}>
                             <div className="grid-col">
                                 <p>{trackIndex + 1}</p>
                             </div>
                             <div className="grid-col">
-                                <img loading="lazy" src={top50.track.album.images[0]?.url} alt={top50.track.name}/>
+                                <img loading="lazy" src={nmf.track.album.images[0]?.url} alt={nmf.track.name}/>
                                 <div className="info">
-                                    <strong>{top50.track.name}</strong>
-                                    <p>{top50.track.artists[0]?.name}</p>
+                                    <strong>{nmf.track.name}</strong>
+                                    <p>{nmf.track.artists[0]?.name}</p>
                                 </div>
                             </div>
                             <div className="grid-col">
-                                <p>{top50.track.album.name}</p>
+                                <p>{nmf.track.album.name}</p>
                             </div>
                             <div className="grid-col">
-                                <p>{formatDuration(top50.track.duration_ms)}</p>
+                                <p>{formatDuration(nmf.track.duration_ms)}</p>
                             </div>
                         </GridRow>
                     ))}
