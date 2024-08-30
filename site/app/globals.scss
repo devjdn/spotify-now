@@ -282,6 +282,34 @@ section{
   }
 }
 
+.playlist-tracks-popup{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 20px;
+  border: var(--bd-1);
+  background: var(--bg-1);
+  height: 75vh;
+  width: 95vw;
+  max-width: 1200px;
+  overflow-y: scroll;
+  display: none;
+
+  .grid-container {
+  
+    header.grid-header{
+      padding-inline: 20px;
+    }
+    ul.grid-ul{
+  
+      li.grid-li{
+        padding-inline: 20px;
+      }
+    }
+  }
+}
+
 //------GRID TO SCROLL COMPONENTS------//
 .grid-to-scroll-container{
   ul.grid-to-scroll-ul{

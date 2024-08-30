@@ -116,3 +116,32 @@ export const fetchNewMusicFriday = async () => {
         throw error;
     }
 }
+
+export interface PlaylistProps {
+    playlistId: string;
+}
+  
+export const fetchPlaylistTracks = async ({ playlistId }: PlaylistProps) => {
+  const accessToken = await getSpotifyAccessToken();
+
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      throw new Error(`Failed to fetchPlaylistTracks: ${response.status} ${errorBody}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data.items;
+  } catch (error) {
+    console.error('Error in fetchPlaylistTracks:', error);
+    throw error;
+  }
+};
