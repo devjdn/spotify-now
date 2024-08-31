@@ -41,77 +41,84 @@ export interface FeaturedPlaylist {
 }
 
 export interface Playlist {
-    id: number;
-    track: {
-        album: {
-            album_type: string;
-            total_tracks: number;
-            available_markets: string[];
-            external_urls: {
-              spotify: string;
-            };
-            href: string;
-            id: string;
-            images: Array<{
-              url: string;
-              height: number;
-              width: number;
-            }>;
-            name: string;
-            release_date: string;
-            release_date_precision: string;
-            restrictions?: {
-              reason: string;
-            };
-            type: string;
-            uri: string;
-            artists: Array<{
-              external_urls: {
-                spotify: string;
-              };
-              href: string;
-              id: string;
-              name: string;
-              type: string;
-              uri: string;
-            }>;
-        };
-        artists: Array<{
-          external_urls: {
-            spotify: string;
-          };
-          href: string;
-          id: string;
-          name: string;
-          type: string;
-          uri: string;
-        }>;
-        available_markets: string[];
-        disc_number: number;
-        duration_ms: number;
-        explicit: boolean;
-        external_ids: {
-          isrc: string;
-          ean: string;
-          upc: string;
-        };
+  added_at: string;
+  added_by: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  is_local: boolean;
+  primary_color: string | null;
+  track: {
+    preview_url: string | null;
+    available_markets: string[];
+    explicit: boolean;
+    type: string;
+    episode: boolean;
+    track: boolean;
+    album: {
+      available_markets: string[];
+      type: string;
+      album_type: string;
+      href: string;
+      id: string;
+      images: {
+        height: number;
+        url: string;
+        width: number;
+      }[];
+      name: string;
+      release_date: string;
+      release_date_precision: string;
+      uri: string;
+      artists: {
         external_urls: {
           spotify: string;
         };
         href: string;
         id: string;
-        is_playable: boolean;
-        linked_from?: object;
-        restrictions?: {
-          reason: string;
-        };
         name: string;
-        popularity: number;
-        preview_url: string;
-        track_number: number;
         type: string;
         uri: string;
-        is_local: boolean;
-    }
-};
+      }[];
+      external_urls: {
+        spotify: string;
+      };
+      total_tracks: number;
+    };
+    artists: {
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      name: string;
+      type: string;
+      uri: string;
+    }[];
+    disc_number: number;
+    track_number: number;
+    duration_ms: number;
+    external_ids: {
+      isrc: string;
+    };
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    name: string;
+    popularity: number;
+    uri: string;
+    is_local: boolean;
+  };
+  video_thumbnail: {
+    url: string | null;
+  };
+}
+
   

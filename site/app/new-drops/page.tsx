@@ -4,8 +4,8 @@ import NMF from "@/components/spotify/new-music-friday";
 export default function NewDrops() {
     return(
         <>
-        <NMF/>
         <NewReleases/>
+        <NMF/>
         </>
     );
 }
