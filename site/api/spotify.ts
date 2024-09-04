@@ -119,10 +119,9 @@ export const fetchNewMusicFriday = async () => {
 
 export interface PlaylistProps {
     playlistId: string;
-    playlistName: string;
 }
   
-export const fetchPlaylistTracks = async ({ playlistId, playlistName }: PlaylistProps) => {
+export const fetchPlaylistTracks = async ({ playlistId }: PlaylistProps) => {
     const accessToken = await getSpotifyAccessToken();
   
     try {

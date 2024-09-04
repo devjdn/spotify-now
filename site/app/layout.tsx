@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Inter, Raleway } from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 
 const dm = DM_Sans({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SpotifyNow",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={dm.className}>
+      <body className={inter.className}>
         <Header/>
         {children}
         <Footer/>

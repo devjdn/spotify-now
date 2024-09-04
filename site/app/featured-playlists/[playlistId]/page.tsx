@@ -1,21 +1,16 @@
 import { fetchPlaylistTracks, PlaylistProps } from "@/api/spotify";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "@/components/playlist-grid/playlist-grid";
-import { Clock, X } from 'lucide-react';
-import PlaylistToggleButton from './popup-btn';
+import { Clock } from 'lucide-react';
 
-export default async function PlaylistTracks({ playlistId, playlistName }: PlaylistProps) {
-
-  const playlistTracks: Playlist[] = await fetchPlaylistTracks({ playlistId, playlistName });
+export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
+  const { playlistId } = params;
+  const playlistTracks: Playlist[] = await fetchPlaylistTracks({ playlistId });
 
   return (
-    <div className="popup-tracks-container">
+    <section className="playlist-id">
       <GridContainer>
         <header className="playlist-header">
-          <h3>{playlistName}</h3>
-          <PlaylistToggleButton playlistId={playlistId}>
-            <X />
-          </PlaylistToggleButton>
         </header>
         <GridHeader>
           <div className="grid-col">
@@ -56,7 +51,7 @@ export default async function PlaylistTracks({ playlistId, playlistName }: Playl
           ))}
         </GridList>
       </GridContainer>
-    </div>
+    </section>
   );
 }
 

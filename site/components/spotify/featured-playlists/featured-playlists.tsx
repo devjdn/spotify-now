@@ -2,7 +2,8 @@
 import { fetchFeaturedPlaylists } from "@/api/spotify";
 import { FeaturedPlaylist } from "@/lib/global";
 import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../../grid-to-scroll/grid-to-scroll";
-import PlaylistPopup from "./popup";
+import Link from 'next/link';
+import { ListMusic, ListVideo } from "lucide-react";
 
 export default async function FeaturedPlaylists() {
     const featuredPlaylists: FeaturedPlaylist[] = await fetchFeaturedPlaylists();
@@ -22,7 +23,9 @@ export default async function FeaturedPlaylists() {
                                     </a>
                                     <p>{playlist.tracks.total} tracks</p>
                                </div>
-                               <PlaylistPopup playlistName={playlist.name} playlistId={playlist.id}/>
+                               <Link href={`/featured-playlists/${playlist.id}`}>
+                                    <ListVideo/>
+                               </Link>
                             </div>
                         </GridToScrollLi>
                     ))}
