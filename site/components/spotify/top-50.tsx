@@ -7,6 +7,8 @@ export default async function GlobalTop50() {
     const top50: Playlist = await fetchGlobalTop50();
     const trackCount = top50.tracks.total;
     const playlistName = top50.name;
+    const playlistOwner = top50.owner.display_name;
+    const playlistDescription = top50.description;
 
     return (
         <section className="global-top-50 playlist">
@@ -14,7 +16,17 @@ export default async function GlobalTop50() {
                 <img src={top50.images[0].url}/>
                 <div className="info">
                     <h2>{playlistName}</h2>
-                    <p>{trackCount} Tracks</p>
+                    <ul className="playlist-info-ul">
+                      <li className="playlist-info-li">
+                        <strong>{playlistDescription}</strong>
+                      </li>
+                      <li className="playlist-info-li">
+                        <p>{playlistOwner}</p>
+                      </li>
+                      <li className="playlist-info-li">
+                        <p>{trackCount} Tracks</p>
+                      </li>
+                    </ul>
                 </div>
             </header>
             <GridContainer>

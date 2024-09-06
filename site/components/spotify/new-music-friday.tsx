@@ -7,6 +7,8 @@ export default async function NMF() {
     const nmf: Playlist = await fetchNewMusicFriday();
     const trackCount = nmf.tracks.total;
     const playlistName = nmf.name;
+    const playlistOwner = nmf.owner.display_name;
+    const playlistDescription = nmf.description;
 
     return (
         <section className="nmf playlist">
@@ -14,7 +16,17 @@ export default async function NMF() {
                 <img src={nmf.images[0]?.url} alt={playlistName} />
                 <div className="info">
                     <h2>{playlistName}</h2>
-                    <p>{trackCount} Tracks</p>
+                    <ul className="playlist-info-ul">
+                      <li className="playlist-info-li">
+                        <strong>{playlistDescription}</strong>
+                      </li>
+                      <li className="playlist-info-li">
+                        <p>{playlistOwner}</p>
+                      </li>
+                      <li className="playlist-info-li">
+                        <p>{trackCount} Tracks</p>
+                      </li>
+                    </ul>
                 </div>
             </header>
             <GridContainer>

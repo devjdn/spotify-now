@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Inter, Raleway } from "next/font/google";
+import { DM_Sans, Inter } from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";

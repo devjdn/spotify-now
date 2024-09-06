@@ -1,4 +1,4 @@
-import { getSpotifyAccessToken } from "./access-token";
+import { getSpotifyAccessToken } from "../access-token";
 
 export interface PlaylistProps {
     playlistId: string;

@@ -1,4 +1,4 @@
-import { fetchPlaylistTracks, PlaylistProps } from "@/api/playlistId-call";
+import { fetchPlaylistTracks, PlaylistProps } from "@/api/[playlistId]/route";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "@/components/playlist-grid/playlist-grid";
 import { Clock } from 'lucide-react';
@@ -8,15 +8,27 @@ export default async function PlaylistTracksPage({params}: {params: { playlistId
   const playlistTracks: Playlist = await fetchPlaylistTracks({ playlistId });
   const playlistName = playlistTracks.name;
   const trackCount = playlistTracks.tracks.total;
+  const playlistOwner = playlistTracks.owner.display_name;
+  const playlistDescription = playlistTracks.description;
 
   return (
     <section className="playlist playlist-id">
       <GridContainer>
         <header className="playlist-header">
           <img src={playlistTracks.images[0].url}/>
-          <div className="info">
-              <h2>{playlistName}</h2>
-              <p>{trackCount} Tracks</p>
+          <div className="playlist-info">
+              <h3>{playlistName}</h3>
+              <ul className="playlist-info-ul">
+                <li className="playlist-info-li">
+                  <strong>{playlistDescription}</strong>
+                </li>
+                <li className="playlist-info-li">
+                  <p>{playlistOwner}</p>
+                </li>
+                <li className="playlist-info-li">
+                  <p>{trackCount} Tracks</p>
+                </li>
+              </ul>
           </div>
         </header>
         <GridHeader>
