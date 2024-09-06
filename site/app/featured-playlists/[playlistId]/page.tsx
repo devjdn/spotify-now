@@ -1,42 +1,43 @@
-import { fetchPlaylistTracks, PlaylistProps } from "@/api/spotify";
+import { fetchPlaylistTracks, PlaylistProps } from "@/api/playlistId-call";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "@/components/playlist-grid/playlist-grid";
 import { Clock } from 'lucide-react';
 
 export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
   const { playlistId } = params;
-  const playlistTracks: Playlist[] = await fetchPlaylistTracks({ playlistId });
+  const playlistTracks: Playlist = await fetchPlaylistTracks({ playlistId });
+  const playlistName = playlistTracks.name;
+  const trackCount = playlistTracks.tracks.total;
 
   return (
-    <section className="playlist-id">
+    <section className="playlist playlist-id">
       <GridContainer>
         <header className="playlist-header">
+          <img src={playlistTracks.images[0].url}/>
+          <div className="info">
+              <h2>{playlistName}</h2>
+              <p>{trackCount} Tracks</p>
+          </div>
         </header>
         <GridHeader>
           <div className="grid-col">
-            <h4>#</h4>
+            <strong>Title</strong>
           </div>
           <div className="grid-col">
-            <h4>Title</h4>
+            <strong>Album</strong>
           </div>
           <div className="grid-col">
-            <h4>Album</h4>
-          </div>
-          <div className="grid-col">
-            <Clock />
+            <Clock size={20}/>
           </div>
         </GridHeader>
         <GridList>
-          {playlistTracks.map((track, trackIndex) => (
+          {playlistTracks.tracks.items.map((track, trackIndex) => (
             track.track && (
               <GridRow key={trackIndex}>
                 <div className="grid-col">
-                  <p>{trackIndex + 1}</p>
-                </div>
-                <div className="grid-col">
                   <img loading="lazy" src={track.track.album.images[0]?.url} alt={track.track.name} />
                   <div className="info">
-                    <strong>{track.track.name}</strong>
+                    <p>{track.track.name}</p>
                     <p>{track.track.artists[0]?.name}</p>
                   </div>
                 </div>

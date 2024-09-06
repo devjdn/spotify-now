@@ -1,5 +1,5 @@
 // In FeaturedPlaylists.tsx
-import { fetchFeaturedPlaylists } from "@/api/spotify";
+import { fetchFeaturedPlaylists } from "@/api/featured-playlists-call";
 import { FeaturedPlaylist } from "@/lib/global";
 import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../../grid-to-scroll/grid-to-scroll";
 import Link from 'next/link';

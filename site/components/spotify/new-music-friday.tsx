@@ -1,47 +1,49 @@
-import { fetchNewMusicFriday } from "@/api/spotify";
+import { fetchNewMusicFriday } from "@/api/nmf-call";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "../playlist-grid/playlist-grid";
 import { Clock } from "lucide-react";
 
 export default async function NMF() {
-    const nmf: Playlist[] = await fetchNewMusicFriday();
+    const nmf: Playlist = await fetchNewMusicFriday();
+    const trackCount = nmf.tracks.total;
+    const playlistName = nmf.name;
 
     return (
-        <section className="nmf" id="nmf">
-            <h2>New Music Friday</h2>
+        <section className="nmf playlist">
+            <header className="playlist-header">
+                <img src={nmf.images[0]?.url} alt={playlistName} />
+                <div className="info">
+                    <h2>{playlistName}</h2>
+                    <p>{trackCount} Tracks</p>
+                </div>
+            </header>
             <GridContainer>
                 <GridHeader>
                     <div className="grid-col">
-                        <h4>#</h4>
+                        <strong>Title</strong>
                     </div>
                     <div className="grid-col">
-                        <h4>Title</h4>
+                        <strong>Album</strong>
                     </div>
                     <div className="grid-col">
-                        <h4>Album</h4>
-                    </div>
-                    <div className="grid-col">
-                        <Clock/>
+                        <Clock size={20} />
                     </div>
                 </GridHeader>
                 <GridList>
-                    {nmf.map((nmf, trackIndex) => (
+                    {nmf.tracks.items.map((item, trackIndex) => (
                         <GridRow key={trackIndex}>
                             <div className="grid-col">
-                                <p>{trackIndex + 1}</p>
-                            </div>
-                            <div className="grid-col">
-                                <img loading="lazy" src={nmf.track.album.images[0]?.url} alt={nmf.track.name}/>
+                                <img loading="lazy" src={item.track.album.images[0]?.url} alt={item.track.name} />
                                 <div className="info">
-                                    <strong>{nmf.track.name}</strong>
-                                    <p>{nmf.track.artists[0]?.name}</p>
+                                    <p>{item.track.name}</p>
+                                    <p>{item.track.artists[0]?.name}</p>
                                 </div>
                             </div>
                             <div className="grid-col">
-                                <p>{nmf.track.album.name}</p>
+                                <p>{item.track.album.name}</p>
                             </div>
                             <div className="grid-col">
-                                <p>{formatDuration(nmf.track.duration_ms)}</p>
+                                <p>{formatDuration(item.track.duration_ms)}</p>
                             </div>
                         </GridRow>
                     ))}
@@ -51,7 +53,6 @@ export default async function NMF() {
     );
 }
 
-// Helper function to format duration from milliseconds to mm:ss
 function formatDuration(durationMs: number): string {
     const minutes = Math.floor(durationMs / 60000);
     const seconds = Math.floor((durationMs % 60000) / 1000);

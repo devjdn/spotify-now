@@ -1,4 +1,4 @@
-import { fetchNewReleases } from "@/api/spotify";
+import { fetchNewReleases } from "@/api/new-releases-call";
 import { Album } from "@/lib/global";
 import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../grid-to-scroll/grid-to-scroll";
 
