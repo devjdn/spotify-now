@@ -18,17 +18,8 @@ export default async function PlaylistTracksPage({params}: {params: { playlistId
           <img src={playlistTracks.images[0].url}/>
           <div className="playlist-info">
               <h3>{playlistName}</h3>
-              <ul className="playlist-info-ul">
-                <li className="playlist-info-li">
-                  <strong>{playlistDescription}</strong>
-                </li>
-                <li className="playlist-info-li">
-                  <p>{playlistOwner}</p>
-                </li>
-                <li className="playlist-info-li">
-                  <p>{trackCount} Tracks</p>
-                </li>
-              </ul>
+              <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
+              <p>{playlistDescription}</p>
           </div>
         </header>
         <GridHeader>

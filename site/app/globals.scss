@@ -31,7 +31,7 @@
 
   //---MISC---//
   --filter: blur(10px) saturate(1);
-  --shadow: rgba(0, 0, 0, 0.091) 0px 3px 8px;
+  --shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 
 
@@ -39,15 +39,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
     //---BACKGROUNDS---//
---bg-1: #0f0f0f;
---bg-2: #181818;
-
-//---TEXT---//
---t-1: #e0e0e0;
---t-2: #909090;
-
-//---BORDERS---//
---bd-1: 1px solid #1a1a1a;
+    --bg-1: #0f0f0f;
+    --bg-2: #181818;
+    
+    //---TEXT---//
+    --t-1: #e0e0e0;
+    --t-2: #909090;
+    
+    //---BORDERS---//
+    --bd-1: 1px solid #1a1a1a;
 
     //---MISC---//
     --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;  
@@ -119,6 +119,7 @@ h4{
 }
 p{
   // font-weight: 500;
+  font-size: .9em;
   color: var(--t-2);
 }
 
@@ -242,6 +243,7 @@ section.playlist{
 
     img{
       border-radius: 10px;
+      box-shadow: var(--shadow);
     }
 
     .playlist-info{

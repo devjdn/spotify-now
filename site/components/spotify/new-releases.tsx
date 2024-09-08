@@ -19,11 +19,9 @@ const NewReleases = async () => {
                                     <strong className="name">{album.name}</strong>
                                 </a>
                                 <div className="artist-list">
-                                    {album.artists.map((artist, index) => (
-                                      <a key={index} href={artist.external_urls.spotify}>
-                                        <strong className="name">{artist.name}</strong>
-                                      </a>
-                                    ))}
+                                    <a href={album.artists[0].external_urls.spotify}>
+                                      <strong className="name">{album.artists[0].name}</strong>
+                                    </a>
                                 </div>
                                 <p className="capitalize">{album.album_type}</p>
                             </div>

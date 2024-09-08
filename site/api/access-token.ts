@@ -26,6 +26,7 @@ export const getSpotifyAccessToken = async (): Promise<string> => {
         },
         body: new URLSearchParams({
             grant_type: 'client_credentials',
+            refresh_token: 'refresh_token',
         }),
     });
 

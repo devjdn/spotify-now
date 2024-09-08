@@ -14,19 +14,10 @@ export default async function NMF() {
         <section className="nmf playlist">
             <header className="playlist-header">
                 <img src={nmf.images[0]?.url} alt={playlistName} />
-                <div className="info">
-                    <h2>{playlistName}</h2>
-                    <ul className="playlist-info-ul">
-                      <li className="playlist-info-li">
-                        <strong>{playlistDescription}</strong>
-                      </li>
-                      <li className="playlist-info-li">
-                        <p>{playlistOwner}</p>
-                      </li>
-                      <li className="playlist-info-li">
-                        <p>{trackCount} Tracks</p>
-                      </li>
-                    </ul>
+                <div className="playlist-info">
+                    <h3>{playlistName}</h3>
+                    <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
+                    <p>{playlistDescription}</p>
                 </div>
             </header>
             <GridContainer>
