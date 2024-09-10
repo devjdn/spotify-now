@@ -5,36 +5,26 @@ import { Clock } from 'lucide-react';
 
 export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
   const { playlistId } = params;
-  const playlistTracks: Playlist = await fetchPlaylistTracks({ playlistId });
-  const playlistName = playlistTracks.name;
-  const trackCount = playlistTracks.tracks.total;
-  const playlistOwner = playlistTracks.owner.display_name;
-  const playlistDescription = playlistTracks.description;
+  const playlist: Playlist = await fetchPlaylistTracks({ playlistId });
+  const playlistName = playlist.name;
+  const trackCount = playlist.tracks.total;
+  const playlistOwner = playlist.owner.display_name;
+  const playlistDescription = playlist.description;
 
   return (
     <section className="playlist playlist-id">
       <GridContainer>
         <header className="playlist-header">
-          <img src={playlistTracks.images[0].url}/>
+          <img src={playlist.images[0].url}/>
           <div className="playlist-info">
               <h3>{playlistName}</h3>
               <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
               <p>{playlistDescription}</p>
           </div>
         </header>
-        <GridHeader>
-          <div className="grid-col">
-            <strong>Title</strong>
-          </div>
-          <div className="grid-col">
-            <strong>Album</strong>
-          </div>
-          <div className="grid-col">
-            <Clock size={20}/>
-          </div>
-        </GridHeader>
+        <GridHeader/>
         <GridList>
-          {playlistTracks.tracks.items.map((track, trackIndex) => (
+          {playlist.tracks.items.map((track, trackIndex) => (
             track.track && (
               <GridRow key={trackIndex}>
                 <div className="grid-col">

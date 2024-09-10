@@ -4,16 +4,16 @@ import { GridContainer, GridHeader, GridList, GridRow } from "../playlist-grid/p
 import { Clock } from "lucide-react";
 
 export default async function NMF() {
-    const nmf: Playlist = await fetchNewMusicFriday();
-    const trackCount = nmf.tracks.total;
-    const playlistName = nmf.name;
-    const playlistOwner = nmf.owner.display_name;
-    const playlistDescription = nmf.description;
+    const playlist: Playlist = await fetchNewMusicFriday();
+    const trackCount = playlist.tracks.total;
+    const playlistName = playlist.name;
+    const playlistOwner = playlist.owner.display_name;
+    const playlistDescription = playlist.description;
 
     return (
         <section className="nmf playlist">
             <header className="playlist-header">
-                <img src={nmf.images[0]?.url} alt={playlistName} />
+                <img src={playlist.images[0]?.url} alt={playlistName} />
                 <div className="playlist-info">
                     <h3>{playlistName}</h3>
                     <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
@@ -21,19 +21,9 @@ export default async function NMF() {
                 </div>
             </header>
             <GridContainer>
-                <GridHeader>
-                    <div className="grid-col">
-                        <strong>Title</strong>
-                    </div>
-                    <div className="grid-col">
-                        <strong>Album</strong>
-                    </div>
-                    <div className="grid-col">
-                        <Clock size={20} />
-                    </div>
-                </GridHeader>
+                <GridHeader/>
                 <GridList>
-                    {nmf.tracks.items.map((item, trackIndex) => (
+                    {playlist.tracks.items.map((item, trackIndex) => (
                         <GridRow key={trackIndex}>
                             <div className="grid-col">
                                 <img loading="lazy" src={item.track.album.images[0]?.url} alt={item.track.name} />

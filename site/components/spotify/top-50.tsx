@@ -1,19 +1,18 @@
 import { fetchGlobalTop50 } from "@/api/top50-call";
 import { Playlist } from "@/lib/global";
 import { GridContainer, GridHeader, GridList, GridRow } from "../playlist-grid/playlist-grid";
-import { Clock } from "lucide-react";
 
 export default async function GlobalTop50() {
-    const top50: Playlist = await fetchGlobalTop50();
-    const trackCount = top50.tracks.total;
-    const playlistName = top50.name;
-    const playlistOwner = top50.owner.display_name;
-    const playlistDescription = top50.description;
+    const playlist: Playlist = await fetchGlobalTop50();
+    const trackCount = playlist.tracks.total;
+    const playlistName = playlist.name;
+    const playlistOwner = playlist.owner.display_name;
+    const playlistDescription = playlist.description;
 
     return (
         <section className="global-top-50 playlist">
             <header className="playlist-header">
-                <img src={top50.images[0].url}/>
+                <img src={playlist.images[0].url}/>
                 <div className="playlist-info">
                     <h3>{playlistName}</h3>
                     <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
@@ -21,19 +20,9 @@ export default async function GlobalTop50() {
                 </div>
             </header>
             <GridContainer>
-                <GridHeader>
-                    <div className="grid-col">
-                        <strong>Title</strong>
-                    </div>
-                    <div className="grid-col">
-                        <strong>Album</strong>
-                    </div>
-                    <div className="grid-col">
-                        <Clock size={20}/>
-                    </div>
-                </GridHeader>
+                <GridHeader/>
                 <GridList>
-                    {top50.tracks.items.map((item, trackIndex) => (
+                    {playlist.tracks.items.map((item, trackIndex) => (
                         <GridRow key={trackIndex}>
                             <div className="grid-col">
                                 <img loading="lazy" src={item.track.album.images[0]?.url} alt={item.track.name}/>

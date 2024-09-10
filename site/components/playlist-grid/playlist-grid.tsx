@@ -1,4 +1,6 @@
 import React from "react";
+import { Clock } from "lucide-react";
+
 
 export function GridContainer({children}:{children:React.ReactNode}) {
     return(
@@ -7,10 +9,18 @@ export function GridContainer({children}:{children:React.ReactNode}) {
         </div>
     );
 }
-export function GridHeader({children}:{children:React.ReactNode}) {
+export function GridHeader() {
     return(
         <header className="grid-header">
-            {children}
+            <div className="grid-col">
+                <strong>Title</strong>
+            </div>
+            <div className="grid-col">
+                <strong>Album</strong>
+            </div>
+            <div className="grid-col">
+                <Clock size={20}/>
+            </div>
         </header>
     );
 }
