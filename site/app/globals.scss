@@ -21,6 +21,7 @@
   //---BACKGROUNDS---//
   --bg-1: #fff;
   --bg-2: #f6f6f6;
+  --hover: #ebebeb;
 
   //---TEXT---//
   --t-1: #000;
@@ -41,6 +42,7 @@
     //---BACKGROUNDS---//
     --bg-1: #0f0f0f;
     --bg-2: #181818;
+    --hover: #222;
     
     //---TEXT---//
     --t-1: #e0e0e0;
@@ -243,6 +245,7 @@ section.playlist{
 
     img{
       border-radius: 10px;
+      max-width: 300px;
       box-shadow: var(--shadow);
     }
 
@@ -251,6 +254,22 @@ section.playlist{
       flex-direction: column;
       max-width: 600px;
       gap: 10px;
+
+      .playlist-actions{
+        display: flex;
+        gap: 10px;
+
+        button.action-btn{
+          display: flex;
+          gap: 6px;
+          background: var(--brand);
+          border-radius: 10px;
+          align-items: center;
+          padding: 8px 14px;
+          font-weight: 500;
+          color: #fff;
+        }
+      }
     }
   }
 }
@@ -330,6 +349,9 @@ section.site-features{
 
     &:nth-of-type(odd){
       background: var(--bg-2);
+    }
+    &:hover{
+      background: var(--hover);
     }
 
       .grid-col:first-of-type{

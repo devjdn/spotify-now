@@ -1,6 +1,7 @@
 import React from "react";
 import { Clock } from "lucide-react";
 import { Playlist } from "@/lib/global";
+import { FaSpotify } from "react-icons/fa";
 
 interface PlaylistGridProps {
     playlist: Playlist;
@@ -21,6 +22,14 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                     <h3>{playlistName}</h3>
                     <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
                     <p>{description}</p>
+                    <div className="playlist-actions">
+                        <a href={playlist.external_urls.spotify}>
+                            <button className="action-btn">
+                                Listen on
+                                <FaSpotify/>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </header>
             <div className="grid-container">

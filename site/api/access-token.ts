@@ -4,7 +4,7 @@ let tokenExpiryTime: number | null = null;
 const client_id = process.env.SPOTIFY_CLIENT_ID!;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
 
-export const getSpotifyAccessToken = async (): Promise<string> => {
+export const getSpotifyAccessToken = async () => {
     const now = Date.now();
     
     // Check if the token is still valid
@@ -26,8 +26,8 @@ export const getSpotifyAccessToken = async (): Promise<string> => {
         },
         body: new URLSearchParams({
             grant_type: 'client_credentials',
-            refresh_token: 'refresh_token',
         }),
+        cache: 'no-cache',
     });
 
     if (!response.ok) {

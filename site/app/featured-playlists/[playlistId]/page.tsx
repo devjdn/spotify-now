@@ -1,4 +1,4 @@
-import { fetchPlaylistTracks, PlaylistProps } from "@/api/[playlistId]/route";
+import { fetchPlaylistTracks } from "@/api/[playlistId]/route";
 import { Playlist } from "@/lib/global";
 import PlaylistGrid from "@/components/playlist-grid/playlist-grid";
 
