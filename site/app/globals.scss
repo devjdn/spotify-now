@@ -101,11 +101,12 @@ h1{
   color: var(--brand);
   line-height: 1.1em;
 }
-h2,h3,h4,strong{
+h3,h4,strong{
   font-weight: 500;
   color: var(--t-1);
 }
 h2{
+  font-weight: 600;
   letter-spacing: -.03em;
   font-size: 2.25em;
   line-height: 1.1em;
@@ -347,12 +348,35 @@ section.site-features{
       align-items: center;
       border-radius: 8px;
 
-    &:nth-of-type(odd){
-      background: var(--bg-2);
-    }
-    &:hover{
-      background: var(--hover);
-    }
+      .song-media{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(2, 1fr);
+        place-items: center;
+
+        img{
+          grid-area: 1/1/3/3;
+          z-index: 1;
+        }
+        button{
+          grid-area: 1/1/3/3;
+          z-index: 2;
+          display: none;          
+        }
+
+        &:hover{
+          button{
+            display: block; 
+          }
+        }
+      }
+
+      &:nth-of-type(odd){
+        background: var(--bg-2);
+      }
+      &:hover{
+        background: var(--hover);
+      }
 
       .grid-col:first-of-type{
         display: flex;

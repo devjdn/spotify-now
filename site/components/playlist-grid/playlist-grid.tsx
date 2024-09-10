@@ -2,6 +2,7 @@ import React from "react";
 import { Clock } from "lucide-react";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
+import PreviewSongBtn from "./song-preview";
 
 interface PlaylistGridProps {
     playlist: Playlist;
@@ -48,7 +49,10 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                     {tracks.items.map((item, trackIndex) => (
                       <li key={trackIndex} className="grid-li">
                         <div className="grid-col">
-                          <img loading="lazy" src={item.track.album.images[0]?.url} alt={item.track.name} />
+                            <div className="song-media">
+                                <img loading="lazy" src={item.track.album.images[0]?.url} alt={item.track.name} />
+                                <PreviewSongBtn previewUrl={item.track.preview_url}/>
+                            </div>
                           <div className="info">
                             <p>{item.track.name}</p>
                             <p>{item.track.artists[0]?.name}</p>
