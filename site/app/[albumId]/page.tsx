@@ -1,4 +1,4 @@
-import { fetchAlbum } from "@/api/[albumId]/route";
+import { fetchAlbum } from "@/api/album/[albumId]/route";
 import { Album } from "@/lib/global";
 import AlbumGrid from "@/components/album-grid/album-grid";
 

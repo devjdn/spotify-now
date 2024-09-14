@@ -1,4 +1,4 @@
-import { getSpotifyAccessToken } from "../access-token";
+import { getSpotifyAccessToken } from "../../access-token";
 
 export const fetchPlaylistTracks = async ({ playlistId }: { playlistId: string }) => {
     const accessToken = await getSpotifyAccessToken();

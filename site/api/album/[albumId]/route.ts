@@ -1,4 +1,4 @@
-import { getSpotifyAccessToken } from "../access-token";
+import { getSpotifyAccessToken } from "../../access-token";
 
 export const fetchAlbum = async ({albumId}: {albumId: string}) => {
     const accessToken = await getSpotifyAccessToken();
