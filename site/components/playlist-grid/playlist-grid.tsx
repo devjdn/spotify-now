@@ -34,17 +34,6 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                 </div>
             </header>
             <div className="grid-container">
-                <header className="grid-header">
-                    <div className="grid-col">
-                        <strong>Title</strong>
-                    </div>
-                    <div className="grid-col">
-                        <strong>Album</strong>
-                    </div>
-                    <div className="grid-col">
-                        <Clock size={20}/>
-                    </div>
-                </header>
                 <ul className="grid-ul">
                     {tracks.items.map((item, trackIndex) => (
                       <li key={trackIndex} className="grid-li">
@@ -59,7 +48,9 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                           </div>
                         </div>
                         <div className="grid-col">
-                          <p>{item.track.album.name}</p>
+                            <a href={`/${item.track.album.id}`}>
+                                <p>{item.track.album.name}</p>
+                            </a>
                         </div>
                         <div className="grid-col">
                           <p>{formatDuration(item.track.duration_ms)}</p>
