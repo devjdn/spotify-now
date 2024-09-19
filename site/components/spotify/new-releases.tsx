@@ -16,11 +16,11 @@ const NewReleases = async () => {
                             <img src={album.images[0]?.url} alt={album.name} />
                             <div className="info">
                                 <a href={album.external_urls.spotify}>
-                                    <strong className="name">{album.name}</strong>
+                                    <strong>{album.name}</strong>
                                 </a>
                                 <div className="artist-list">
                                     <a href={album.artists[0].external_urls.spotify}>
-                                      <strong className="name">{album.artists[0].name}</strong>
+                                      <strong>{album.artists[0].name}</strong>
                                     </a>
                                 </div>
                                 <p className="capitalize">{album.album_type}</p>

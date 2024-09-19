@@ -28,13 +28,13 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                     {album.tracks.items.map((item, trackIndex) => (
                         <li key={trackIndex} className="grid-li">
                             <div className="grid-col">
-                                <p>{item.track_number}</p>
+                                <span className="song-text">{item.track_number}</span>
                             </div>
                             <div className="grid-col">
-                                <p>{item.name}</p>
+                                <span className="song-text">{item.name}</span>
                             </div>
                             <div className="grid-col">
-                                <p>{formatDuration(item.duration_ms)}</p>
+                                <span className="song-text">{formatDuration(item.duration_ms)}</span>
                             </div>
                         </li>
                     ))}

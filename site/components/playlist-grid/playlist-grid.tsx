@@ -43,17 +43,17 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                                 <PreviewSongBtn previewUrl={item.track.preview_url}/>
                             </div>
                           <div className="info">
-                            <p>{item.track.name}</p>
-                            <p>{item.track.artists[0]?.name}</p>
+                            <span className="song-text">{item.track.name}</span>
+                            <span className="song-text">{item.track.artists[0]?.name}</span>
                           </div>
                         </div>
                         <div className="grid-col">
                             <a href={`/${item.track.album.id}`}>
-                                <p>{item.track.album.name}</p>
+                                <span className="song-text">{item.track.album.name}</span>
                             </a>
                         </div>
                         <div className="grid-col">
-                          <p>{formatDuration(item.track.duration_ms)}</p>
+                          <span className="song-text">{formatDuration(item.track.duration_ms)}</span>
                         </div>
                       </li>
                     ))}

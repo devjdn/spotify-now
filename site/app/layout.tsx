@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
-import "./globals.scss";
+import "./scss/globals.scss";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 
 const dm = DM_Sans({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "SpotifyNow",
