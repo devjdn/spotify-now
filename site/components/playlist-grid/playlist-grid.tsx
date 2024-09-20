@@ -1,5 +1,4 @@
 import React from "react";
-import { Clock } from "lucide-react";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import PreviewSongBtn from "./song-preview";
@@ -14,6 +13,12 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
     const { name: playlistName, tracks, owner, description, images} = playlist;
     const trackCount = tracks.total;
     const playlistOwner = owner.display_name;
+
+    const featuredAlbums = Array.from(new Set(tracks.items.map((albumId => albumId.track.album.id)).map(id => {
+        const album = tracks.items.find(item => item.track.album.id === id)?.track.album;
+        return album;
+    }))).filter((album): album is NonNullable<typeof album> => album !== null);
+
 
     return(
         <section className="content playlist">
@@ -66,6 +71,28 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                 <p className="capitalize">{trackCount} tracks</p>
                 }
             </footer>
+            <div className="featured-albums">
+                <h3>Featured Albums</h3>
+                <div className="featured-albums-scroll">
+                    <div className="scroll-shadow left"></div>
+                    <div className="scroll-shadow right"></div>
+                    <ul className="featured-albums-ul">
+                        <div className="scroll-shadow left"></div>
+                        <div className="scroll-shadow right"></div>
+                        {featuredAlbums.map((album, albumIndex) => (
+                            <li className="featured-albums-li" key={albumIndex}>
+                                <img loading="lazy" src={album.images[0].url} alt={album.name}/>
+                                <div className="info">
+                                    <a href={`/${album.id}`}>
+                                        <strong>{album.name}</strong>
+                                    </a>
+                                    <p>{album.artists[0].name}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </section>
     );
 }
