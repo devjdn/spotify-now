@@ -16,14 +16,13 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
     const playlistOwner = owner.display_name;
 
     return(
-        <section className="playlist">
-            <header className="playlist-header">
+        <section className="content playlist">
+            <header className="content-header">
                 <img src={playlist.images[0].url}/>
-                <div className="playlist-info">
+                <div className="content-info">
                     <h3>{playlistName}</h3>
-                    <strong>{playlistOwner} &middot; {trackCount} tracks</strong>
                     <p>{description}</p>
-                    <div className="playlist-actions">
+                    <div className="content-actions">
                         <a href={playlist.external_urls.spotify}>
                             <button className="action-btn">
                                 Listen on
@@ -59,6 +58,14 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                     ))}
                 </ul>
             </div>
+            <footer className="content-footer">
+                <p>{playlistOwner}</p>
+                {trackCount === 1 ? 
+                <p className="capitalize">{trackCount} track</p> 
+                : 
+                <p className="capitalize">{trackCount} tracks</p>
+                }
+            </footer>
         </section>
     );
 }

@@ -10,7 +10,6 @@ export default async function FeaturedPlaylists() {
 
     return (
         <section className="featured-playlists">
-            <h2>Featured playlists</h2>
             <GridToScrollContainer>
                 <GridToScrollUl>
                     {featuredPlaylists.map((playlist, playlistIndex) => (

@@ -10,17 +10,15 @@ interface AlbumGridProps {
 
 const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
     const album = await fetchAlbum();
-    const { name: albumName, album_type, images, release_date, artists, restrictions, copyrights, genres, popularity, total_tracks, label } = album;
+    const { name: albumName, album_type, images, release_date, artists, restrictions, genres, popularity, total_tracks, label } = album;
 
     return(
-        <section className="album">
-            <header className="album-header">
+        <section className="content album">
+            <header className="content-header">
                 <img src={images[0].url} alt={albumName} />
-                <div className="album-info">
+                <div className="content-info">
                     <h3>{albumName}</h3>
                     <h3>{artists[0].name}</h3>
-                    <p className="capitalize">{album_type} &middot; {release_date} &middot; {total_tracks} tracks</p>
-                    <p>{label}</p>
                 </div>
             </header>
             <div className="grid-container">
@@ -40,6 +38,12 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                     ))}
                 </ul>
             </div>
+            <footer className="content-footer">
+                <p className="capitalize">{release_date}</p>
+                {total_tracks === 1 ? <p className="capitalize">{total_tracks} track</p> : <p className="capitalize">{total_tracks} tracks</p>}
+                <p>{album.copyrights[0].text}</p>
+                <p>{label}</p>
+            </footer>
         </section>
     );
 }

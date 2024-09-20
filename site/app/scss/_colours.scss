@@ -13,8 +13,10 @@
   
     //---BORDERS---//
     --bd-1: 1px solid #ebebeb;
+    --bd-h: 1px solid #252525;
   
     //---MISC---//
+    --translucent: #000000f1;
     --filter: blur(10px) saturate(1);
     --shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
   }
@@ -34,8 +36,10 @@
       
       //---BORDERS---//
       --bd-1: 1px solid #1a1a1a;
+      --bd-h: 1px solid #202020;
   
       //---MISC---//
+      --translucent: #000000d6;
       --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;  
     }
   }
