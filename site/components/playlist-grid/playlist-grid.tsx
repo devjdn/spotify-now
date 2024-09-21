@@ -52,7 +52,7 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                           </div>
                         </div>
                         <div className="grid-col">
-                            <a href={`/${item.track.album.id}`}>
+                            <a href={`/album/${item.track.album.id}`}>
                                 <span className="song-text">{item.track.album.name}</span>
                             </a>
                         </div>
@@ -71,19 +71,19 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                 <p className="capitalize">{trackCount} tracks</p>
                 }
             </footer>
-            <div className="featured-albums">
+            <div className="featured-content">
                 <h3>Featured Albums</h3>
-                <div className="featured-albums-scroll">
+                <div className="featured-content-scroll">
                     <div className="scroll-shadow left"></div>
                     <div className="scroll-shadow right"></div>
-                    <ul className="featured-albums-ul">
+                    <ul className="featured-content-ul">
                         <div className="scroll-shadow left"></div>
                         <div className="scroll-shadow right"></div>
                         {featuredAlbums.map((album, albumIndex) => (
-                            <li className="featured-albums-li" key={albumIndex}>
+                            <li className="featured-content-li" key={albumIndex}>
                                 <img loading="lazy" src={album.images[0].url} alt={album.name}/>
                                 <div className="info">
-                                    <a href={`/${album.id}`}>
+                                    <a href={`/album/${album.id}`}>
                                         <strong>{album.name}</strong>
                                     </a>
                                     <p>{album.artists[0].name}</p>

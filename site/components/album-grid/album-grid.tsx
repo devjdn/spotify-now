@@ -2,6 +2,7 @@ import { Clock } from "lucide-react";
 import { Album } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import React from "react";
+import { ArtistAlbums } from "../spotify/artist-albums";
 
 interface AlbumGridProps {
     album: Album;
@@ -11,6 +12,8 @@ interface AlbumGridProps {
 const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
     const album = await fetchAlbum();
     const { name: albumName, album_type, images, release_date, artists, restrictions, genres, popularity, total_tracks, label } = album;
+    const artistId = artists[0].id;
+    const artistName = artists[0].name;
 
     return(
         <section className="content album">
@@ -19,6 +22,14 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                 <div className="content-info">
                     <h3>{albumName}</h3>
                     <h3>{artists[0].name}</h3>
+                    <div className="content-actions">
+                        <a href={album.external_urls.spotify}>
+                            <button className="action-btn">
+                                Listen on
+                                <FaSpotify/>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </header>
             <div className="grid-container">
@@ -44,6 +55,7 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                 <p>{album.copyrights[0].text}</p>
                 <p>{label}</p>
             </footer>
+            <ArtistAlbums artistId={artistId} artistName={artistName}/>
         </section>
     );
 }

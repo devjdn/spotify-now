@@ -34,8 +34,6 @@ export default function Header() {
         )}
       </button>
     </header>
-    <DirectionalNav/>
-
 
     <MobileHeaderNav isOpen={isOpen}/>
     </>

@@ -81,6 +81,49 @@ export interface Album {
   };
 }
 
+export interface ArtistReleasedAlbums {
+  href: string;
+  items: {
+    album_group: string;
+    album_type: string;
+    artists: {
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      name: string;
+      type: string;
+      uri: string;
+    }[];
+    available_markets: string[];
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    images: {
+      url: string;
+      height: number;
+      width: number;
+    }[];
+    name: string;
+    release_date: string;
+    release_date_precision: string;
+    restrictions?: {
+      reason: string;
+    };
+    type: string;
+    uri: string;
+  }[];
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
+}
+
+
 export interface FeaturedPlaylist {
   collaborative: boolean;
   description: string;
