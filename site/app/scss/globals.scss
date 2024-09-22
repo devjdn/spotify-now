@@ -1,5 +1,4 @@
 @use './colours';
-@use './reset';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,6 +16,37 @@
   flex-direction: row;
 }
 
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input,textarea,button{
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--t-1);
+
+  &::placeholder{
+    color: var(--t-2);
+  }
+
+  svg{
+    stroke: var(--t-1);
+  }
+  
+  &:focus{
+    outline: none;
+  }
+}
+
+a:hover{
+  >*{
+    color: var(--brand);
+  }
+}
+
 .brand{
   color: var(--brand);
 }
@@ -31,13 +61,13 @@ h1{
   margin: 25px 0;
 }
 h2{
-font-size: 1.875em;
-font-weight: 600;
+  font-size: 1.875em;
+  font-weight: 600;
 }
 h3{
-font-size: 1.5em;
-font-weight: 500;
-line-height: 1.2em;
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 1.2em;
 }
 strong{
 font-weight: 500;
@@ -46,10 +76,10 @@ h1,h2,h3{
   letter-spacing: -.03em;
 }
 h1,h2,h3,strong{
-color: var(--t-1);
+  color: var(--t-1);
 }
 p,span.song-text{
-color: var(--t-2);
+  color: var(--t-2);
 }
 span.song-text{
   font-size: .9em;
@@ -253,6 +283,7 @@ section.content{
         &:hover{
           background: var(--hover);
         }
+
       }
     }
   }
@@ -398,6 +429,48 @@ section.playlist{
   }
 }
 
+section.top-50{
+  .chart-ranking-container{
+    ol.chart-ranking-ol{
+      @include flex-col;
+
+      li.chart-ranking-li{
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 20px;
+        align-items: center;
+        
+        .song-details{
+          display: grid;
+          grid-template-columns: 120px 1fr;
+          gap: 40px;
+          align-items: center;
+          border-bottom: var(--bd-1);
+          padding: 20px 0;
+
+          img{
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+          }
+        }
+
+        span.chart-rank{
+          display: flex;
+          width: fit-content;
+          line-height: 1em;
+          font-size: 2em;
+          font-weight: 700;
+          background: var(--ranking-gradient);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+}
+
 
 
 //------GRID TO SCROLL COMPONENTS------//
@@ -437,16 +510,16 @@ section.playlist{
     font-weight: 700;
   }
   h2{
-  font-size: 1.6em;
-  font-weight: 600;
+    font-size: 1.6em;
+    font-weight: 600;
   }
   h3{
-  font-size: 1.2em;
-  font-weight: 500;
-  line-height: 1.1em;
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.1em;
   }
   strong{
-  font-weight: 500;
+    font-weight: 500;
   }
   h1,h2,h3{
     letter-spacing: -.03em;
@@ -496,18 +569,6 @@ section.playlist{
     gap: 20px;
   }
 
-  section.site-features{
-    .features-grid{
-
-      .feature{
-      
-        .feature-imgs{
-          @include flex-col;
-          gap: 20px;
-        }
-      }
-    }
-  }
   section.content{
     header.content-header{
       @include flex-col;
@@ -528,6 +589,42 @@ section.playlist{
         grid-template-columns: 1fr 50px;
         .grid-col:nth-of-type(2){
           display: none;
+        }
+      }
+    }
+  }
+
+  section.top-50{
+    .chart-ranking-container{
+      ol.chart-ranking-ol{
+  
+        li.chart-ranking-li{
+          grid-template-columns: 40px 1fr;
+          gap: 0;
+          
+          .song-details{
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 10px;
+            align-items: center;
+            border-bottom: var(--bd-1);
+            padding: 20px 0;
+
+            img{
+              border-radius: 4px;
+              box-shadow: var(--shadow);
+            }
+
+            h3{
+              font-size: 1em;
+            }
+          }
+  
+          span.chart-rank{
+            line-height: 1.3em;
+            font-size: 1.3em;
+            color: var(--brand);
+          }
         }
       }
     }

@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="powered-by">
                 <strong>Powered by</strong>
                 <a href="https://spotify.com" target="_blank">
-                    <Image height={60} src={SpotifyLogo} alt="Spotify text logo in green"/>
+                    <Image priority height={60} src={SpotifyLogo} alt="Spotify text logo in green"/>
                 </a>
             </div>
 
