@@ -1,7 +1,7 @@
-import React from "react";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import PreviewSongBtn from "./song-preview";
+import { ScrollBtns } from "../scroll-btns";
 
 interface PlaylistGridProps {
     playlist: Playlist;
@@ -72,13 +72,14 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                 }
             </footer>
             <div className="featured-content">
-                <h3>Featured Albums</h3>
+                <header className="featured-content-header">
+                    <h3>Featured Albums</h3>
+                    <ScrollBtns scrollTargetSelector="ul.featured-content-ul"/>
+                </header>
                 <div className="featured-content-scroll">
                     <div className="scroll-shadow left"></div>
                     <div className="scroll-shadow right"></div>
                     <ul className="featured-content-ul">
-                        <div className="scroll-shadow left"></div>
-                        <div className="scroll-shadow right"></div>
                         {featuredAlbums.map((album, albumIndex) => (
                             <li className="featured-content-li" key={albumIndex}>
                                 <img loading="lazy" src={album.images[0].url} alt={album.name}/>

@@ -1,8 +1,7 @@
-import { Clock } from "lucide-react";
 import { Album } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
-import React from "react";
-import { ArtistAlbums } from "../spotify/artist-albums";
+import { ArtistAlbums } from "./artist-albums";
+
 
 interface AlbumGridProps {
     album: Album;

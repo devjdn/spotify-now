@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import clsx from "clsx";
-import { usePathname, useRouter } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export const navLinks = [
     { name: 'Home', href: '/' },
@@ -30,25 +29,6 @@ export function HeaderNav() {
                 ))}
             </ul>
         </nav>
-    );
-}
-
-export function DirectionalNav() {
-    const pathname = usePathname();
-    const router = useRouter();
-    const currentPage = navLinks.find((link) => link.href === pathname);
-    const linkName = currentPage ? currentPage.name : 'Album/Single/Playlist';
-
-    return(
-        <div className="directional-nav">
-            <div className="link-name">
-                <h3>{linkName}</h3>
-            </div>
-            <div className="page-turn-btns">
-                <button className="page-back-btn" onClick={() => router.back()}><ChevronLeft/></button>
-                <button className="page-forward-btn" onClick={() => router.forward()}><ChevronRight/></button>
-            </div>
-        </div>
     );
 }
 

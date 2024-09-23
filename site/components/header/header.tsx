@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from "next/image";
 import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";
-import { DirectionalNav, HeaderNav, MobileHeaderNav } from "../nav/nav";
+import { HeaderNav, MobileHeaderNav } from "../nav/nav";
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 

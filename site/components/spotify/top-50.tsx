@@ -22,12 +22,39 @@ export default async function GlobalTop50() {
                             </button>
                         </a>
                     </div>
+                    <nav className="ranking-nav">
+                        <a href="#50">
+                            <div className="ranking-nav-position">
+                                <p>50</p>
+                            </div>
+                        </a>
+                        <a href="#40">
+                            <div className="ranking-nav-position">
+                                <p>40</p>
+                            </div>
+                        </a>
+                        <a href="#30">
+                            <div className="ranking-nav-position">
+                                <p>30</p>
+                            </div>
+                        </a>
+                        <a href="#20">
+                            <div className="ranking-nav-position">
+                                <p>20</p>
+                            </div>
+                        </a>
+                        <a href="#10">
+                            <div className="ranking-nav-position">
+                                <p>10</p>
+                            </div>
+                        </a>
+                    </nav>
                 </div>
             </header>
             <div className="chart-ranking-container">
                 <ol className="chart-ranking-ol">
                     {reversedRankings.map((ranking, rankIndex) => (
-                        <li className="chart-ranking-li" key={rankIndex}>
+                        <li className="chart-ranking-li" id={`#${totalTracks - rankIndex}`} key={rankIndex}>
                             <span className="chart-rank">{totalTracks - rankIndex}</span>
                             <div className="song-details">
                                 <img loading="lazy" src={ranking.track.album.images[1].url} alt={ranking.track.name} />

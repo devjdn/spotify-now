@@ -8,6 +8,7 @@ const NewReleases = async () => {
 
     return(
         <section className="new-releases" id="new-drops">
+            <h2>New Drops</h2>
             <GridToScrollContainer>
                 <GridToScrollUl>
                     {newReleases.map((album, albumIndex) => (
