@@ -142,7 +142,7 @@ header.global-header{
 
 span.logo{
   font-size: 1.5em;
-  font-weight: 500;
+  letter-spacing: -.015em;
   color: #fff;
   @include flex-row;
   gap: 4px;
@@ -224,7 +224,6 @@ section.content{
           border-radius: 8px;
           align-items: center;
           padding: 8px 14px;
-          font-weight: 500;
           color: #fff;
         }
       }
