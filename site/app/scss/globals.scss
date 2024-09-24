@@ -105,6 +105,8 @@ body {
   background: var(--bg-1);
   @include flex-col;
   min-height: 100vh;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
 }
 
 
@@ -334,9 +336,11 @@ section.content{
   
       ul.featured-content-ul{
         padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
-        @include flex-row;
+        display: grid;
+        grid-template-columns: max-content;
+        grid-auto-flow: column;
+        overflow-x: auto;
         gap: 20px;
-        overflow-x: scroll;
         padding-bottom: 20px;
         scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
         scroll-snap-type: x mandatory;
@@ -346,7 +350,7 @@ section.content{
         }
 
         li.featured-content-li{
-          @include flex-col;
+          display: inline-block;
           gap: 6px;
           scroll-snap-align: start;
   
@@ -596,6 +600,7 @@ section.top-50{
         display: grid;
         grid-template-columns: 100px 1fr;
         gap: 10px;
+        align-items: center;
   
         img{
           border-radius: 6px;

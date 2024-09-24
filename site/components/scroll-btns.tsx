@@ -1,6 +1,6 @@
 'use client';
 
-import  { useEffect, useState } from 'react';
+import  { useEffect, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ScrollBtnProps {
@@ -9,33 +9,32 @@ interface ScrollBtnProps {
 
 export const ScrollBtns = ({ scrollTargetSelector }: ScrollBtnProps) => {
     const [scrollContainer, setScrollContainer] = useState<HTMLUListElement | null>(null);
+    const [isScrolling, setIsScrolling] = useState(false);
 
     useEffect(() => {
         const container = document.querySelector(scrollTargetSelector) as HTMLUListElement | null;
         setScrollContainer(container);
     }, [scrollTargetSelector]);
 
-    const scrollLeft = () => {
-        if (scrollContainer) {
+    const scroll = useCallback((direction: 'left' | 'right') => {
+        if(scrollContainer && !isScrolling) {
+            setIsScrolling(true);
             scrollContainer.scrollBy({
-                left: -320,
+                left: direction === 'left' ? -320 : 320,
                 behavior: 'smooth',
             });
+
+            setTimeout(() => setIsScrolling(false), 400)
         }
-    }
-    const scrollRight = () => {
-        if (scrollContainer) {
-            scrollContainer.scrollBy({
-                left: 320,
-                behavior: 'smooth',
-            });
-        }
-    }
+    }, [scrollContainer, isScrolling]);
+
+    const scrollRight = useCallback(() => scroll('right'), [scroll]);
+    const scrollLeft = useCallback(() => scroll('left'), [scroll]);
 
     return(
         <div className="scroll-btn-group">
-            <button className="scroll-btn scroll-left" onClick={scrollLeft}><ChevronLeft/></button>
-            <button className="scroll-btn scroll-right" onClick={scrollRight}><ChevronRight/></button>
+            <button className="scroll-btn scroll-left" onClick={scrollLeft} disabled={isScrolling}><ChevronLeft/></button>
+            <button className="scroll-btn scroll-right" onClick={scrollRight} disabled={isScrolling}><ChevronRight/></button>
         </div>
     );
 }
