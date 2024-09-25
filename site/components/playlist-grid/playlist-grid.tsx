@@ -1,7 +1,7 @@
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import PreviewSongBtn from "./song-preview";
-import { ScrollBtns } from "../scroll-btns";
+import { ScrollBtns } from "../buttons/scroll-btns";
 
 interface PlaylistGridProps {
     playlist: Playlist;

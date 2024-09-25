@@ -1,11 +1,12 @@
 import { fetchGlobalTop50 } from "@/api/top50-call";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
+import { SongActionsBtn } from "../buttons/song-action-btns";
+import { SongDetailsMenu } from "../song-details-menu";
 
 export default async function GlobalTop50() {
     const playlist: Playlist = await fetchGlobalTop50();
-    const reversedRankings = playlist.tracks.items.reverse();
-    const totalTracks = reversedRankings.length;
+    const totalTracks = playlist.tracks.items.length;
 
     return(
         <section className="content top-50">
@@ -22,40 +23,13 @@ export default async function GlobalTop50() {
                             </button>
                         </a>
                     </div>
-                    <nav className="ranking-nav">
-                        <a href="#n50">
-                            <div className="ranking-nav-position">
-                                <p>50</p>
-                            </div>
-                        </a>
-                        <a href="#n40">
-                            <div className="ranking-nav-position">
-                                <p>40</p>
-                            </div>
-                        </a>
-                        <a href="#n30">
-                            <div className="ranking-nav-position">
-                                <p>30</p>
-                            </div>
-                        </a>
-                        <a href="#n20">
-                            <div className="ranking-nav-position">
-                                <p>20</p>
-                            </div>
-                        </a>
-                        <a href="#n10">
-                            <div className="ranking-nav-position">
-                                <p>10</p>
-                            </div>
-                        </a>
-                    </nav>
                 </div>
             </header>
             <div className="chart-ranking-container">
                 <ol className="chart-ranking-ol">
-                    {reversedRankings.map((ranking, rankIndex) => (
-                        <li className="chart-ranking-li" id={`n${totalTracks - rankIndex}`} key={rankIndex}>
-                            <span className="chart-rank">{totalTracks - rankIndex}</span>
+                    {playlist.tracks.items.map((ranking, rankIndex) => (
+                        <li className="chart-ranking-li" id={`n${rankIndex + 1}`} key={rankIndex}>
+                            <span className="chart-rank">{rankIndex + 1}</span>
                             <div className="song-details">
                                 <img loading="lazy" src={ranking.track.album.images[1].url} alt={ranking.track.name} />
                                 <div className="info">
@@ -66,6 +40,7 @@ export default async function GlobalTop50() {
                                         <span className="song-text">{ranking.track.artists[0].name}</span>
                                     }
                                 </div>
+                                <SongActionsBtn songArtist={ranking.track.artists[0].name} songCover={ranking.track.album.images[0].url} songId={ranking.track.id} songName={ranking.track.name} songAlbum={ranking.track.album.name} releaseType={ranking.track.type} popularity={ranking.track.popularity} albumId={ranking.track.album.id} releaseDate={ranking.track.album.release_date} chartRank={rankIndex + 1}/>
                             </div>
                         </li>
                     ))}

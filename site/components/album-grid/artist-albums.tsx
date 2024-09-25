@@ -1,6 +1,6 @@
 import { ArtistReleasedAlbums } from "@/lib/global";
 import { fetchArtistAlbums } from "@/api/artistAlbums/[artistId]/route";
-import { ScrollBtns } from "../scroll-btns";
+import { ScrollBtns } from "../buttons/scroll-btns";
 
 interface ArtistAlbumProps {
     artistId: string;

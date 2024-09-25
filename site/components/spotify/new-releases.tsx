@@ -15,7 +15,7 @@ const NewReleases = async () => {
                         <GridToScrollLi key={albumIndex}>
                             <img src={album.images[0]?.url} alt={album.name} />
                             <div className="info">
-                                <a href={album.external_urls.spotify}>
+                                <a href={`/album/${album.id}`}>
                                     <strong>{album.name}</strong>
                                 </a>
                                 <div className="artist-list">
