@@ -456,27 +456,32 @@ section.top-50{
             box-shadow: var(--shadow);
           }
 
-          .song-actions-group{
+          #menu-root{
+            position: absolute;
+          }
+
+          .song-actions-menu-wrapper{
             position: relative;
 
             button.song-actions-btn{
               background: var(--hover);
-              height: 30px;
+              height: 24px;
               aspect-ratio: 1;
               border-radius: 50%;
               display: grid;
               place-items: center;
-
+  
               svg{
                 stroke: var(--t-2);
               }
-
+  
               &:hover{
                 svg{
                   stroke: var(--t-1);
                 }
               }
             }
+  
             .song-actions-menu{
               position: absolute;
               top: 0%;
@@ -486,45 +491,46 @@ section.top-50{
               box-shadow: var(--shadow);
               border: var(--bd-translucent);
               border-radius: 10px;
-
+  
               &[aria-expanded="false"]{
                 display: none;
               }
               &[aria-expanded="true"]{
                 display: block;
-
+  
                 ul.song-actions-ul{
                   @include flex-col;
                   border-radius: inherit;
-
+  
                   li.song-actions-li{
                     border-bottom: var(--bd-translucent);
-
+  
                     &:first-of-type{
                       border-top-left-radius: inherit;
                       border-top-right-radius: inherit;  
                     }
+  
                     &:last-of-type{
                       border-bottom-left-radius: inherit;
                       border-bottom-right-radius: inherit;  
                     }
+  
                     &:nth-of-type(4){
                       svg{
                         fill: var(--brand);
                       }
                     }
+  
                     &:hover{
                       background: var(--hover);
-
                       p.song-text{
                         color: var(--t-1)
                       }
-
                       svg{
                         stroke: var(--t-1);
                       }
                     }
-
+  
                     button.action{
                       @include flex-row;
                       justify-content: space-between;
@@ -532,11 +538,11 @@ section.top-50{
                       gap: 6px;
                       width: 250px;
                       padding: 8px 14px;
-
+  
                       svg{
                         stroke: var(--t-2);
                       }
-
+  
                       &:nth-of-type(4){
                         svg{
                           fill: var(--t-2);
@@ -558,23 +564,24 @@ section.top-50{
             z-index: 300;
             background: var(--translucent);
             display: grid;
-            place-items: center;
-            padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+            padding: 50px calc(50vw - min(1680px, 87.5vw)/2);
 
             .song-details-menu{
-              max-width: 600px;
+              max-width: 400px;
               width: 100%;
               box-shadow: var(--shadow);
               background: var(--bg-1);
+              border: var(--bd-translucent);
               padding: 20px;
               @include flex-col;
               gap: 20px;
-              border-radius: 10px;
+              border-radius: 18px;
+              place-self: center;
 
               header.song-details-header{
                 @include flex-row;
                 justify-content: space-between;
-                align-items: center;
+                align-items: flex-start;
                 gap: 20px;
 
                 button.close-song-details-menu-btn{
@@ -779,7 +786,7 @@ section.top-50{
           
           .song-details{
             display: grid;
-            grid-template-columns: 60px 1fr /*30px*/;
+            grid-template-columns: 60px 1fr 30px;
             gap: 10px;
             align-items: center;
             border-bottom: var(--bd-1);

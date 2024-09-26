@@ -28,23 +28,22 @@ export const SongActionsBtn = ({albumId, songId, songName, songArtist, songCover
     const ref = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null)
 
-    const toggleActionsMenu = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
+    const toggleActionsMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-      }, [isMenuOpen]);
-
-    const handleOutsideMenu = useCallback((e: MouseEvent) => {
-        if (ref.current && !ref.current.contains(e.target as Node)) {
-            setIsMenuOpen(false);
-        }
-    }, [ref, buttonRef]);
+      };
 
     useEffect(() => {
+        const handleOutsideMenu = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+
         document.addEventListener('mousedown', handleOutsideMenu);
         return () => {
           document.removeEventListener('mousedown', handleOutsideMenu);
         };
-    }, [ref, buttonRef]);
+    });
 
     const songActions = [
         { name: 'Go to album', icon: <LibraryBig/>, onClick: () => router.push(`/album/${albumId}`) },
@@ -69,31 +68,30 @@ export const SongActionsBtn = ({albumId, songId, songName, songArtist, songCover
                 releaseDate={releaseDate}/>); 
         } else {
             setSelectedMenu(null);
+            setIsSongMenuOpen(false);
         }
     }, [isSongMenuOpen, chartRank, songName, songArtist, songCover, popularity, releaseDate])
 
     return(
         <>
-            <div className="song-actions-group">
+            <div className="song-actions-menu-wrapper" ref={ref}>
                 <button className="song-actions-btn" name="song-actions-btn" onClick={toggleActionsMenu} ref={buttonRef}>
-                    <Ellipsis/>
+                    <Ellipsis size={18}/>
                 </button>
-                {isMenuOpen && 
-                    <div className="song-actions-menu" aria-expanded={isMenuOpen} ref={ref}>
-                        <ul className='song-actions-ul'>
-                            {songActions.map((action, actionIndex) => (
-                                <li className="song-actions-li" key={actionIndex}>
-                                    <button className='action' name='action' onClick={action.onClick}>
-                                        <p className="song-text">{action.name}</p>
-                                        {action.icon}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                }
+                <div className="song-actions-menu" aria-expanded={isMenuOpen}>
+                    <ul className='song-actions-ul'>
+                        {songActions.map((action, actionIndex) => (
+                            <li className="song-actions-li" key={actionIndex}>
+                                <button className='action' name='action' onClick={action.onClick}>
+                                    <p className="song-text">{action.name}</p>
+                                    {action.icon}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            {isMenuOpen && selectedMenu && createPortal (
+            {selectedMenu && createPortal (
                 selectedMenu,
                 document.getElementById('menu-root') as HTMLElement
             )}

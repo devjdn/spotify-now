@@ -22,19 +22,19 @@ export const SongDetailsMenu = ({ setIsSongMenuOpen, isSongMenuOpen, chartRank, 
             <div className='song-details-menu-overlay' aria-expanded={isSongMenuOpen}>
                 <div className="song-details-menu">
                     <header className="song-details-header">
-                        <h1>{chartRank}</h1>
-                        <button className="close-song-details-menu-btn" onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}><X/></button>
-                    </header>
-                    <div className="song-details-menu-content">
-                        <img src={songCover} alt={songName} />
                         <div className="info">
                             <h3>{songName}</h3>
                             <p className="song-text">{songArtist}</p>
                         </div>
-                    </div>
+                        <button className="close-song-details-menu-btn" onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}><X/></button>
+                    </header>
                     <div className="song-details-menu-content">
                         <div className="info">
-                            <strong>Popularity score</strong>
+                            <strong>Chart Rank</strong>
+                            <p className="song-text">{chartRank}</p>
+                        </div>      
+                        <div className="info">
+                            <strong>Popularity Score</strong>
                             <p className="song-text">{popularity}</p>
                         </div>
                         <div className="info">
@@ -42,7 +42,7 @@ export const SongDetailsMenu = ({ setIsSongMenuOpen, isSongMenuOpen, chartRank, 
                             <p className="song-text">{songAlbum}</p>
                         </div>
                         <div className="info">
-                            <strong>Release date</strong>
+                            <strong>Release Date</strong>
                             <p className="song-text">{releaseDate}</p>
                         </div>
                     </div>
