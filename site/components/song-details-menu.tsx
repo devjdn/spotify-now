@@ -5,12 +5,12 @@ import { X } from 'lucide-react';
 interface SongDetailsProps {
     songName: string;
     songArtist: string;
-    songAlbum: string;
+    songAlbum?: string;
     popularity: number;
     releaseDate: string;
     releaseType: string;
     songCover: string;
-    chartRank: number;
+    chartRank?: number;
     setIsSongMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isSongMenuOpen: boolean;
 }
@@ -28,11 +28,14 @@ export const SongDetailsMenu = ({ setIsSongMenuOpen, isSongMenuOpen, chartRank, 
                         </div>
                         <button className="close-song-details-menu-btn" onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}><X/></button>
                     </header>
-                    <div className="song-details-menu-content">
-                        <div className="info">
-                            <strong>Chart Rank</strong>
-                            <p className="song-text">{chartRank}</p>
-                        </div>      
+                    <img src={songCover} alt={songName} />
+                    <div className="song-details-info">
+                        {chartRank && 
+                            <div className="info">
+                                <strong>Chart Rank</strong>
+                                <p className="song-text">{chartRank}</p>
+                            </div>  
+                        }    
                         <div className="info">
                             <strong>Popularity Score</strong>
                             <p className="song-text">{popularity}</p>

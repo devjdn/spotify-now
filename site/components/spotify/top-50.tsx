@@ -40,7 +40,7 @@ export default async function GlobalTop50() {
                                         <span className="song-text">{ranking.track.artists[0].name}</span>
                                     }
                                 </div>
-                                <SongActionsBtn songArtist={ranking.track.artists[0].name} songCover={ranking.track.album.images[0].url} songId={ranking.track.id} songName={ranking.track.name} songAlbum={ranking.track.album.name} releaseType={ranking.track.type} popularity={ranking.track.popularity} albumId={ranking.track.album.id} releaseDate={ranking.track.album.release_date} chartRank={rankIndex + 1}/>
+                                <SongActionsBtn songArtist={ranking.track.artists[0].name} songCover={ranking.track.album.images[0].url} songId={ranking.track.id} artistId={ranking.track.artists[0].id} songName={ranking.track.name} songAlbum={ranking.track.album.name} releaseType={ranking.track.type} popularity={ranking.track.popularity} albumId={ranking.track.album.id} releaseDate={ranking.track.album.release_date} chartRank={rankIndex + 1}/>
                             </div>
                         </li>
                     ))}

@@ -2,6 +2,7 @@ import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import PreviewSongBtn from "./song-preview";
 import { ScrollBtns } from "../buttons/scroll-btns";
+import { SongActionsBtn } from "../buttons/song-action-btns";
 
 interface PlaylistGridProps {
     playlist: Playlist;
@@ -58,6 +59,9 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                         </div>
                         <div className="grid-col">
                           <span className="song-text">{formatDuration(item.track.duration_ms)}</span>
+                        </div>
+                        <div className="grid-col">
+                            <SongActionsBtn songArtist={item.track.artists[0]?.name} songCover={item.track.album.images[0]?.url} songId={item.track.id} artistId={item.track.artists[0].id} songName={item.track.name} songAlbum={item.track.album.name} releaseType={item.track.type} popularity={item.track.popularity} albumId={item.track.album.id} releaseDate={item.track.album.release_date}/>
                         </div>
                       </li>
                     ))}
