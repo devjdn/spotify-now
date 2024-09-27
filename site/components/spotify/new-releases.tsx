@@ -1,6 +1,7 @@
 import { fetchNewReleases } from "@/api/new-releases-call";
 import { Album } from "@/lib/global";
 import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../grid-to-scroll/grid-to-scroll";
+import Link from "next/link";
 
 const NewReleases = async () => {
     const newReleases: Album[] = await fetchNewReleases();
@@ -15,13 +16,13 @@ const NewReleases = async () => {
                         <GridToScrollLi key={albumIndex}>
                             <img src={album.images[0]?.url} alt={album.name} />
                             <div className="info">
-                                <a href={`/album/${album.id}`}>
+                                <Link href={`/album/${album.id}`}>
                                     <strong>{album.name}</strong>
-                                </a>
+                                </Link>
                                 <div className="artist-list">
-                                    <a href={album.artists[0].external_urls.spotify}>
+                                    <Link href={album.artists[0].external_urls.spotify}>
                                       <strong>{album.artists[0].name}</strong>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <p className="capitalize">{album.album_type}</p>
                             </div>

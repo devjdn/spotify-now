@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { CgPlayButton, CgPlayPause } from 'react-icons/cg'; 
 
 interface SongUrlProps {
-  previewUrl: string;
+  previewUrl: string | null;
 }
 
 export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {

@@ -3,6 +3,7 @@ import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import { SongActionsBtn } from "../buttons/song-action-btns";
 import { SongDetailsMenu } from "../song-details-menu";
+import Link from "next/link";
 
 export default async function GlobalTop50() {
     const playlist: Playlist = await fetchGlobalTop50();
@@ -16,12 +17,12 @@ export default async function GlobalTop50() {
                     <h3>Global Top Songs</h3>
                     <p>{playlist.description}</p>
                     <div className="content-actions">
-                        <a href={playlist.external_urls.spotify}>
+                        <Link href={playlist.external_urls.spotify}>
                             <button className="action-btn">
                                 Listen on
                                 <FaSpotify/>
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </header>

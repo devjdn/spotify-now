@@ -2,6 +2,7 @@ import { Album } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import { ArtistAlbums } from "./artist-albums";
 import { SongActionsBtn } from "../buttons/song-action-btns";
+import Link from "next/link";
 
 
 interface AlbumGridProps {
@@ -21,14 +22,16 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                 <img src={images[0].url} alt={albumName} />
                 <div className="content-info">
                     <h3>{albumName}</h3>
-                    <p className="song-text">{artists[0].name}</p>
+                    <Link href={`/artist/${artistId}`}>
+                        <p>{artists[0].name}</p>
+                    </Link>
                     <div className="content-actions">
-                        <a href={album.external_urls.spotify}>
+                        <Link href={album.external_urls.spotify}>
                             <button className="action-btn">
                                 Listen on
                                 <FaSpotify/>
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </header>

@@ -3,6 +3,7 @@ import { FaSpotify } from "react-icons/fa";
 import PreviewSongBtn from "./song-preview";
 import { ScrollBtns } from "../buttons/scroll-btns";
 import { SongActionsBtn } from "../buttons/song-action-btns";
+import Link from "next/link";
 
 interface PlaylistGridProps {
     playlist: Playlist;
@@ -29,12 +30,12 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                     <h3>{playlistName}</h3>
                     <p>{description}</p>
                     <div className="content-actions">
-                        <a href={playlist.external_urls.spotify}>
+                        <Link href={playlist.external_urls.spotify}>
                             <button className="action-btn">
                                 Listen on
                                 <FaSpotify/>
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </header>
@@ -49,13 +50,15 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                             </div>
                           <div className="info">
                             <span className="song-text">{item.track.name}</span>
-                            <span className="song-text">{item.track.artists[0]?.name}</span>
+                            <a href={`/artist/${item.track.artists[0]?.id}`}>
+                                <span className="song-text">{item.track.artists[0]?.name}</span>
+                            </a>
                           </div>
                         </div>
                         <div className="grid-col">
-                            <a href={`/album/${item.track.album.id}`}>
+                            <Link href={`/album/${item.track.album.id}`}>
                                 <span className="song-text">{item.track.album.name}</span>
-                            </a>
+                            </Link>
                         </div>
                         <div className="grid-col">
                           <span className="song-text">{formatDuration(item.track.duration_ms)}</span>
@@ -88,10 +91,12 @@ const PlaylistGrid: React.FC<PlaylistGridProps> = async ({ fetchPlaylist }) => {
                             <li className="featured-content-li" key={albumIndex}>
                                 <img loading="lazy" src={album.images[0].url} alt={album.name}/>
                                 <div className="info">
-                                    <a href={`/album/${album.id}`}>
+                                    <Link href={`/album/${album.id}`}>
                                         <strong>{album.name}</strong>
-                                    </a>
-                                    <p>{album.artists[0].name}</p>
+                                    </Link>
+                                    <Link href={`/artist/${album.artists[0].id}`}>
+                                        <p>{album.artists[0].name}</p>
+                                    </Link>
                                 </div>
                             </li>
                         ))}

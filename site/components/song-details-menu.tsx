@@ -24,7 +24,7 @@ export const SongDetailsMenu = ({ setIsSongMenuOpen, isSongMenuOpen, chartRank, 
                     <header className="song-details-header">
                         <div className="info">
                             <h3>{songName}</h3>
-                            <p className="song-text">{songArtist}</p>
+                            <span className="song-text">{songArtist}</span>
                         </div>
                         <button className="close-song-details-menu-btn" onClick={() => setIsSongMenuOpen(!isSongMenuOpen)}><X/></button>
                     </header>
@@ -33,20 +33,20 @@ export const SongDetailsMenu = ({ setIsSongMenuOpen, isSongMenuOpen, chartRank, 
                         {chartRank && 
                             <div className="info">
                                 <strong>Chart Rank</strong>
-                                <p className="song-text">{chartRank}</p>
+                                <span className="song-text">{chartRank}</span>
                             </div>  
                         }    
                         <div className="info">
                             <strong>Popularity Score</strong>
-                            <p className="song-text">{popularity}</p>
+                            <span className="song-text">{popularity}</span>
                         </div>
                         <div className="info">
                             <strong>Album</strong>
-                            <p className="song-text">{songAlbum}</p>
+                            <span className="song-text">{songAlbum}</span>
                         </div>
                         <div className="info">
                             <strong>Release Date</strong>
-                            <p className="song-text">{releaseDate}</p>
+                            <span className="song-text">{releaseDate}</span>
                         </div>
                     </div>
                 </div>
