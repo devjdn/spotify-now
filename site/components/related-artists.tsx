@@ -25,7 +25,7 @@ export const RelatedArtists = async ({artistId, artistName}: RelatedArtistProps)
                         <li className="related-artists-li" key={artistIndex}>
                             <img src={artist.images[0].url} alt={artist.name}/>
                             <div className="info">
-                                <Link href={`/artist/${artistId}`}>
+                                <Link href={`/artist/${artist.id}`}>
                                     <strong>{artist.name}</strong>
                                 </Link>
                             </div>
