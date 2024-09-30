@@ -31,7 +31,7 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
 
     const toggleActionsMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-      };
+    };
 
     useEffect(() => {
         const handleOutsideMenu = (e: MouseEvent) => {

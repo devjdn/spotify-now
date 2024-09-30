@@ -84,7 +84,7 @@ p,span.song-text{
   color: var(--t-2);
 }
 span.song-text{
-  font-size: .9em;
+  font-size: 14px;
 }
 
 
@@ -248,6 +248,7 @@ section.content{
         align-items: center;
         border-radius: 8px;
         display: grid;
+        gap: 20px;
 
         &:nth-of-type(odd){
           background: var(--bg-2);
@@ -712,11 +713,39 @@ section.playlist{
   }
   .grid-container{
 
+    header.grid-header{
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 125px;
+      
+      .grid-col{
+        padding-inline: 10px;
+
+        &:not(:first-of-type){
+          border-left: var(--bd-1);
+        }
+      }
+    }
+
     ul.grid-ul{
   
       li.grid-li{
         grid-template-columns: 1fr 1fr 50px 30px;
         padding: 10px;
+
+        .grid-col{
+          max-width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+
+          .info{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 100%;
+          }
+        }
         
   
         .song-media{
@@ -937,6 +966,11 @@ section.top-50{
     }
 
     .grid-container{
+
+      header.grid-header{
+        display: none;
+      }
+
       ul.grid-ul{
         li.grid-li{
           span.song-text{
