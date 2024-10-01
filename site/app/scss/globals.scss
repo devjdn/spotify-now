@@ -227,7 +227,7 @@ section.content{
           background: var(--brand);
           border-radius: 8px;
           align-items: center;
-          padding: 8px 14px;
+          padding: 6px 16px;
           color: #fff;
         }
       }
@@ -250,7 +250,7 @@ section.content{
         display: grid;
         gap: 20px;
 
-        .grid-col{
+        .grid-col:not(:last-of-type){
           max-width: 100%;
           overflow: hidden;
           white-space: nowrap;
@@ -336,10 +336,7 @@ section.content{
 
             &:last-of-type{
               border-bottom-left-radius: inherit;
-              border-bottom-right-radius: inherit;  
-            }
-
-            &:nth-of-type(4){
+              border-bottom-right-radius: inherit;
               svg{
                 fill: var(--brand);
               }

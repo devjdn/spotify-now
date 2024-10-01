@@ -87,7 +87,7 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
                         {songActions.map((action, actionIndex) => (
                             <li className="song-actions-li" key={actionIndex}>
                                 <button className='action' name='action' onClick={action?.onClick}>
-                                    <p className="song-text">{action?.name}</p>
+                                    <span className="song-text">{action?.name}</span>
                                     {action?.icon}
                                 </button>
                             </li>
