@@ -250,6 +250,27 @@ section.content{
         display: grid;
         gap: 20px;
 
+        .grid-col{
+          max-width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+
+          .info{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 100%;
+          }
+
+          span.song-text{
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+
         &:nth-of-type(odd){
           background: var(--bg-2);
         }
@@ -377,7 +398,7 @@ section.content{
       padding: 20px;
       @include flex-col;
       gap: 10px;
-      border-radius: 18px;
+      border-radius: 14px;
       place-self: center;
 
       header.song-details-header{
@@ -733,21 +754,6 @@ section.playlist{
         grid-template-columns: 1fr 1fr 50px 30px;
         padding: 10px;
 
-        .grid-col{
-          max-width: 100%;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          .info{
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
-          }
-        }
-        
-  
         .song-media{
           display: grid;
           grid-template-columns: repeat(2,1fr);
@@ -970,17 +976,6 @@ section.top-50{
       header.grid-header{
         display: none;
       }
-
-      ul.grid-ul{
-        li.grid-li{
-          span.song-text{
-            max-width: 300px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-          }
-        }
-      }
     }
   }
 
@@ -1031,20 +1026,6 @@ section.top-50{
 }
 
 @media screen and (max-width: 500px) {
-  section.content{
-    .grid-container{
-      ul.grid-ul{
-        li.grid-li{
-          span.song-text{
-            max-width: 200px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-          }
-        }
-      }
-    }
-  }
   section.playlist, section.artist{
     .grid-container{
 
