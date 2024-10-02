@@ -721,6 +721,18 @@ section.album{
   }
 }
 
+section.track{
+  .song-lyrics{
+    @include flex-col;
+    gap: 20px;
+
+    .lyrics{
+      @include flex-col;
+      gap: 10px;
+    }
+  }
+}
+
 section.playlist{
   header.content-header{
     .content-info{

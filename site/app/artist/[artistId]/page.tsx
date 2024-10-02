@@ -48,7 +48,9 @@ export default async function ArtistPage({params}: {params: {artistId: string;}}
                                     <PreviewSongBtn previewUrl={track.preview_url}/>
                                 </div>
                               <div className="info">
-                                <span className="song-text">{track.name}</span>
+                                <a href={`/track/${track.id}`}>
+                                    <span className="song-text">{track.name}</span>
+                                </a>
                                 <a href={`/artist/${track.artists[0]?.id}`}>
                                     <span className="song-text">{track.artists[0]?.name}</span>
                                 </a>
