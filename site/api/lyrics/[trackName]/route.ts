@@ -15,19 +15,23 @@ export const fetchLyrics = async ({songName, songArtist}: SongProps) => {
     }
 
     const searchItem = await songSearchResponse.json();
-    const trackId = searchItem.message.body.track_list[0]?.track.commontrack_id;
+    const trackId = searchItem.message.body.track_list[0]?.track.track_id;
 
     if(!trackId){
         return null;
     }
 
-    const lyricsResponse = await fetch(`https://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=${musixmatchApiKey}&commontrack_id=${trackId}`);
+    console.log(songSearchResponse);
+
+    const lyricsResponse = await fetch(`https://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=${musixmatchApiKey}&track_id=${trackId}`);
 
     if(!lyricsResponse.ok) {
         const errorBody = await lyricsResponse.text();
         console.error(`Error fetching track: ${lyricsResponse.status} ${lyricsResponse.statusText} ${errorBody}`);
         throw new Error(`Error fetching track: ${lyricsResponse.status} ${lyricsResponse.statusText} ${errorBody}`);
     }
+
+    console.log(lyricsResponse);
 
     const data = await lyricsResponse.json();
     return data;

@@ -13,8 +13,10 @@ interface SongProps {
 }
 
 export default async function Song ({params}: SongProps) {
-    const { songId, songName, songArtist } = params;
+    const { songId } = params;
     const track: Track = await fetchTrack({songId});
+    const songArtist = track.artists[0].name;
+    const songName = track.name;
     const lyrics: Lyrics = await fetchLyrics({songName, songArtist});
     return(
         <section className="content track">
@@ -22,7 +24,9 @@ export default async function Song ({params}: SongProps) {
                 <img src={track.album.images[0].url} alt={track.name}/>
                 <div className="content-info">
                     <h3>{track.name}</h3>
-                    <span className="song-text">{track.artists[0].name}</span>
+                    <Link href={`/artist/${track.artists[0].id}`}>
+                        <span className="song-text">{track.artists[0].name}</span>
+                    </Link>
                     <div className="content-actions">
                         <Link href={track.external_urls.spotify}>
                             <button className="action-btn">
@@ -37,7 +41,7 @@ export default async function Song ({params}: SongProps) {
                 <h3>Lyrics</h3>
                 <div className="lyrics">
                     {lyrics ? (
-                        lyrics.message.body.lyrics.lyrics_body.split('\n').map((line, lineIndex) => (
+                        lyrics.message.body.lyrics.lyrics_body.split('\n').slice(0, -2).map((line, lineIndex) => (
                             <div className="line" key={lineIndex}>
                                 <strong>{line}</strong>
                                 <br />

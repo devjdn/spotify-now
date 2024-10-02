@@ -726,9 +726,14 @@ section.track{
     @include flex-col;
     gap: 20px;
 
+    h3{
+      border-bottom: var(--bd-1);
+      padding-bottom: 10px;
+    }
+
     .lyrics{
       @include flex-col;
-      gap: 10px;
+      gap: 6px;
     }
   }
 }
