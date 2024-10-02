@@ -34,7 +34,9 @@ export default async function GlobalTop50() {
                             <div className="song-details">
                                 <img loading="lazy" src={ranking.track.album.images[1].url} alt={ranking.track.name} />
                                 <div className="info">
-                                    <h3>{ranking.track.name}</h3>
+                                    <Link href={`/track/${ranking.track.id}`}>
+                                        <h3>{ranking.track.name}</h3>
+                                    </Link>
                                     {ranking.track.artists.length > 1 ?
                                         <span className="song-text">{ranking.track.artists.map(artist => artist.name).join(' & ')}</span>
                                     : 

@@ -5,15 +5,15 @@ import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
 
 interface SongProps {
-    songName: string;
-    songArtist: string;
     params: {
         songId: string;
+        songName: string;
+        songArtist: string;
     };
 }
 
-export default async function Song ({params, songName, songArtist}: SongProps) {
-    const { songId } = params;
+export default async function Song ({params}: SongProps) {
+    const { songId, songName, songArtist } = params;
     const track: Track = await fetchTrack({songId});
     const lyrics: Lyrics = await fetchLyrics({songName, songArtist});
     return(

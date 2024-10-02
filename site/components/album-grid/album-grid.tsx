@@ -43,9 +43,9 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                                 <span className="song-text">{item.track_number}</span>
                             </div>
                             <div className="grid-col">
-                                <a href={`/track/${item.id}`}>
+                                <Link href={`/track/${item.id}`}>
                                     <span className="song-text">{item.name}</span>
-                                </a>
+                                </Link>
                             </div>
                             <div className="grid-col">
                                 <span className="song-text">{formatDuration(item.duration_ms)}</span>
