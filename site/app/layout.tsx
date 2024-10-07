@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
 import "./scss/globals.scss";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Sidebar from "@/components/sidebar";
 
 const dm = DM_Sans({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
@@ -23,9 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SpeedInsights/>
-        <Header/>
-        {children}
-        <Footer/>
+        <Sidebar/>
+        <main className="content-window">
+          {children}
+        </main>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from "next/image";
 import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";
-import { HeaderNav, MobileHeaderNav } from "../nav/nav";
+import { Nav, MobileHeaderNav } from "../nav/nav";
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ export default function Header() {
         </span>
       </Link>
 
-      <HeaderNav/>
+      <Nav/>
 
       <button className="mobile-header-nav-btn" onClick={toggleNav} aria-expanded={isOpen}>
         {isOpen ? (
