@@ -7,7 +7,8 @@ import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";
 import { Nav } from './nav/nav';
 import { MenuIcon } from 'lucide-react';
 
-export default function Sidebar() {
+
+export default function Sidebar({accessToken}: {accessToken: string;}) {
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     const toggleMobileNav = () => {
@@ -32,7 +33,7 @@ export default function Sidebar() {
                     <MenuIcon/>
                 </button>
             </header>
-            <Nav/>
+            <Nav accessToken={accessToken}/>
         </div>
     );
 }

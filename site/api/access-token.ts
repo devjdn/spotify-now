@@ -31,7 +31,8 @@ export const getSpotifyAccessToken = async () => {
     });
 
     if (!response.ok) {
-        throw new Error('Unable to get access token');
+        const errorBody = await response.text();
+        throw new Error(`Failed to fetch accessToken: ${response.status} ${errorBody}`);
     }
 
     const data = await response.json();

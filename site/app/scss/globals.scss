@@ -167,6 +167,10 @@ body {
   
   main.content-window{
     overflow-y: auto;
+
+    section.new-releases{
+      padding-bottom: 50px;
+    }
   }
 }
 span.logo{
