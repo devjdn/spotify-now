@@ -1,5 +1,5 @@
 import { fetchTrack } from '@/api/song/[songId]/route';
-import  { fetchLyrics } from '@/api/lyrics/[trackName]/route';
+import  { fetchLyrics } from '@/api/song/[songId]/route';
 import { Lyrics, Track } from '@/lib/global';
 import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
