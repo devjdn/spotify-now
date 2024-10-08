@@ -1,9 +1,13 @@
 import { getSpotifyAccessToken } from "./access-token";
 
-export const fetchGlobalTop50 = async () => {
+interface PlaylistIdProps{
+    playlistId: string;
+}
+
+export const fetchHighlightedPlaylist = async ({playlistId}: PlaylistIdProps) => {
     const accessToken = await getSpotifyAccessToken();
 
-    const response = await fetch('https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF', {
+    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',

@@ -1,12 +1,12 @@
-import { fetchGlobalTop50 } from "@/api/top50-call";
+import { fetchHighlightedPlaylist } from "@/api/highlighted-playists";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import { SongActionsBtn } from "../buttons/song-action-btns";
 import { SongDetailsMenu } from "../song-details-menu";
 import Link from "next/link";
 
-export default async function GlobalTop50() {
-    const playlist: Playlist = await fetchGlobalTop50();
+export default async function GlobalTop50({playlistId}: {playlistId: string}) {
+    const playlist: Playlist = await fetchHighlightedPlaylist({playlistId});
     const totalTracks = playlist.tracks.items.length;
 
     return(
