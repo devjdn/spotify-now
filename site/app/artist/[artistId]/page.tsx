@@ -2,10 +2,10 @@ import { fetchArtistProfile, fetchArtistPopularTracks, fetchRelatedArtists } fro
 import { Artist, ArtistTopTracks } from "@/lib/global";
 import { FaSpotify } from 'react-icons/fa';
 import Link from "next/link";
-import { ArtistAlbums } from "@/components/album-grid/artist-albums";
-import { SongActionsBtn } from "@/components/buttons/song-action-btns";
-import PreviewSongBtn from "@/components/playlist-grid/song-preview";
-import { RelatedArtists } from "@/components/related-artists";
+import { ArtistAlbums } from "@/app/components/album-grid/artist-albums";
+import { SongActionsBtn } from "@/app/components/buttons/song-action-btns";
+import PreviewSongBtn from "@/app/components/playlist-grid/song-preview";
+import { RelatedArtists } from "@/app/components/related-artists";
 
 export default async function ArtistPage({params}: {params: {artistId: string;}}) {
     const { artistId } = params;

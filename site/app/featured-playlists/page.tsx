@@ -1,4 +1,4 @@
-import FeaturedPlaylists from "@/components/spotify/featured-playlists/featured-playlists";
+import FeaturedPlaylists from "@/app/components/spotify/featured-playlists/featured-playlists";
 
 export default function FeaturedPlaylistsPage() {
     return(
