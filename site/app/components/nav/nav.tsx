@@ -1,5 +1,3 @@
-'use client';
-
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,7 +6,12 @@ import { LayoutGrid, ChartNoAxesCombined, Home, Sparkles, Star, CalendarClock, L
 import { FeaturedPlaylist } from "@/lib/global";
 import { fetchQuickPlaylistLinks } from "@/api/quick-playlist-links";
 
-export function Nav({accessToken}: {accessToken: string;}) {
+interface NavProps {
+    accessToken: string;
+    toggleMobileNav: () => void;
+}
+
+export function Nav({accessToken, toggleMobileNav}: NavProps) {
     const pathname = usePathname();
     const router = useRouter();
     const [navLinks, setNavLinks] = useState([
@@ -66,24 +69,9 @@ export function Nav({accessToken}: {accessToken: string;}) {
                 <div className="nav-group"  key={linkIndex}>
                     <h4>{linkGroup.group}</h4>
                     <ul className="nav-ul">
-                        {/* {isLoading ? (
-                            <Loader size={22}/>
-                        ) : (
-                            linkGroup.links.map((link, index) => (
-                                <li className="nav-li" key={index}>
-                                    <button onClick={() => router.push(`${link.href}`)} className={`nav-btn ${clsx(
-                                        'hover:bg-neutral-100 dark:hover:bg-neutral-800',
-                                        {'bg-neutral-100 dark:bg-neutral-800': link.href === pathname}
-                                    )}`}>
-                                        {link.icon}
-                                        {link.name}
-                                    </button>
-                                </li>
-                            ))
-                        )} */}
                             {linkGroup.links.map((link, index) => (
                                 <li className="nav-li" key={index}>
-                                    <button onClick={() => router.push(`${link.href}`)} className={`nav-btn ${clsx(
+                                    <button onClick={() => {router.push(`${link.href}`); toggleMobileNav()}} className={`nav-btn ${clsx(
                                         'hover:bg-neutral-100 dark:hover:bg-neutral-800',
                                         {'bg-neutral-100 dark:bg-neutral-800': link.href === pathname}
                                     )}`}>

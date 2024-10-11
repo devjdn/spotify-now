@@ -20,10 +20,9 @@ const NewReleases = async () => {
                                 </Link>
                                 <div className="artist-list">
                                     <Link href={album.artists[0].external_urls.spotify}>
-                                      <strong>{album.artists[0].name}</strong>
+                                      <span className="song-text">{album.artists[0].name}</span>
                                     </Link>
                                 </div>
-                                <p className="capitalize">{album.album_type}</p>
                             </div>
                         </GridToScrollLi>
                     ))}

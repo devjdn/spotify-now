@@ -18,14 +18,11 @@ export default async function FeaturedPlaylists() {
                             <img loading="lazy" src={playlist.images[0]?.url} alt={playlist.name} />
                             <div className="playlist-details">
                                <div className="info">
-                                    <Link href={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+                                    <Link href={`/featured-playlists/${playlist.id}`}>
                                         <strong>{playlist.name}</strong>
                                     </Link>
                                     <p>{playlist.tracks.total} tracks</p>
                                </div>
-                               <Link href={`/featured-playlists/${playlist.id}`}>
-                                    <ListVideo/>
-                               </Link>
                             </div>
                         </GridToScrollLi>
                     ))}

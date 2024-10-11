@@ -97,7 +97,20 @@ h4{
 
 .info{
   @include flex-col;
-  max-width: 600px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  a{
+    display: contents;
+    >*{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      max-width: 300px;
+    }
+  }
 }
 .artist-list{
   @include flex-row;
@@ -120,12 +133,13 @@ body {
   .sidebar{
     background: var(--bg-3);
     border-right: var(--bd-1);
-    padding: 10px 20px;
+    padding: 10px 20px 30px;
     @include flex-col;
     gap: 40px;
     position: sticky;
     top: 0;
     z-index: 250;
+    @include flex-col;
 
     header.sidebar-header{
       @include flex-row;
@@ -140,6 +154,7 @@ body {
     }
 
     nav{
+      flex: 3;
       .nav-group{
         margin-bottom: 10px;
 
@@ -161,6 +176,16 @@ body {
             }
           }
         }
+      }
+    }
+
+    footer.sidebar-footer{
+      @include flex-col;
+      gap: 10px;
+      position: relative;
+      img{
+        width: 60%;
+        object-fit: cover;
       }
     }
   }
@@ -865,13 +890,19 @@ section.top-50{
         border: var(--bd-1);
       }
 
-      .playlist-details{
-        @include flex-row;
-        gap: 10px;
-        justify-content: space-between;
-
-        button{
-          height: fit-content;
+      .info{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        a{
+          display: contents;
+          strong{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            max-width: 300px;
+          }
         }
       }
     }
@@ -899,33 +930,7 @@ section.top-50{
     letter-spacing: -.03em;
   }
 
-  .grid-to-scroll-container{
-    ul.grid-to-scroll-ul{
-      @include flex-col;
   
-      li.grid-to-scroll-li{
-        display: grid;
-        grid-template-columns: 100px 1fr;
-        gap: 10px;
-        align-items: center;
-  
-        img{
-          border-radius: 6px;
-          border: var(--bd-1);
-        }
-  
-        .playlist-details{
-          @include flex-row;
-          gap: 10px;
-          justify-content: space-between;
-  
-          button{
-            height: fit-content;
-          }
-        }
-      }
-    }
-  }
 
   section.content{
     header.content-header{
@@ -1029,6 +1034,41 @@ section.top-50{
         top: 0;
         left: 0;
         transition: height .4s ease-out;
+      }
+    }
+  }
+
+  .grid-to-scroll-container{
+    ul.grid-to-scroll-ul{
+      @include flex-col;
+      gap: 0;
+  
+      li.grid-to-scroll-li{
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 0;
+        
+        &:not(:last-of-type) {
+          border-bottom: var(--bd-1);
+        }
+  
+        img{
+          border-radius: 4px;
+          border: var(--bd-1);
+        }
+  
+        .playlist-details{
+          @include flex-row;
+          gap: 10px;
+          justify-content: space-between;
+  
+          button{
+            height: fit-content;
+          }
+
+        }
       }
     }
   }
