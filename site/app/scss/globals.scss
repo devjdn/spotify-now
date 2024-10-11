@@ -139,7 +139,8 @@ body {
     position: sticky;
     top: 0;
     z-index: 250;
-    @include flex-col;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
     header.sidebar-header{
       @include flex-row;
@@ -155,6 +156,8 @@ body {
 
     nav{
       flex: 3;
+      overflow-y: scroll;
+      
       .nav-group{
         margin-bottom: 10px;
 
@@ -271,27 +274,6 @@ section.content{
         border-radius: 8px;
         display: grid;
         gap: 20px;
-
-        .grid-col:not(:last-of-type){
-          max-width: 100%;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          .info{
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
-          }
-
-          span.song-text{
-            max-width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-        }
 
         &:nth-of-type(odd){
           background: var(--bg-2);
@@ -540,7 +522,7 @@ section.content{
   
           img{
             border-radius: 8px;
-            max-width: 300px;
+            max-width: 260px;
           }
   
           .info{
@@ -549,12 +531,12 @@ section.content{
             overflow: hidden;
             a{
               display: contents;
-              strong{
+              >*{
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 overflow: hidden;
                 display: inline-block;
-                width: 300px;
+                max-width: 260px;
               }
             }
           }
@@ -876,6 +858,9 @@ section.top-50{
 
 //------GRID TO SCROLL COMPONENTS------//
 .grid-to-scroll-container{
+  @include flex-col;
+  gap: 50px;
+
   ul.grid-to-scroll-ul{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -883,7 +868,6 @@ section.top-50{
 
     li.grid-to-scroll-li{
       @include flex-col;
-      gap: 10px;
 
       img{
         border-radius: 6px;
@@ -906,6 +890,11 @@ section.top-50{
         }
       }
     }
+  }
+
+  .release-type{
+    @include flex-col;
+    gap: 10px;
   }
 }
 
@@ -1020,6 +1009,7 @@ section.top-50{
       transition: height .4s ease-in;
       position: fixed;
       width: 100%;
+      box-shadow: var(--shadow);
 
       header.sidebar-header{
 

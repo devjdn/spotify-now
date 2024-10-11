@@ -1,6 +1,6 @@
 import { fetchAlbum } from "@/api/album/[albumId]/route";
 import { Album } from "@/lib/global";
-import AlbumGrid from "@/app/components/album-grid/album-grid";
+import AlbumGrid from "@/components/album-grid/album-grid";
 
 export default async function AlbumPage({params}: {params: { albumId: string; }}) {
     const { albumId } = params;

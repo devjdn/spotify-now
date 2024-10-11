@@ -20,7 +20,7 @@ export const ScrollBtns = ({ scrollTargetSelector }: ScrollBtnProps) => {
         if(scrollContainer && !isScrolling) {
             setIsScrolling(true);
             scrollContainer.scrollBy({
-                left: direction === 'left' ? -320 : 320,
+                left: direction === 'left' ? -280 : 280,
                 behavior: 'smooth',
             });
 

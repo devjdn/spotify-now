@@ -1,4 +1,4 @@
-import GlobalTop50 from "@/app/components/spotify/top-50";
+import GlobalTop50 from "@/components/spotify/top-50";
 
 export default function TopSongsPage() {
     return(

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./scss/globals.scss";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Sidebar from "@/app/components/nav/sidebar";
+import Sidebar from "@/components/nav/sidebar";
 import { getSpotifyAccessToken } from "@/api/access-token";
 
 const inter = Inter({ subsets: ["latin"] });

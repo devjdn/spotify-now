@@ -15,5 +15,5 @@ export const fetchNewReleases = async () => {
     }
 
     const data = await response.json();
-    return data.albums.items;
+    return data.albums;
 }

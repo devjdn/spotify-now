@@ -35,7 +35,6 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
     
     useEffect(() => {
         const quickPlaylistNav = async () => {
-            setIsLoading(true);
 
             try{
                 const featured: FeaturedPlaylist[] = await fetchQuickPlaylistLinks({accessToken});
@@ -55,8 +54,6 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
                 );
             } catch (error) {
                 console.error('Error fetching quick playlist links:', error);
-            } finally {
-                setIsLoading(false);
             }
         };
 

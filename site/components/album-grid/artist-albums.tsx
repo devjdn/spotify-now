@@ -14,7 +14,7 @@ export const ArtistAlbums = async ({artistId, artistName}: ArtistAlbumProps) => 
     return(
         <div className="featured-content">
             <header className="featured-content-header">
-                <h3>{artistName}&apos;s releases</h3>
+                <h3>More By {artistName}</h3>
                 <ScrollBtns scrollTargetSelector="ul.featured-content-ul"/>
             </header>
             <div className="featured-content-scroll">

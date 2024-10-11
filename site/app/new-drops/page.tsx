@@ -1,4 +1,4 @@
-import NewReleases from "@/app/components/spotify/new-releases";
+import NewReleases from "@/components/spotify/new-releases";
 
 export default function NewDrops() {
     return(
