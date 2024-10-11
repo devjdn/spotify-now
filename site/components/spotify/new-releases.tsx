@@ -38,9 +38,9 @@ const NewReleases = async () => {
         <section className="new-releases" id="new-drops">
             <GridToScrollContainer>
                 {releaseTypes.filter((releaseType) => releaseType.releases.length > 0).map((releaseGroup, releaseIndex) => (
-                    <div className="release-type">
+                    <div className="release-type" key={releaseIndex}>
                         <h3>{releaseGroup.typeName}</h3>
-                        <GridToScrollUl key={releaseIndex}>
+                        <GridToScrollUl>
                             {releaseGroup.releases.map((items, itemIndex) => (
                                 <GridToScrollLi key={itemIndex}>
                                     <img src={items.images[0]?.url} alt={items.name} />
