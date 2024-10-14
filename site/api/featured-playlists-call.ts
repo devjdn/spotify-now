@@ -3,7 +3,7 @@ import { getSpotifyAccessToken } from "./access-token";
 export const fetchFeaturedPlaylists = async () => {
     const accessToken = await getSpotifyAccessToken();
 
-    const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists', {
+    const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists?limit=50', {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',

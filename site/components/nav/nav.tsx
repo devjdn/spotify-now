@@ -21,8 +21,6 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
                 { name: 'Home', href: '/', icon: <Home size={22}/> },
                 { name: 'Top Songs', href: '/top-songs', icon: <ChartNoAxesCombined size={22}/> },
                 { name: 'New Music Friday', href: '/new-music-friday', icon: <CalendarClock size={22}/> },
-                { name: 'Featured Playlists', href: '/featured-playlists', icon: <Star size={22}/> },
-                { name: 'New Drops', href: '/new-drops', icon: <Sparkles size={22}/> },
             ],
         },
         {
@@ -41,7 +39,7 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
     
                 const featuredLinks = featured.slice(0, 6).map(pLink => ({
                     name: pLink.name,
-                    href: `/featured-playlists/${pLink.id}`,
+                    href: `/playlist/${pLink.id}`,
                     icon: <LayoutGrid size={22} />,
                 }));
             

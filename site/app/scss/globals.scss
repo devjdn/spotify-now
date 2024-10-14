@@ -42,6 +42,7 @@ input,textarea,button{
 }
 
 a:hover{
+  color: var(--brand);
   >*{
     color: var(--brand);
   }
@@ -195,10 +196,6 @@ body {
   
   main.content-window{
     overflow-y: auto;
-
-    section.new-releases{
-      padding-bottom: 50px;
-    }
   }
 }
 span.logo{
@@ -218,14 +215,16 @@ span.logo{
 
 //------SECTIONS------//
 section{
-  padding-top: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   flex: 3;
 
-  >*{
+  &:not(.new-releases, .featured-playlists)>*{
     padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
   }
 }
 section.content{
+
   header.content-header{
     @include flex-row;
     gap: 20px;
@@ -863,7 +862,7 @@ section.top-50{
 
   ul.grid-to-scroll-ul{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 
     li.grid-to-scroll-li{
@@ -895,6 +894,76 @@ section.top-50{
   .release-type{
     @include flex-col;
     gap: 10px;
+  }
+}
+
+//------SHELF COMPONENTS------//
+.shelf-container{
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  header.shelf-header{
+    margin-bottom: 10px;
+    padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+  }
+  .shelf-scroll{
+    position: relative;
+
+    .scroll-shadow{
+      width: 20px;
+      height: 100%;
+      position: absolute;
+      z-index: 4;
+
+      &.left{
+        left: 0;
+        background: linear-gradient(to right, var(--bg-2), transparent);
+      }
+      &.right{
+        right: 0;
+        background: linear-gradient(to left, var(--bg-2), transparent);
+      }
+    }
+
+    ul.shelf-ul{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 220px);
+      grid-auto-flow: column;
+      grid-template-rows: repeat(2,1fr);
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 20px;
+      scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+      scroll-snap-type: x mandatory;
+      padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+  
+      li.shelf-li{
+        width: 220px;
+        scroll-snap-align: start;
+        .artwork-container{
+          position: relative;
+          width: 220px;
+          aspect-ratio: 1;
+          border-radius: 6px;
+          border: var(--bd-1);
+          background: var(--bg-2);
+  
+          img{
+            border-radius: inherit;
+            object-fit: cover;
+          }
+        }
+        .details-container{
+          >*{
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            // max-width: 220px;
+          }
+        }
+      }
+    }
   }
 }
 

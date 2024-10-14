@@ -1,6 +1,6 @@
 import { fetchNewReleases } from "@/api/new-releases-call";
 import { SpotifyNewReleases } from "@/lib/global";
-import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../grid-to-scroll/grid-to-scroll";
+import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
 import Link from "next/link";
 
 const NewReleases = async () => {
@@ -36,30 +36,16 @@ const NewReleases = async () => {
 
     return(
         <section className="new-releases" id="new-drops">
-            <GridToScrollContainer>
-                {releaseTypes.filter((releaseType) => releaseType.releases.length > 0).map((releaseGroup, releaseIndex) => (
-                    <div className="release-type" key={releaseIndex}>
-                        <h3>{releaseGroup.typeName}</h3>
-                        <GridToScrollUl>
-                            {releaseGroup.releases.map((items, itemIndex) => (
-                                <GridToScrollLi key={itemIndex}>
-                                    <img src={items.images[0]?.url} alt={items.name} />
-                                    <div className="info">
-                                        <Link href={`/album/${items.id}`}>
-                                            <strong>{items.name}</strong>
-                                        </Link>
-                                        <div className="artist-list">
-                                            <Link href={items.artists[0].external_urls.spotify}>
-                                              <span className="song-text">{items.artists[0].name}</span>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </GridToScrollLi>
-                            ))}
-                        </GridToScrollUl>
-                    </div>
-                ))}
-            </GridToScrollContainer>
+            <ShelfContainer /*key={releaseIndex}*/>
+                <ShelfHeader shelfTitle="New Releases"/>
+                <ShelfScroll>
+                <ShelfUl>
+                    {newReleases.items.map((items, itemIndex) => (
+                        <ShelfLi key={itemIndex} itemArtwork={items.images[0]?.url} itemTitle={items.name} itemDetails={items.artists[0].name} titleId={`/album/${items.id}`} detailsId={`/artist/${items.artists[0].id}`}/>
+                    ))}
+                </ShelfUl>
+                </ShelfScroll>
+            </ShelfContainer>
         </section>
     );
 }
