@@ -24,6 +24,8 @@
     --overlay: #171717d6;
     --filter: blur(10px) saturate(1);
     --shadow: rgba(0, 0, 0, 0.25) 0px 15px 30px -12px;
+    --scrollbar-thumb: #ababab;
+    --scrollbar-track: #fafafa;
   }
   
   
@@ -32,9 +34,9 @@
     :root {
       //---BACKGROUNDS---//
       --bg-1: #050505;
-      --bg-2: #080808;
+      --bg-2: #101010;
       --bg-2-translucent: #181818d8;
-      --bg-3: #111;
+      --bg-3: #151515;
       --hover: #222;
       
       //---TEXT---//
@@ -50,6 +52,8 @@
       //---MISC---//
       --translucent: #000000d6;
       --overlay: #050505d6;
-      --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;  
+      --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;
+      --scrollbar-thumb: #505050;
+      --scrollbar-track: #272727;
     }
   }
