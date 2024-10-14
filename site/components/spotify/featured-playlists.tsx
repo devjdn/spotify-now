@@ -1,9 +1,7 @@
 import { fetchFeaturedPlaylists } from "@/api/featured-playlists-call";
 import { FeaturedPlaylist } from "@/lib/global";
-import { GridToScrollContainer, GridToScrollUl, GridToScrollLi } from "../grid-to-scroll/grid-to-scroll";
 import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
-import Link from "next/link";
-import Image from "next/image";
+import { ScrollBtns } from "../buttons/scroll-btns";
 
 
 export default async function FeaturedPlaylists() {
@@ -12,7 +10,9 @@ export default async function FeaturedPlaylists() {
     return (
         <section className="featured-playlists" id="featured-playlists">
             <ShelfContainer>
-                <ShelfHeader shelfTitle="Hot Playlists"/>
+                <ShelfHeader shelfTitle="Hot Playlists">
+                    <ScrollBtns scrollTargetSelector="ul.shelf-ul"/>
+                </ShelfHeader>
                 <ShelfScroll>
                 <ShelfUl>
                     {featuredPlaylists.map((playlist, playlistIndex) => (

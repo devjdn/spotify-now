@@ -1,8 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ScrollBtns } from "../buttons/scroll-btns";
+import React from "react";
 
 interface ShelfHeaderProps {
     shelfTitle: string;
+    children: React.ReactNode;
 }
 interface ShelfLiProps {
     itemArtwork: string;
@@ -20,10 +23,11 @@ export function ShelfContainer({children}:{children: React.ReactNode}) {
     );
 }
 
-export function ShelfHeader({shelfTitle}: ShelfHeaderProps) {
+export function ShelfHeader({shelfTitle, children}: ShelfHeaderProps) {
     return(
         <header className="shelf-header">
             <h3>{shelfTitle}</h3>
+            {children}
         </header>
     )
 }

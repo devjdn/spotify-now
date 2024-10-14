@@ -1,7 +1,7 @@
 import { fetchNewReleases } from "@/api/new-releases-call";
 import { SpotifyNewReleases } from "@/lib/global";
 import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
-import Link from "next/link";
+import { ScrollBtns } from "../buttons/scroll-btns";
 
 const NewReleases = async () => {
     const newReleases: SpotifyNewReleases = await fetchNewReleases();
@@ -36,8 +36,10 @@ const NewReleases = async () => {
 
     return(
         <section className="new-releases" id="new-drops">
-            <ShelfContainer /*key={releaseIndex}*/>
-                <ShelfHeader shelfTitle="New Releases"/>
+            <ShelfContainer>
+                <ShelfHeader shelfTitle="New Releases">
+                    <ScrollBtns scrollTargetSelector="ul.shelf-ul"/>
+                </ShelfHeader>
                 <ShelfScroll>
                 <ShelfUl>
                     {newReleases.items.map((items, itemIndex) => (

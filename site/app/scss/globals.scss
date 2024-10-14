@@ -132,6 +132,31 @@ h4{
   border-radius: 4px;
 }
 
+.scroll-btn-group{
+  @include flex-row;
+  gap: 10px;
+
+  button.scroll-btn{
+    height: 30px;
+    aspect-ratio: 1;
+    background: var(--bg-1);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+
+    svg{
+      stroke: var(--t-2);
+    }
+
+    &.scroll-left{
+      padding-right: 2px;
+    }
+    &.scroll-right{
+      padding-left: 2px;
+    }
+  }
+}
+
 
 
 //------PAGE CONTENT------//
@@ -232,12 +257,11 @@ section{
   flex: 3;
 
   &:not(.new-releases, .featured-playlists)>*{
-    padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
   }
 
   &.intro{
     padding-top: 50px;
-    padding-bottom: 50px;
     border-bottom: var(--bd-1);
   }
 }
@@ -871,50 +895,6 @@ section.top-50{
   }
 }
 
-
-
-//------GRID TO SCROLL COMPONENTS------//
-.grid-to-scroll-container{
-  @include flex-col;
-  gap: 50px;
-
-  ul.grid-to-scroll-ul{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-
-    li.grid-to-scroll-li{
-      @include flex-col;
-
-      img{
-        border-radius: 6px;
-        border: var(--bd-1);
-      }
-
-      .info{
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        a{
-          display: contents;
-          strong{
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-            max-width: 300px;
-          }
-        }
-      }
-    }
-  }
-
-  .release-type{
-    @include flex-col;
-    gap: 10px;
-  }
-}
-
 //------SHELF COMPONENTS------//
 .shelf-container{
   ::-webkit-scrollbar{
@@ -923,6 +903,9 @@ section.top-50{
   header.shelf-header{
     margin-bottom: 10px;
     padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+    @include flex-row;
+    align-items: center;
+    justify-content: space-between;
   }
   .shelf-scroll{
     position: relative;
@@ -1111,41 +1094,6 @@ section.top-50{
         top: 0;
         left: 0;
         transition: height .4s ease-out;
-      }
-    }
-  }
-
-  .grid-to-scroll-container{
-    ul.grid-to-scroll-ul{
-      @include flex-col;
-      gap: 0;
-  
-      li.grid-to-scroll-li{
-        display: grid;
-        grid-template-columns: 60px 1fr;
-        gap: 10px;
-        align-items: center;
-        padding: 10px 0;
-        
-        &:not(:last-of-type) {
-          border-bottom: var(--bd-1);
-        }
-  
-        img{
-          border-radius: 4px;
-          border: var(--bd-1);
-        }
-  
-        .playlist-details{
-          @include flex-row;
-          gap: 10px;
-          justify-content: space-between;
-  
-          button{
-            height: fit-content;
-          }
-
-        }
       }
     }
   }
