@@ -1,7 +1,8 @@
-import { fetchArtistProfile, fetchArtistPopularTracks, fetchRelatedArtists } from "@/api/artist/[artistId]/route";
+import { fetchArtistProfile, fetchArtistPopularTracks } from "@/api/artist/[artistId]/route";
 import { Artist, ArtistTopTracks } from "@/lib/global";
 import { FaSpotify } from 'react-icons/fa';
 import Link from "next/link";
+import Image from "next/image";
 import { ArtistAlbums } from "@/components/album-grid/artist-albums";
 import { SongActionsBtn } from "@/components/buttons/song-action-btns";
 import PreviewSongBtn from "@/components/playlist-grid/song-preview";
@@ -15,7 +16,9 @@ export default async function ArtistPage({params}: {params: {artistId: string;}}
     return(
         <section className="content artist">
             <header className="content-header">
-                <img src={artist.images[0].url} alt={artist.name} />
+                <div className="cover-art">
+                    <Image fill priority src={artist.images[0].url} alt={artist.name}/>
+                </div>
                 <div className="content-info">
                     <h1>{artist.name}</h1>
                     <div className="info">

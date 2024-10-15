@@ -43,6 +43,8 @@ input,textarea,button{
 
 a:hover{
   color: var(--brand);
+  text-decoration: underline 1px var(--brand);
+
   >*{
     color: var(--brand);
   }
@@ -86,6 +88,7 @@ p,span.song-text{
 }
 span.song-text{
   font-size: 14px;
+  font-weight: 500;
 }
 h4{
   font-size: .8em;
@@ -256,16 +259,16 @@ section{
   padding-bottom: 20px;
   flex: 3;
 
-  &:not(.new-releases, .featured-playlists)>*{
-    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
-  }
-
   &.intro{
     padding-top: 50px;
-    border-bottom: var(--bd-1);
+    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
   }
 }
 section.content{
+
+  >*{
+    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+  }
 
   header.content-header{
     @include flex-row;
@@ -273,10 +276,21 @@ section.content{
     margin-bottom: 40px;
     align-items: center;
 
-    img{
-      border-radius: 8px;
-      max-width: 300px;
+    .cover-art{
+      position: relative;
       box-shadow: var(--shadow);
+      border-radius: 8px;
+      border: var(--bd-1);
+      background: var(--bg-2);
+      margin-bottom: 2px;
+      z-index: 1;
+      width: 300px;
+      aspect-ratio: 1;
+
+      img{
+        border-radius: inherit;
+        object-fit: cover
+      }
     }
 
     .content-info{
@@ -301,10 +315,28 @@ section.content{
   }
   footer.content-footer{
     margin: 40px 0 40px; 
-    padding-inline: calc(50vw - min(1680px, 87.5vw)/2 + 10px);
+    padding-inline: calc(50vw - min(1680px, 92.5vw)/2 + 10px);
+    >*{
+      display: block;
+    }
   }
+
   .grid-container{
     @include flex-col;
+
+    header.grid-header{
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 125px;
+      
+      .grid-col{
+        padding-inline: 10px;
+
+        &:not(:first-of-type){
+          border-left: var(--bd-1);
+        }
+      }
+    }
 
     ul.grid-ul{
       @include flex-col;
@@ -314,10 +346,103 @@ section.content{
         align-items: center;
         border-radius: 8px;
         display: grid;
-        gap: 20px;
+        gap: 10px;
+
+        .grid-col{
+          align-items: center;
+        }
+
+        .grid-col:first-of-type{
+          display: grid;
+          grid-template-columns: 48px 1fr;
+          gap: 10px;
+          
+          .song-media{
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(2,1fr);
+            height: 100%;
+            aspect-ratio: 1;
+
+            &:hover{
+              .track-number{
+                display: none;
+              }
+              button{
+                display: grid;
+                place-items: center;
+                aspect-ratio: 1;
+                grid-area: 1/1/3/3;
+              }
+            }
+
+            .artwork-container{
+              position: relative;
+              width: 48px;
+              aspect-ratio: 1;
+              border-radius: 4px;
+              border: var(--bd-1);
+              background: var(--bg-2);
+              margin-bottom: 2px;
+              z-index: 1;
+              grid-area: 1/1/3/3;
+
+      
+              img{
+                border-radius: inherit;
+                object-fit: cover;
+              }
+            }
+
+            .track-number{
+              place-items: center;
+              width: 20px;
+              display: grid;
+              grid-area: 1/1/3/3;
+            }
+    
+            button{
+              z-index: 2;
+              display: none;
+              height: 100%;          
+            }
+
+          }
+
+          .details-container{
+            @include flex-col;
+          }
+        }
+        .grid-col:last-of-type{
+          @include flex-row();
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+        }
 
         &:nth-of-type(odd){
           background: var(--bg-2);
+        }
+      }
+    }
+  }
+
+  &.album{
+    .grid-container{
+      ul.grid-ul{
+        li.grid-li{
+          grid-template-columns: 1fr 100px;
+          padding-inline: 10px;
+        }
+      }
+    }
+  }
+  &.playlist{
+    .grid-container{
+      ul.grid-ul{
+        li.grid-li{
+          grid-template-columns: 1fr 1fr 100px;
+          padding: 10px;
         }
       }
     }
@@ -430,7 +555,7 @@ section.content{
     z-index: 300;
     background: var(--overlay);
     display: grid;
-    padding: 50px calc(50vw - min(1680px, 87.5vw)/2) 100px;
+    padding: 50px calc(50vw - min(1680px, 92.5vw)/2) 100px;
 
     .song-details-menu{
       max-width: 400px;
@@ -490,7 +615,7 @@ section.content{
 
     header.featured-content-header{
       margin-bottom: 20px;
-      padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+      padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
       @include flex-row;
       gap: 20px;
       align-items: center;
@@ -542,14 +667,14 @@ section.content{
       }
   
       ul.featured-content-ul{
-        padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+        padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
         display: grid;
         grid-template-columns: max-content;
         grid-auto-flow: column;
         overflow-x: auto;
         gap: 20px;
         padding-bottom: 20px;
-        scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+        scroll-padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
         scroll-snap-type: x mandatory;
 
         &::-webkit-scrollbar{
@@ -649,7 +774,7 @@ section.artist{
 
     header.related-artists-header{
       margin-bottom: 20px;
-      padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+      padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
       @include flex-row;
       gap: 20px;
       align-items: center;
@@ -701,14 +826,14 @@ section.artist{
       }
   
       ul.related-artists-ul{
-        padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+        padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
         display: grid;
         grid-template-columns: max-content;
         grid-auto-flow: column;
         overflow-x: auto;
         gap: 20px;
         padding-bottom: 20px;
-        scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+        scroll-padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
         scroll-snap-type: x mandatory;
 
         &::-webkit-scrollbar{
@@ -749,23 +874,6 @@ section.artist{
   }
 }
 
-section.album{
-  
-  .grid-container{
-    @include flex-col;
-
-    ul.grid-ul{
-      @include flex-col;
-      width: 100%;
-  
-      li.grid-li{
-        grid-template-columns: 25px 1fr 50px 30px;
-        padding: 14px 20px;
-      }
-    }
-  }
-}
-
 section.track{
   .song-lyrics{
     @include flex-col;
@@ -779,75 +887,6 @@ section.track{
     .lyrics{
       @include flex-col;
       gap: 6px;
-    }
-  }
-}
-
-section.playlist{
-  header.content-header{
-    .content-info{
-      h3{
-        margin-bottom: 10px;
-      }
-    }
-  }
-  .grid-container{
-
-    header.grid-header{
-      padding: 10px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 125px;
-      
-      .grid-col{
-        padding-inline: 10px;
-
-        &:not(:first-of-type){
-          border-left: var(--bd-1);
-        }
-      }
-    }
-
-    ul.grid-ul{
-  
-      li.grid-li{
-        grid-template-columns: 1fr 1fr 50px 30px;
-        padding: 10px;
-
-        .song-media{
-          display: grid;
-          grid-template-columns: repeat(2,1fr);
-          grid-template-rows: repeat(2, 1fr);
-          place-items: center;
-  
-          img{
-            grid-area: 1/1/3/3;
-            z-index: 1;
-          }
-          button{
-            grid-area: 1/1/3/3;
-            z-index: 2;
-            display: none;          
-          }
-  
-          &:hover{
-            button{
-              display: block; 
-            }
-          }
-        }
-
-        .grid-col:first-of-type{
-          display: grid;
-          grid-template-columns: 48px 1fr;
-          gap: 10px;
-          align-items: center;
-  
-          img{
-            border-radius: 4px;
-            width: 48px;
-          }
-        }
-      }
     }
   }
 }
@@ -902,7 +941,7 @@ section.top-50{
   }
   header.shelf-header{
     margin-bottom: 10px;
-    padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
     @include flex-row;
     align-items: center;
     justify-content: space-between;
@@ -934,9 +973,9 @@ section.top-50{
       overflow-x: auto;
       gap: 20px;
       padding-bottom: 20px;
-      scroll-padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+      scroll-padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
       scroll-snap-type: x mandatory;
-      padding-inline: calc(50vw - min(1680px, 87.5vw)/2);
+      padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
   
       li.shelf-li{
         width: 200px;
@@ -996,6 +1035,10 @@ section.top-50{
       @include flex-col;
       text-align: center;
 
+      .cover-art{
+        width: 240px;
+      }
+
       .content-info{
         align-items: center;
       }
@@ -1006,27 +1049,36 @@ section.top-50{
       header.grid-header{
         display: none;
       }
-    }
-  }
 
-  section.playlist, section.artist{
-    .grid-container{
+      ul.grid-ul{
+        li.grid-li{
 
-      ul.grid-ul>li.grid-li{
-        grid-template-columns: 1fr 30px;
-        .grid-col:nth-of-type(2),.grid-col:nth-of-type(3){
-          display: none;
+          .grid-col:last-of-type{
+            .duration{
+              display: none;
+            }
+          }
         }
       }
     }
-  }
-  section.album{
-    .grid-container{
-
-      ul.grid-ul>li.grid-li{
-        grid-template-columns: 25px 1fr 30px;
-        .grid-col:nth-of-type(3){
-          display: none;
+    
+    &.playlist, &.album{
+      .grid-container{
+        ul.grid-ul{
+          li.grid-li{
+            grid-template-columns: 1fr 24px;
+          }
+        }
+      }
+    }
+    &.playlist{
+      .grid-container{
+        ul.grid-ul{
+          li.grid-li{
+            .grid-col:nth-of-type(2){
+              display: none;
+            }
+          }
         }
       }
     }
@@ -1080,6 +1132,8 @@ section.top-50{
       position: fixed;
       width: 100%;
       box-shadow: var(--shadow);
+      backdrop-filter: var(--filter);
+      background: var(--bg-2-translucent);
 
       header.sidebar-header{
 

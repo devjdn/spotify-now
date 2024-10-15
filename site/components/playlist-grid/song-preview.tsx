@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { CgPlayButton, CgPlayPause } from 'react-icons/cg'; 
+import { FaPlay, FaPause, FaCloud } from 'react-icons/fa6';
 
 interface SongUrlProps {
-  previewUrl: string | null;
+  previewUrl: string;
 }
 
 export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {
@@ -40,7 +40,7 @@ export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {
   return (
     <>
       <button className="audio-toggle-btn" onClick={toggleSongPreview}>
-        {isPlaying ? <CgPlayPause size={40} /> : <CgPlayButton size={40} />}
+        {isPlaying ? <FaPause/> : <FaPlay/>}
       </button>
       <audio ref={audioRef} src={previewUrl} />
     </>

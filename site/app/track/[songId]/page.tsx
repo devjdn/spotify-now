@@ -3,6 +3,7 @@ import  { fetchLyrics } from '@/api/song/[songId]/route';
 import { Lyrics, Track } from '@/lib/global';
 import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface SongProps {
     params: {
@@ -21,7 +22,9 @@ export default async function Song ({params}: SongProps) {
     return(
         <section className="content track">
             <header className="content-header">
-                <img src={track.album.images[0].url} alt={track.name}/>
+                <div className="cover-art">
+                    <Image fill priority src={track.album.images[0]?.url} alt={track.name}/>
+                </div>
                 <div className="content-info">
                     <h3>{track.name}</h3>
                     <Link href={`/artist/${track.artists[0].id}`}>

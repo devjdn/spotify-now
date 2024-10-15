@@ -58,10 +58,10 @@ const AlbumGrid: React.FC<AlbumGridProps> = async ({fetchAlbum}) => {
                 </ul>
             </div>
             <footer className="content-footer">
-                <p className="capitalize">{release_date}</p>
-                {total_tracks === 1 ? <p className="capitalize">{total_tracks} track</p> : <p className="capitalize">{total_tracks} tracks</p>}
-                <p>{album.copyrights[0].text}</p>
-                <p>{label}</p>
+                <span className="song-text capitalize">{release_date}</span>
+                {total_tracks === 1 ? <span className="song-text capitalize">{total_tracks} track</span> : <span className="song-text capitalize">{total_tracks} tracks</span>}
+                <span className="song-text">{album.copyrights[0].text}</span>
+                <span className="song-text">{label}</span>
             </footer>
             <ArtistAlbums artistId={artistId} artistName={artistName}/>
         </section>
