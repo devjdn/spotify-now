@@ -1,4 +1,4 @@
-@use './colours';
+@use './variables';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -255,12 +255,12 @@ section{
 
   &.intro{
     padding-top: 50px;
-    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+    padding-inline: var(--container-inline-padding);
   }
 }
 section.content{
   >*{
-    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+    padding-inline: var(--container-inline-padding);
   }
 
   header.content-header{
@@ -308,7 +308,7 @@ section.content{
   }
   footer.content-footer{
     margin: 40px 0 40px; 
-    padding-inline: calc(50vw - min(1680px, 92.5vw)/2 + 10px);
+    padding-inline: calc(50vw - min(1680px, 95vw)/2 + 10px);
     >*{
       display: block;
     }
@@ -559,7 +559,7 @@ section.content{
     z-index: 300;
     background: var(--overlay);
     display: grid;
-    padding: 50px calc(50vw - min(1680px, 92.5vw)/2) 100px;
+    padding: 50px var(--container-inline-padding) 100px;
 
     .song-details-menu{
       max-width: 400px;
@@ -621,7 +621,7 @@ section.content{
 
     header{
       margin-bottom: 20px;
-      padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+      padding-inline: var(--container-inline-padding);
       @include flex-row;
       gap: 20px;
       align-items: center;
@@ -673,14 +673,14 @@ section.content{
       }
   
       ul{
-        padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+        padding-inline: var(--container-inline-padding);
         display: grid;
         grid-template-columns: max-content;
         grid-auto-flow: column;
         overflow-x: auto;
         gap: 20px;
         padding-bottom: 20px;
-        scroll-padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+        scroll-padding-inline: var(--container-inline-padding);
         scroll-snap-type: x mandatory;
 
         &::-webkit-scrollbar{
@@ -788,10 +788,10 @@ section.top-50{
   }
   header.shelf-header{
     margin-bottom: 10px;
-    padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
     @include flex-row;
     align-items: center;
     justify-content: space-between;
+    padding-inline: var(--container-inline-padding);
   }
   .shelf-scroll{
     position: relative;
@@ -803,33 +803,35 @@ section.top-50{
       z-index: 4;
 
       &.left{
-        left: 0;
+        left: -5px;
         background: linear-gradient(to right, var(--bg-2), transparent);
       }
       &.right{
-        right: 0;
+        right: -5px;
         background: linear-gradient(to left, var(--bg-2), transparent);
       }
     }
 
     ul.shelf-ul{
       display: grid;
-      grid-template-columns: repeat(auto-fill, 200px);
       grid-auto-flow: column;
-      grid-template-rows: repeat(2,1fr);
+      grid-auto-columns: 200px;
+      grid-template-rows: repeat(2, 1fr);
+      width: 100%;
       overflow-x: auto;
       gap: 20px;
       padding-bottom: 20px;
-      scroll-padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
       scroll-snap-type: x mandatory;
-      padding-inline: calc(50vw - min(1680px, 92.5vw)/2);
+      padding-inline: var(--container-inline-padding);
+      scroll-padding-inline: var(--container-inline-padding);
+
   
       li.shelf-li{
         width: 200px;
         scroll-snap-align: start;
         .artwork-container{
           position: relative;
-          width: 200px;
+          width: 100%;
           aspect-ratio: 1;
           border-radius: 6px;
           background: var(--bg-2);
@@ -1000,6 +1002,29 @@ section.top-50{
         top: 0;
         left: 0;
         transition: height .4s ease-out;
+      }
+    }
+  }
+
+  .scroll-btn-group{
+    display: none;
+  }
+
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-auto-columns: 144px;
+        gap: 10px;
+    
+        li.shelf-li{
+          width: 144px;
+          scroll-snap-align: start;
+          .artwork-container{
+            position: relative;
+            width: 100%;
+          }
+        }
       }
     }
   }

@@ -26,6 +26,9 @@
     --shadow: rgba(0, 0, 0, 0.25) 0px 15px 30px -12px;
     --scrollbar-thumb: #ababab;
     --scrollbar-track: #fafafa;
+
+    //---MEASUREMENTS---//
+    --container-inline-padding: calc(50vw - min(1680px, 92.5vw)/2);
   }
   
   
