@@ -1,7 +1,8 @@
 import { ArtistReleasedAlbums } from "@/lib/global";
 import { fetchArtistAlbums } from "@/api/artistAlbums/[artistId]/route";
-import { ScrollBtns } from "../buttons/scroll-btns";
+import { ScrollBtns } from "./buttons/scroll-btns";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ArtistAlbumProps {
     artistId: string;
@@ -23,14 +24,12 @@ export const ArtistAlbums = async ({artistId, artistName}: ArtistAlbumProps) => 
                 <ul className="featured-content-ul">
                     {albums.items.map((album, albumIndex) => (
                         <li className="featured-content-li" key={albumIndex}>
-                            <img src={album.images[0].url} alt={album.name}/>
-                            <div className="info">
-                                <Link href={`/album/${album.id}`}>
-                                    <strong>{album.name}</strong>
-                                </Link>
-                                <Link href={`/artist/${artistId}`}>
-                                    <p>{album.artists[0].name}</p>
-                                </Link>
+                            <div className="artwork-container">
+                                <Image loading="lazy" fill src={album.images[0].url} alt={album.name}/>
+                            </div>
+                            <div className="details-container">
+                                <span className="song-text"><Link href={`/album/${album.id}`}>{album.name}</Link></span>
+                                <span className="song-text"><Link href={`/artist/${artistId}`}>{album.artists[0].name}</Link></span>
                             </div>
                         </li>
                     ))}

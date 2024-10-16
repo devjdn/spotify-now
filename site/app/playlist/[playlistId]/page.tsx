@@ -1,6 +1,5 @@
 import { fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
 import { Playlist } from "@/lib/global";
-import PlaylistGrid from "@/components/playlist-grid/playlist-grid";
 import ContentGrid from "@/components/grid/content-grid";
 
 export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {

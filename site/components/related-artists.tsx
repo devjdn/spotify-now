@@ -1,6 +1,7 @@
 import { ArtistRelatedArtists } from "@/lib/global";
 import { ScrollBtns } from "./buttons/scroll-btns";
 import Link from "next/link";
+import Image from "next/image";
 import { fetchRelatedArtists } from "@/api/artist/[artistId]/route";
 
 interface RelatedArtistProps {
@@ -23,11 +24,11 @@ export const RelatedArtists = async ({artistId, artistName}: RelatedArtistProps)
                 <ul className="related-artists-ul">
                     {relatedArtists.artists.map((artist, artistIndex) => (
                         <li className="related-artists-li" key={artistIndex}>
-                            <img src={artist.images[0].url} alt={artist.name}/>
-                            <div className="info">
-                                <Link href={`/artist/${artist.id}`}>
-                                    <strong>{artist.name}</strong>
-                                </Link>
+                            <div className="artwork-container">
+                                {/* <Image loading="lazy" fill src={artist.images[0].url} alt={artist.name}/> */}
+                            </div>
+                            <div className="details-container">
+                                <span className="song-text"><Link href={`/artist/${artist.id}`}>{artist.name}</Link></span>
                             </div>
                         </li>
                     ))}
