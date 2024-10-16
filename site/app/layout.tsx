@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({children}: {children: React.ReactNode;}) {
-  let accessToken = await getSpotifyAccessToken();
+  const accessToken = await getSpotifyAccessToken();
   return (
     <html lang="en">
       <body className={inter.className}>
