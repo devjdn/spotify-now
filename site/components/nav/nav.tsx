@@ -64,17 +64,19 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
                 <div className="nav-group"  key={linkIndex}>
                     <h4>{linkGroup.group}</h4>
                     <ul className="nav-ul">
-                            {linkGroup.links.map((link, index) => (
-                                <li className="nav-li" key={index}>
-                                    <button onClick={() => {router.push(`${link.href}`); toggleMobileNav()}} className={`nav-btn ${clsx(
-                                        'hover:bg-neutral-100 dark:hover:bg-neutral-800',
-                                        {'bg-neutral-100 dark:bg-neutral-800': link.href === pathname}
+                        {linkGroup.links.map((link, index) => (
+                            <li className="nav-li" key={index}>
+                                <Link href={link.href} onClick={() => toggleMobileNav()}>
+                                    <button className={`nav-btn ${clsx(
+                                    'hover:bg-neutral-200 dark:hover:bg-neutral-800',
+                                    {'bg-neutral-200 dark:bg-neutral-800': link.href === pathname}
                                     )}`}>
                                         {link.icon}
                                         {link.name}
                                     </button>
-                                </li>
-                            ))}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             ))}

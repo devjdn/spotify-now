@@ -3,7 +3,7 @@ import { getSpotifyAccessToken } from "./access-token";
 export const fetchNewReleases = async () => {
     const accessToken = await getSpotifyAccessToken();
 
-    const response = await fetch('https://api.spotify.com/v1/browse/new-releases?limit=50', {
+    const response = await fetch('https://api.spotify.com/v1/browse/new-releases?limit=36', {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         },
