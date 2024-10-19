@@ -24,6 +24,7 @@
     --overlay: #171717d6;
     --filter: blur(10px) saturate(1);
     --shadow: rgba(0, 0, 0, 0.25) 0px 15px 30px -12px;
+    --mobile-header-shadow: rgba(0, 0, 0, 0.25) 0 10px 10px -12px;
     --scrollbar-thumb: #ababab;
     --scrollbar-track: #fafafa;
 
@@ -56,6 +57,7 @@
       --translucent: #000000d6;
       --overlay: #050505d6;
       --shadow: rgba(50, 50, 50, 0.091) 0px 3px 8px;
+      --mobile-header-shadow: rgba(50, 50, 50, 0.091) 0 10px 10px -12px;
       --scrollbar-thumb: #505050;
       --scrollbar-track: #272727;
     }

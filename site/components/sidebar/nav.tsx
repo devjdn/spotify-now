@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
@@ -5,15 +7,16 @@ import { useEffect, useState } from "react";
 import { LayoutGrid, ChartNoAxesCombined, Home, Sparkles, Star, CalendarClock, Loader } from "lucide-react";
 import { FeaturedPlaylist } from "@/lib/global";
 import { fetchQuickPlaylistLinks } from "@/api/quick-playlist-links";
+import { useSidebar } from "./sidebar-context";
 
 interface NavProps {
-    accessToken: string;
-    toggleMobileNav: () => void;
+    featured: FeaturedPlaylist[];
 }
 
-export function Nav({accessToken, toggleMobileNav}: NavProps) {
+export function Nav({featured}: NavProps) {
     const pathname = usePathname();
     const router = useRouter();
+    const {isOpen, toggleSidebar} = useSidebar();
     const [navLinks, setNavLinks] = useState([
         {
             group: 'Explore',
@@ -28,35 +31,22 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
             links: [],
         }
     ]);
-    const [isLoading, setIsLoading] = useState(false);
-
     
     useEffect(() => {
-        const quickPlaylistNav = async () => {
-
-            try{
-                const featured: FeaturedPlaylist[] = await fetchQuickPlaylistLinks({accessToken});
+        const featuredLinks = featured.slice(0, 6).map(pLink => ({
+            name: pLink.name,
+            href: `/playlist/${pLink.id}`,
+            icon: <LayoutGrid size={22} />,
+        }));
     
-                const featuredLinks = featured.slice(0, 6).map(pLink => ({
-                    name: pLink.name,
-                    href: `/playlist/${pLink.id}`,
-                    icon: <LayoutGrid size={22} />,
-                }));
-            
-                setNavLinks(prevNavLinks => 
-                    prevNavLinks.map(navGroup => 
-                        navGroup.group === 'Quick Playlists' 
-                            ? { ...navGroup, links: featuredLinks } 
-                            : navGroup
-                    )
-                );
-            } catch (error) {
-                console.error('Error fetching quick playlist links:', error);
-            }
-        };
-
-        quickPlaylistNav();
-    }, [accessToken]);
+        setNavLinks(prevNavLinks => 
+            prevNavLinks.map(navGroup => 
+                navGroup.group === 'Quick Playlists' 
+                    ? { ...navGroup, links: featuredLinks } 
+                    : navGroup
+            )
+        );
+    }, []);
 
     return(
         <nav className="header-nav">
@@ -66,7 +56,7 @@ export function Nav({accessToken, toggleMobileNav}: NavProps) {
                     <ul className="nav-ul">
                         {linkGroup.links.map((link, index) => (
                             <li className="nav-li" key={index}>
-                                <Link href={link.href} onClick={() => toggleMobileNav()}>
+                                <Link href={link.href} onClick={toggleSidebar}>
                                     <button className={`nav-btn ${clsx(
                                     'hover:bg-neutral-200 dark:hover:bg-neutral-800',
                                     {'bg-neutral-200 dark:bg-neutral-800': link.href === pathname}

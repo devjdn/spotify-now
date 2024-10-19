@@ -1,4 +1,4 @@
-import { fetchHighlightedPlaylist } from "@/api/highlighted-playists";
+import { fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
 import { Playlist } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import { SongActionsBtn } from "../buttons/song-action-btns";
@@ -6,7 +6,7 @@ import { SongDetailsMenu } from "../song-details-menu";
 import Link from "next/link";
 
 export default async function GlobalTop50({playlistId}: {playlistId: string}) {
-    const playlist: Playlist = await fetchHighlightedPlaylist({playlistId});
+    const playlist: Playlist = await fetchPlaylistTracks({playlistId});
     const totalTracks = playlist.tracks.items.length;
 
     return(

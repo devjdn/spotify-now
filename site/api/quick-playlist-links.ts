@@ -1,4 +1,7 @@
-export const fetchQuickPlaylistLinks = async ({accessToken}: {accessToken: string;}) => {
+import { getSpotifyAccessToken } from "./access-token";
+
+export const fetchQuickPlaylistLinks = async () => {
+    const accessToken = await getSpotifyAccessToken();
 
     const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists', {
         headers: {
