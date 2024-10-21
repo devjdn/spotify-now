@@ -33,7 +33,7 @@ export function Nav({featured}: NavProps) {
     ]);
     
     useEffect(() => {
-        const featuredLinks = featured.slice(0, 6).map(pLink => ({
+        const featuredLinks = featured.map(pLink => ({
             name: pLink.name,
             href: `/playlist/${pLink.id}`,
             icon: <LayoutGrid size={22} />,

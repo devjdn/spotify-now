@@ -1,16 +1,16 @@
-import { fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
+import { fetchPlaylist, fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
 import { Playlist } from "@/lib/global";
 import ContentGrid from "@/components/grid/content-grid";
 
 export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
   const { playlistId } = params;
-  const playlist: Playlist = await fetchPlaylistTracks({ playlistId });
+  const playlist: Playlist = await fetchPlaylist({ playlistId });
 
   const fetchData = async (): Promise<Playlist> => {
-    return await fetchPlaylistTracks({ playlistId });
+    return await fetchPlaylist({ playlistId });
   };
 
   return(
-    <ContentGrid fetchData={fetchData} data={playlist} contentType='playlist'/>
+    <ContentGrid fetchData={fetchData} data={playlist} contentType='playlist' fetchPlaylistTracks={() => fetchPlaylistTracks({playlistId})}/>
   );
 }

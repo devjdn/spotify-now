@@ -1,12 +1,13 @@
-import { fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
-import { Playlist } from "@/lib/global";
+import { fetchPlaylist, fetchPlaylistTracks } from "@/api/playlist/[playlistId]/route";
+import { Playlist, PlaylistTracks } from "@/lib/global";
 import { FaSpotify } from "react-icons/fa";
 import { SongActionsBtn } from "../buttons/song-action-btns";
 import { SongDetailsMenu } from "../song-details-menu";
 import Link from "next/link";
 
 export default async function GlobalTop50({playlistId}: {playlistId: string}) {
-    const playlist: Playlist = await fetchPlaylistTracks({playlistId});
+    const playlist: Playlist = await fetchPlaylist({playlistId})
+    const playlistTracks: PlaylistTracks = await fetchPlaylistTracks({playlistId});
     const totalTracks = playlist.tracks.items.length;
 
     return(
@@ -28,7 +29,7 @@ export default async function GlobalTop50({playlistId}: {playlistId: string}) {
             </header>
             <div className="chart-ranking-container">
                 <ol className="chart-ranking-ol">
-                    {playlist.tracks.items.map((ranking, rankIndex) => (
+                    {playlistTracks.items.map((ranking, rankIndex) => (
                         <li className="chart-ranking-li" id={`n${rankIndex + 1}`} key={rankIndex}>
                             <span className="chart-rank">{rankIndex + 1}</span>
                             <div className="song-details">

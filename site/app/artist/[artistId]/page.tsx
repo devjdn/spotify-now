@@ -5,7 +5,6 @@ import ContentGrid from "@/components/grid/content-grid";
 export default async function ArtistPage({params}: {params: {artistId: string;}}) {
     const { artistId } = params;
     const artist: Artist = await fetchArtistProfile({artistId});
-    const topTracks: ArtistTopTracks = await fetchArtistPopularTracks({artistId});
 
     const fetchData = async (): Promise<Album> => {
         return await fetchArtistProfile({artistId});

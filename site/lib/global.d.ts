@@ -168,7 +168,7 @@ export interface Artist {
     spotify: string;
   };
   followers: {
-    href: string | null;
+    href: string;
     total: number;
   };
   genres: string[];
@@ -265,7 +265,7 @@ export interface ArtistRelatedArtists {
       spotify: string;
     };
     followers: {
-      href: string | null;
+      href: string;
       total: number;
     };
     genres: string[];
@@ -320,9 +320,9 @@ export interface ArtistReleasedAlbums {
     uri: string;
   }[];
   limit: number;
-  next: string | null;
+  next: string;
   offset: number;
-  previous: string | null;
+  previous: string;
   total: number;
 }
 
@@ -483,7 +483,99 @@ export interface Playlist {
   };
   type: string;
   uri: string;
-} 
+}
+
+export interface PlaylistTracks {
+  total: number;
+  items: {
+    added_at: string;
+    added_by: {
+      external_urls: {
+        spotify: string;
+      };
+      followers: {
+        href: string;
+        total: number;
+      };
+      href: string;
+      id: string;
+      type: 'user';
+      uri: string;
+    };
+    is_local: boolean;
+    track: {
+      album: {
+        album_type: 'compilation';
+        total_tracks: number;
+        available_markets: string[];
+        external_urls: {
+          spotify: string;
+        };
+        href: string;
+        id: string;
+        images: {
+          url: string;
+          height: number;
+          width: number;
+        }[];
+        name: string;
+        release_date: string;
+        release_date_precision: 'year';
+        restrictions: {
+          reason: string;
+        };
+        type: 'album';
+        uri: string;
+        artists: {
+          external_urls: {
+            spotify: string;
+          };
+          href: string;
+          id: string;
+          name: string;
+          type: 'artist';
+          uri: string;
+        }[];
+      };
+      artists: {
+        external_urls: {
+          spotify: string;
+        };
+        href: string;
+        id: string;
+        name: string;
+        type: 'artist';
+        uri: string;
+      }[];
+      available_markets: string[];
+      disc_number: number;
+      duration_ms: number;
+      explicit: boolean;
+      external_ids: {
+        isrc: string;
+        ean: string;
+        upc: string;
+      };
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      is_playable: boolean;
+      linked_from?: {};
+      restrictions: {
+        reason: string;
+      };
+      name: string;
+      popularity: number;
+      preview_url: string;
+      track_number: number;
+      type: 'track';
+      uri: string;
+      is_local: boolean;
+    };
+  }[];
+}
 
 export interface SpotifyNewReleases {
   items: {

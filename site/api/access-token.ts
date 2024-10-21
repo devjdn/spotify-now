@@ -13,7 +13,6 @@ export const getSpotifyAccessToken = async () => {
         return cachedAccessToken;
     }
 
-    // Token is either not cached or expired, need to refresh
     console.log('Fetching new access token');
     
     const token = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
