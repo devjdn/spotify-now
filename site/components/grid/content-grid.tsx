@@ -34,7 +34,7 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
     }
 
     const renderPlaylist = async (playlist: Playlist, fetchPlaylistTracks?: () => Promise<PlaylistTracks>) => {
-        const playlistTracks = fetchPlaylistTracks && await fetchPlaylistTracks();
+        const playlistTracks = fetchPlaylistTracks && (await fetchPlaylistTracks());
         return(
             <section className={`content playlist`}>
                 <ContentHeader title={playlist.name} description={playlist.description} spotifyUrl={playlist.external_urls.spotify} imageUrl={playlist.images[0].url}/>
@@ -124,7 +124,7 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
     );
 
     const renderArtist = async (artist: Artist, fetchTopTracks?: () => Promise<ArtistTopTracks>) => {
-        const topTracks = fetchTopTracks && await fetchTopTracks();
+        const topTracks = fetchTopTracks && (await fetchTopTracks());
 
         return(
             <section className={`content artist`}>
@@ -166,13 +166,13 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
                         ))}
                     </ul>
                 </div>
-                <ArtistAlbums artistId={artist.id} artistName={artist.name}/>
+                {/* <ArtistAlbums artistId={artist.id} artistName={artist.name}/> */}
             </section>
         );
     };
 
     const renderTrack = async (track: Track, fetchLyrics?: () => Promise<Lyrics>) => {
-        const lyrics = fetchLyrics && await fetchLyrics();
+        const lyrics = fetchLyrics && (await fetchLyrics());
 
         return(
             <section className={`content track`}>

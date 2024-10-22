@@ -1,4 +1,4 @@
-import { fetchNewReleases } from "@/api/new-releases-call";
+import { fetchNewReleases } from "@/api/home-api-calls";
 import { SpotifyNewReleases } from "@/lib/global";
 import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
 import { ScrollBtns } from "../buttons/scroll-btns";

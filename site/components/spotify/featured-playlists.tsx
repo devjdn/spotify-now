@@ -1,4 +1,4 @@
-import { fetchFeaturedPlaylists } from "@/api/featured-playlists-call";
+import { fetchFeaturedPlaylists } from "@/api/home-api-calls";
 import { FeaturedPlaylist } from "@/lib/global";
 import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
 import { ScrollBtns } from "../buttons/scroll-btns";

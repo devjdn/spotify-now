@@ -3,7 +3,7 @@ import { Playlist } from "@/lib/global";
 import ContentGrid from "@/components/grid/content-grid";
 
 export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
-  const { playlistId } = params;
+  const { playlistId } = await params;
   const playlist: Playlist = await fetchPlaylist({ playlistId });
 
   const fetchData = async (): Promise<Playlist> => {

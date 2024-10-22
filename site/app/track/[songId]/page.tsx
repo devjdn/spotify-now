@@ -12,7 +12,7 @@ interface SongProps {
 }
 
 export default async function Song ({params}: SongProps) {
-    const { songId } = params;
+    const { songId } = await params;
     const track: Track = await fetchTrack({songId});
     const songArtist = track.artists[0].name;
     const songName = track.name;

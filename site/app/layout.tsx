@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./scss/globals.scss";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Sidebar from "@/components/sidebar/sidebar";
+import { Suspense } from "react";
+import Loading from "@/components/loading/loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,9 @@ export default function RootLayout({children}: {children: React.ReactNode;}) {
         <SpeedInsights/>
         <Sidebar/>
         <main className="content-window">
-          {children}
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </main>
       </body>
     </html>
