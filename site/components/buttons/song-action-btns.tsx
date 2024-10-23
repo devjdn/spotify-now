@@ -51,7 +51,7 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
         { name: 'Go to artist', icon: <MicVocal size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/artist/${artistId}`) },
         { name: 'Song details', icon: <BookAudio size={20} strokeWidth={1.75}/>, onClick: () => setIsSongMenuOpen(true) },
         { name: 'Listen on Spotify', icon: <FaSpotify size={20}/>, onClick: () => router.push(`https://open.spotify.com/track/${songId}`) },
-    ].filter((action): action is { name: string; icon: JSX.Element; onClick: () => void } => action !== null);
+    ];
 
     useEffect(() => {
         if(isSongMenuOpen) {
@@ -74,7 +74,7 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
             setIsSongMenuOpen(false);
             document.body.style.overflowY = 'auto';
         }
-    }, [isSongMenuOpen, chartRank, songName, songArtist, songCover, popularity, releaseDate])
+    }, [isSongMenuOpen, chartRank, songName, songArtist, songCover, popularity, releaseDate, releaseType, songAlbum])
 
     return(
         <>

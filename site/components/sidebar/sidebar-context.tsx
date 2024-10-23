@@ -25,7 +25,7 @@ export const SidebarProvider = ({children}: {children: React.ReactNode}) => {
             setIsOpen(prev => !prev);
             document.body.style.overflowY = isOpen ? 'auto' : 'hidden';
         }
-    }, []);
+    }, [isOpen]);
 
     return(
         <SidebarContext.Provider value={{isOpen, toggleSidebar}}>

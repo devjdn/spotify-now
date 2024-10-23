@@ -46,7 +46,7 @@ export function Nav({featured}: NavProps) {
                     : navGroup
             )
         );
-    }, []);
+    }, [featured]);
 
     return(
         <nav className="header-nav">

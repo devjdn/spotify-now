@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPlay, FaPause, FaCloud } from 'react-icons/fa6';
+import { FaPlay, FaPause } from 'react-icons/fa6';
 
 interface SongUrlProps {
   previewUrl: string;
@@ -12,14 +12,16 @@ export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.addEventListener('ended', () => setIsPlaying(false));
+    const currentAudio = audioRef.current;
+
+    if (currentAudio) {
+      const handleAudioEnd = () => setIsPlaying(false);
+      currentAudio.addEventListener('ended', handleAudioEnd);
+
+      return () => {
+        currentAudio.removeEventListener('ended', handleAudioEnd);
+      };
     }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
-      }
-    };
   }, []);
 
   const toggleSongPreview = () => {
@@ -40,7 +42,7 @@ export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {
   return (
     <>
       <button className="audio-toggle-btn" onClick={toggleSongPreview}>
-        {isPlaying ? <FaPause/> : <FaPlay/>}
+        {isPlaying ? <FaPause /> : <FaPlay />}
       </button>
       <audio ref={audioRef} src={previewUrl} />
     </>
