@@ -2,7 +2,7 @@ import { fetchPlaylist, fetchPlaylistTracks } from "@/api/playlist/[playlistId]/
 import { Playlist } from "@/lib/global";
 import ContentGrid from "@/components/grid/content-grid";
 
-export default async function PlaylistTracksPage({params}: {params: { playlistId: string; }}) {
+export default async function PlaylistTracksPage({params}: {params: Promise<{ playlistId: string; }>}) {
   const { playlistId } = await params;
   const playlist: Playlist = await fetchPlaylist({ playlistId });
 

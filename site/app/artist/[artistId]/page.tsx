@@ -2,7 +2,7 @@ import { fetchArtistProfile, fetchArtistPopularTracks } from "@/api/artist/[arti
 import { Album, Artist, ArtistRelatedArtists, ArtistTopTracks } from "@/lib/global";
 import ContentGrid from "@/components/grid/content-grid";
 
-export default async function ArtistPage({params}: {params: {artistId: string;}}) {
+export default async function ArtistPage({params}: {params: Promise<{artistId: string;}>}) {
     const { artistId } = await params;
     const artist: Artist = await fetchArtistProfile({artistId});
 
