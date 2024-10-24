@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import { fetchNewReleases } from "@/api/home-api-calls";
 import { SpotifyNewReleases } from "@/lib/global";
 import { ShelfContainer, ShelfHeader, ShelfScroll, ShelfUl, ShelfLi } from "../shelf/shelf";
-import { ScrollBtns } from "../buttons/scroll-btns";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const NewReleases = ({accessToken}: {accessToken: string}) => {
+const NewReleases = ({accessToken}: {accessToken: string | null}) => {
 
     const [newReleases, setNewReleases] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState<number | null>(null);
 
     useEffect(() => {
         const updateLimit = () => {
@@ -26,11 +26,11 @@ const NewReleases = ({accessToken}: {accessToken: string}) => {
                 case (screenWidth > 900):
                     setLimit(8);
                     break;
-                case (screenWidth > 600):
+                case (screenWidth > 669):
                     setLimit(6);
                     break;
                 default:
-                    setLimit(10);
+                    setLimit(36);
             }
         };
 
@@ -44,6 +44,8 @@ const NewReleases = ({accessToken}: {accessToken: string}) => {
     }, []);
 
     useEffect(() => {
+        if (limit === null) return;
+
         const loadNewReleases = async () => {
             try {
                 const data: SpotifyNewReleases = await fetchNewReleases(currentPage * limit, {accessToken, limit});
@@ -54,7 +56,7 @@ const NewReleases = ({accessToken}: {accessToken: string}) => {
             }
         }
         loadNewReleases();
-    }, [currentPage]);
+    }, [currentPage, limit, accessToken]);
 
     const nextPage = () => {
         setCurrentPage(prevPage => prevPage + 1)
@@ -66,13 +68,16 @@ const NewReleases = ({accessToken}: {accessToken: string}) => {
         }
     }
 
+    if (limit === null) {
+        return null;
+    }
 
     return(
         <section className="new-releases" id="new-drops">
             <ShelfContainer>
                 <ShelfHeader shelfTitle="New Releases">
                     <div className="page-btns">
-                        <button className="page-btn" onClick={previousPage} disabled={currentPage === 0}>back</button><button className="page-btn" onClick={nextPage} disabled={currentPage === 3}>forward</button>
+                        <button className="page-btn" onClick={previousPage} disabled={currentPage === 0}><ChevronLeft/></button><button className="page-btn" onClick={nextPage} disabled={currentPage === 3}><ChevronRight/></button>
                     </div>
                 </ShelfHeader>
                 <ShelfScroll>

@@ -35,8 +35,6 @@ export function ShelfHeader({shelfTitle, children}: ShelfHeaderProps) {
 export function ShelfScroll({children}: {children: React.ReactNode}) {
     return (
         <div className="shelf-scroll">
-            <div className="scroll-shadow left"></div>
-            <div className="scroll-shadow right"></div>
             {children}
         </div>
     );
