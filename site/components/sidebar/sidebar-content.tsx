@@ -1,5 +1,5 @@
 'use client';
-import { useSidebar } from './sidebar-context';
+import { useSidebar } from '../contexts/sidebar-context';
 import Link from 'next/link';
 import Image from "next/image";
 import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";

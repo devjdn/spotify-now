@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { LayoutGrid, ChartNoAxesCombined, Home, Sparkles, Star, CalendarClock, Loader } from "lucide-react";
 import { FeaturedPlaylist } from "@/lib/global";
 import { fetchQuickPlaylistLinks } from "@/api/quick-playlist-links";
-import { useSidebar } from "./sidebar-context";
+import { useSidebar } from "../contexts/sidebar-context";
 
 interface NavProps {
     featured: FeaturedPlaylist[];

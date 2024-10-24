@@ -1,7 +1,7 @@
 'use client';
 
 import { Equal, X } from 'lucide-react';
-import { useSidebar } from './sidebar-context';
+import { useSidebar } from '../contexts/sidebar-context';
 
 export default function SidebarToggle() {
     const {isOpen, toggleSidebar} = useSidebar();

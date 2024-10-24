@@ -116,6 +116,21 @@ h4{
   }
 }
 
+.details-container{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: nowrap;
+  @include flex-col;
+
+  > *{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -368,21 +383,6 @@ section.content{
         .grid-col{
           align-items: center;
           display: grid;
-
-          .details-container{
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
-            white-space: nowrap;
-            @include flex-col;
-
-            > *{
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              overflow: hidden;
-              max-width: 100%;
-            }
-          }
         }
 
         .grid-col:first-of-type{
@@ -800,35 +800,50 @@ section.top-50{
     align-items: center;
     justify-content: space-between;
     padding-inline: var(--container-inline-padding);
-  }
-  .shelf-scroll{
-    position: relative;
-    overflow: visible;
 
-    .scroll-shadow{
-      width: 20px;
-      height: 100%;
-      position: absolute;
-      z-index: 4;
+    .page-btns{
+      @include flex-row;
+      gap: 8px;
 
-      &.left{
-        left: 0px;
-        background: linear-gradient(to right, var(--bg-2), transparent);
-      }
-      &.right{
-        right: 0px;
-        background: linear-gradient(to left, var(--bg-2), transparent);
+      button{
+        height: 32px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--bg-2);
+        display: grid;
+        place-items: center;
+
+        svg{
+          stroke: var(--t-1);
+        }
+
+        &:first-of-type{
+          padding-right: 2px;
+        }
+        &:last-of-type{
+          padding-left: 2px;
+        }
+
+        &:disabled{
+          background: var(--bg-3);
+
+          svg{
+            stroke: var(--t-2);
+          }
+        }
       }
     }
+  }
+  .shelf-scroll{
 
     ul.shelf-ul{
       display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 200px;
+      grid-template-columns: repeat(5,1fr);
       grid-template-rows: repeat(2, 1fr);
       width: 100%;
       overflow-x: auto;
-      gap: 20px;
+      column-gap: 10px;
+      row-gap: 20px;
       padding-bottom: 20px;
       scroll-snap-type: x mandatory;
       padding-inline: var(--container-inline-padding);
@@ -836,7 +851,6 @@ section.top-50{
 
   
       li.shelf-li{
-        width: 200px;
         width: 100%;
         scroll-snap-align: start;
         .artwork-container{
@@ -844,20 +858,62 @@ section.top-50{
           border-radius: 6px;
           margin-bottom: 2px;
         }
-        .details-container{
-          >*{
-            display: block;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-          }
+
+        .shelf-item-details{
+          display: grid;
         }
       }
     }
   }
 }
 
+
+
+
 //------MEDIA QUERIES------//
+@media screen and (min-width: 600px) {
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+  }
+}
+@media screen and (min-width: 900px) {
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-template-columns: repeat(4,1fr);
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-template-columns: repeat(5,1fr);
+      }
+    }
+  }
+}
+@media screen and (min-width: 1500px) {
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-template-columns: repeat(6,1fr);
+      }
+    }
+  }
+}
+
+
+
 @media screen and (max-width: 1000px) {
   h1{
     font-size: 1.8em;
@@ -1015,10 +1071,16 @@ section.top-50{
   }
 
   .shelf-container{
+    header.shelf-header{
+      .page-btns{
+        display: none;
+      }
+    }
     .shelf-scroll{
   
       ul.shelf-ul{
         grid-auto-columns: 144px;
+        grid-auto-flow: column;
         gap: 10px;
     
         li.shelf-li{

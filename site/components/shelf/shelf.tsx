@@ -35,8 +35,6 @@ export function ShelfHeader({shelfTitle, children}: ShelfHeaderProps) {
 export function ShelfScroll({children}: {children: React.ReactNode}) {
     return (
         <div className="shelf-scroll">
-            <div className="scroll-shadow left"></div>
-            <div className="scroll-shadow right"></div>
             {children}
         </div>
     );
@@ -56,13 +54,15 @@ export function ShelfLi({itemArtwork, itemTitle, itemDetails, titleId, detailsId
             <div className="artwork-container">
                 <Image fill loading="lazy" src={itemArtwork} alt={itemTitle}/>
             </div>
-            <div className="details-container">
-                <span className="song-text"><Link href={titleId}>{itemTitle}</Link></span>
+            <div className="shelf-item-details">
+                <div className="details-container">
+                    <span className="song-text"><Link href={titleId}>{itemTitle}</Link></span>
                     {detailsId ? (
                         <span className="song-text"><Link href={detailsId}>{itemDetails}</Link></span>
                     ) : (
                         <span className="song-text">{itemDetails}</span>
                     )}
+                </div>
             </div>
         </li>
     );

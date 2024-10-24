@@ -1,4 +1,4 @@
-import { SidebarProvider } from './sidebar-context';
+import { SidebarProvider } from '../contexts/sidebar-context';
 import { fetchQuickPlaylistLinks } from '@/api/quick-playlist-links';
 import { FeaturedPlaylist } from '@/lib/global';
 import SidebarContent from './sidebar-content';
