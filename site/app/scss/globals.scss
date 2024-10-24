@@ -116,6 +116,21 @@ h4{
   }
 }
 
+.details-container{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: nowrap;
+  @include flex-col;
+
+  > *{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -368,21 +383,6 @@ section.content{
         .grid-col{
           align-items: center;
           display: grid;
-
-          .details-container{
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
-            white-space: nowrap;
-            @include flex-col;
-
-            > *{
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              overflow: hidden;
-              max-width: 100%;
-            }
-          }
         }
 
         .grid-col:first-of-type{
@@ -823,8 +823,9 @@ section.top-50{
 
     ul.shelf-ul{
       display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 200px;
+      // grid-auto-flow: column;
+      // grid-auto-columns: 200px;
+      grid-template-columns: repeat(5,1fr);
       grid-template-rows: repeat(2, 1fr);
       width: 100%;
       overflow-x: auto;
@@ -836,7 +837,6 @@ section.top-50{
 
   
       li.shelf-li{
-        width: 200px;
         width: 100%;
         scroll-snap-align: start;
         .artwork-container{
@@ -844,13 +844,9 @@ section.top-50{
           border-radius: 6px;
           margin-bottom: 2px;
         }
-        .details-container{
-          >*{
-            display: block;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-          }
+
+        .shelf-item-details{
+          display: grid;
         }
       }
     }
