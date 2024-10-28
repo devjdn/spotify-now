@@ -903,6 +903,16 @@ section.top-50{
     }
   }
 }
+@media screen and (min-width: 1500px) {
+  .shelf-container{
+    .shelf-scroll{
+  
+      ul.shelf-ul{
+        grid-auto-columns: calc((100% - (6 - 1) * 10px) / 6);
+      }
+    }
+  }
+}
 
 
 
