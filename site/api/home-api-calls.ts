@@ -19,9 +19,11 @@ export const fetchFeaturedPlaylists = async () => {
     return data.playlists.items;
 }
 
-export const fetchNewReleases = async (offset = 0, { accessToken, limit }: { accessToken: string | null; limit: number; }) => {
+export const fetchNewReleases = async () => {
+    const accessToken = await getSpotifyAccessToken();
 
-    const response = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=${limit}&offset=${offset}`, {
+
+    const response = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         },
