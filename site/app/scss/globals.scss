@@ -835,10 +835,12 @@ section.top-50{
     }
   }
   .shelf-scroll{
+    width: 100%;
 
     ul.shelf-ul{
       display: grid;
-      grid-template-columns: repeat(5,1fr);
+      grid-auto-columns: calc((100% - (6 - 1) * 10px) / 6);
+      grid-auto-flow: column;
       grid-template-rows: repeat(2, 1fr);
       width: 100%;
       overflow-x: auto;
@@ -876,7 +878,7 @@ section.top-50{
     .shelf-scroll{
   
       ul.shelf-ul{
-        grid-template-columns: repeat(3,1fr);
+        grid-auto-columns: calc((100% - (3 - 1) * 10px) / 6);
       }
     }
   }
@@ -886,7 +888,7 @@ section.top-50{
     .shelf-scroll{
   
       ul.shelf-ul{
-        grid-template-columns: repeat(4,1fr);
+        grid-auto-columns: calc((100% - (4 - 1) * 10px) / 6);
       }
     }
   }
@@ -896,17 +898,7 @@ section.top-50{
     .shelf-scroll{
   
       ul.shelf-ul{
-        grid-template-columns: repeat(5,1fr);
-      }
-    }
-  }
-}
-@media screen and (min-width: 1500px) {
-  .shelf-container{
-    .shelf-scroll{
-  
-      ul.shelf-ul{
-        grid-template-columns: repeat(6,1fr);
+        grid-auto-columns: calc((100% - (5 - 1) * 10px) / 6);
       }
     }
   }
