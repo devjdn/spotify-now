@@ -132,7 +132,7 @@ h4{
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track{
@@ -203,6 +203,7 @@ body {
     gap: 40px;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    height: 100dvh;
 
     header.sidebar-header{
       @include flex-row;
