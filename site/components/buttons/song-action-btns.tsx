@@ -10,9 +10,9 @@ import { SongDetailsMenu } from '../song-details-menu';
 export interface ActionBtnProps {
     albumId?: string;
     songId: string;
-    artistId: string;
+    artistId: string | undefined;
     songName: string;
-    songArtist: string;
+    songArtist: string | undefined;
     songAlbum?: string;
     songCover: string;
     releaseType: string;
@@ -49,9 +49,9 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
     const songActions = [
         albumId ? { name: 'Go to album', icon: <LibraryBig size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/album/${albumId}`) } : null,
         { name: 'Go to artist', icon: <MicVocal size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/artist/${artistId}`) },
-        { name: 'Song details', icon: <BookAudio size={20} strokeWidth={1.75}/>, onClick: () => setIsSongMenuOpen(true) },
+        // { name: 'Song details', icon: <BookAudio size={20} strokeWidth={1.75}/>, onClick: () => setIsSongMenuOpen(true) },
         { name: 'Listen on Spotify', icon: <FaSpotify size={20}/>, onClick: () => router.push(`https://open.spotify.com/track/${songId}`) },
-    ];
+    ].filter(action => action);
 
     useEffect(() => {
         if(isSongMenuOpen) {

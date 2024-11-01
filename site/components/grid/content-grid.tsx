@@ -5,6 +5,7 @@ import PreviewSongBtn from "../buttons/song-preview";
 import { SongActionsBtn } from "../buttons/song-action-btns";
 import { ArtistAlbums } from "../artist-albums";
 import ContentHeader from "./content-header";
+import ContentGridList from "./content-grid-list";
 
 interface ContentGridProps {
     fetchData: () => Promise<Album | Playlist | Artist | Track>;
@@ -46,31 +47,22 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
                     </header>
                     <ul className="grid-ul">
                         {playlistTracks && playlistTracks.items.map((item, trackIndex) => (
-                            <li className="grid-li" key={trackIndex}>
-                                <div className="grid-col">
-                                    <div className="song-media">
-                                        <div className="artwork-container">
-                                            <Image quality={50} fill loading="lazy" src={item.track.album.images[2].url} alt={item.track.name} />
-                                        </div>
-                                        <PreviewSongBtn previewUrl={item.track.preview_url} />
-                                    </div>
-                                    <div className="details-container">
-                                        <span className="song-text"><Link href={`/track/${item.track.id}`}>{item.track.name}</Link></span>
-                                        <span className="song-text"><Link href={`/artist/${item.track.artists[0].id}`}>{item.track.artists.map(name => name.name).join(', ')}</Link></span>
-                                    </div>
-                                </div>
-                                <div className="grid-col">
-                                    <div className="details-container">
-                                        <span className="song-text"><Link href={`/album/${item.track.album.id}`}>{item.track.album.name}</Link></span>
-                                    </div>
-                                </div>
-                                <div className="grid-col">
-                                    <div className="duration">
-                                        <span className="song-text">{formatDuration(item.track.duration_ms)}</span>
-                                    </div>
-                                    <SongActionsBtn songArtist={item.track.artists[0]?.name} songCover={item.track.album.images[0]?.url} songId={item.track.id} artistId={item.track.artists[0].id} songName={item.track.name} songAlbum={item.track.album.name} releaseType={item.track.type} popularity={item.track.popularity} albumId={item.track.album.id} releaseDate={item.track.album.release_date}/>
-                                </div>
-                            </li>
+                            <ContentGridList
+                                contentType="playlist"
+                                imageUrl={item.track.album.images[2].url}
+                                trackId={item.track.id}
+                                trackName={item.track.name}
+                                artistId={item.track.artists[0].id}
+                                artistName={item.track.artists.map(name => name.name).join(', ')}
+                                albumId={item.track.album.id}
+                                albumName={item.track.album.name}
+                                key={trackIndex}
+                                duration={item.track.duration_ms}
+                                previewUrl={item.track.preview_url}
+                                popularity={item.track.popularity}
+                                releaseType={item.track.album.type}
+                                releaseDate={item.track.album.release_date}
+                            />
                         ))}
                     </ul>
                 </div>
@@ -92,25 +84,19 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
             <div className="grid-container">
                 <ul className="grid-ul">
                     {album.tracks.items.map((item, trackIndex) => (
-                        <li className="grid-li" key={trackIndex}>
-                            <div className="grid-col">
-                                <div className="song-media">
-                                    <PreviewSongBtn previewUrl={item.preview_url} />
-                                    <div className="track-number">
-                                        <span className="song-text">{item.track_number}</span>
-                                    </div>
-                                </div>
-                                <div className="details-container">
-                                    <span className="song-text"><Link href={`/track/${item.id}`}>{item.name}</Link></span>
-                                </div>
-                            </div>
-                            <div className="grid-col">
-                                <div className="duration">
-                                    <span className="song-text">{formatDuration(item.duration_ms)}</span>
-                                </div>
-                                <SongActionsBtn songArtist={item.artists[0].name} songCover={album.images[0].url} songId={item.id} artistId={item.artists[0].id} songName={item.name} songAlbum={album.name} releaseType={item.type} popularity={album.popularity} releaseDate={album.release_date}/>
-                            </div>
-                        </li>
+                        <ContentGridList
+                            contentType="album"
+                            imageUrl={album.images[2].url}
+                            trackNumber={item.track_number}
+                            trackId={item.id}
+                            trackName={item.name}
+                            key={trackIndex}
+                            duration={item.duration_ms}
+                            previewUrl={item.preview_url}
+                            popularity={album.popularity}
+                            releaseType={album.type}
+                            releaseDate={album.release_date}
+                        />
                     ))}
                 </ul>
             </div>
@@ -138,31 +124,47 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
                     </header>
                     <ul className="grid-ul">
                         {topTracks && topTracks.tracks.map((track, trackIndex) => (
-                            <li className="grid-li" key={trackIndex}>
-                                <div className="grid-col">
-                                    <div className="song-media">
-                                        <div className="artwork-container">
-                                            <Image quality={50} fill loading="lazy" src={track.album.images[2].url} alt={track.name} />
-                                        </div>
-                                        <PreviewSongBtn previewUrl={track.preview_url} />
-                                    </div>
-                                    <div className="details-container">
-                                        <span className="song-text"><Link href={`/track/${track.id}`}>{track.name}</Link></span>
-                                        <span className="song-text"><Link href={`/artist/${track.artists[0].id}`}>{track.artists[0].name}</Link></span>
-                                    </div>
-                                </div>
-                                <div className="grid-col">
-                                    <div className="details-container">
-                                        <span className="song-text"><Link href={`/album/${track.album.id}`}>{track.album.name}</Link></span>
-                                    </div>
-                                </div>
-                                <div className="grid-col">
-                                    <div className="duration">
-                                        <span className="song-text">{formatDuration(track.duration_ms)}</span>
-                                    </div>
-                                    <SongActionsBtn songArtist={track.artists[0]?.name} songCover={track.album.images[0]?.url} songId={track.id} artistId={track.artists[0].id} songName={track.name} songAlbum={track.album.name} releaseType={track.type} popularity={track.popularity} albumId={track.album.id} releaseDate={track.album.release_date}/>
-                                </div>
-                            </li>
+                            <ContentGridList
+                                contentType="playlist"
+                                imageUrl={track.album.images[2].url}
+                                trackId={track.id}
+                                trackName={track.name}
+                                artistId={track.artists[0].id}
+                                artistName={track.artists.map(name => name.name).join(', ')}
+                                albumId={track.album.id}
+                                albumName={track.album.name}
+                                key={trackIndex}
+                                duration={track.duration_ms}
+                                previewUrl={track.preview_url}
+                                popularity={track.popularity}
+                                releaseType={track.album.type}
+                                releaseDate={track.album.release_date}
+                            />
+                            // <li className="grid-li" key={trackIndex}>
+                            //     <div className="grid-col">
+                            //         <div className="song-media">
+                            //             <div className="artwork-container">
+                            //                 <Image quality={50} fill loading="lazy" src={track.album.images[2].url} alt={track.name} />
+                            //             </div>
+                            //             <PreviewSongBtn previewUrl={track.preview_url} />
+                            //         </div>
+                            //         <div className="details-container">
+                            //             <span className="song-text"><Link href={`/track/${track.id}`}>{track.name}</Link></span>
+                            //             <span className="song-text"><Link href={`/artist/${track.artists[0].id}`}>{track.artists[0].name}</Link></span>
+                            //         </div>
+                            //     </div>
+                            //     <div className="grid-col">
+                            //         <div className="details-container">
+                            //             <span className="song-text"><Link href={`/album/${track.album.id}`}>{track.album.name}</Link></span>
+                            //         </div>
+                            //     </div>
+                            //     <div className="grid-col">
+                            //         <div className="duration">
+                            //             <span className="song-text">{formatDuration(track.duration_ms)}</span>
+                            //         </div>
+                            //         <SongActionsBtn songArtist={track.artists[0]?.name} songCover={track.album.images[0]?.url} songId={track.id} artistId={track.artists[0].id} songName={track.name} songAlbum={track.album.name} releaseType={track.type} popularity={track.popularity} albumId={track.album.id} releaseDate={track.album.release_date}/>
+                            //     </div>
+                            // </li>
                         ))}
                     </ul>
                 </div>

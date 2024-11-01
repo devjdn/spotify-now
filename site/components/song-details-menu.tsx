@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 
 interface SongDetailsProps {
     songName: string;
-    songArtist: string;
+    songArtist: string | undefined;
     songAlbum?: string;
     popularity: number;
     releaseDate: string;

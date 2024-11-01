@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa6';
 
 interface SongUrlProps {
-  previewUrl: string;
+  previewUrl: string | undefined;
 }
 
 export default function PreviewSongBtn({ previewUrl }: SongUrlProps) {
