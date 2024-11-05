@@ -29,7 +29,7 @@ export default async function ContentGridList({contentType, imageUrl, trackId, t
                 <div className="song-media">
                     {contentType === 'playlist' ? (
                         <div className="artwork-container">
-                            <Image quality={50} fill loading="lazy" src={imageUrl} alt={trackName} />
+                            <img loading="lazy" src={imageUrl} alt={trackName} />
                         </div>
                     ) : (
                         <div className="track-number">

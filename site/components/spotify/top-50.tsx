@@ -4,6 +4,7 @@ import { FaSpotify } from "react-icons/fa";
 import { SongActionsBtn } from "../buttons/song-action-btns";
 import { SongDetailsMenu } from "../song-details-menu";
 import Link from "next/link";
+import ContentHeader from "../grid/content-header";
 
 export default async function GlobalTop50({playlistId}: {playlistId: string}) {
     const playlist: Playlist = await fetchPlaylist({playlistId})
@@ -12,21 +13,7 @@ export default async function GlobalTop50({playlistId}: {playlistId: string}) {
 
     return(
         <section className="content top-50">
-            <header className="content-header">
-                <img loading="lazy" src={playlist.images[0].url} alt={playlist.name}/>
-                <div className="content-info">
-                    <h3>Global Top Songs</h3>
-                    <p>{playlist.description}</p>
-                    <div className="content-actions">
-                        <Link href={playlist.external_urls.spotify}>
-                            <button className="action-btn">
-                                Listen on
-                                <FaSpotify/>
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </header>
+            <ContentHeader title={playlist.name} spotifyUrl={playlist.external_urls.spotify} imageUrl={playlist.images[0].url} description={playlist.description}/>
             <div className="chart-ranking-container">
                 <ol className="chart-ranking-ol">
                     {playlistTracks.items.map((ranking, rankIndex) => (

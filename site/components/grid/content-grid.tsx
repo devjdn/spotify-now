@@ -140,31 +140,6 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
                                 releaseType={track.album.type}
                                 releaseDate={track.album.release_date}
                             />
-                            // <li className="grid-li" key={trackIndex}>
-                            //     <div className="grid-col">
-                            //         <div className="song-media">
-                            //             <div className="artwork-container">
-                            //                 <Image quality={50} fill loading="lazy" src={track.album.images[2].url} alt={track.name} />
-                            //             </div>
-                            //             <PreviewSongBtn previewUrl={track.preview_url} />
-                            //         </div>
-                            //         <div className="details-container">
-                            //             <span className="song-text"><Link href={`/track/${track.id}`}>{track.name}</Link></span>
-                            //             <span className="song-text"><Link href={`/artist/${track.artists[0].id}`}>{track.artists[0].name}</Link></span>
-                            //         </div>
-                            //     </div>
-                            //     <div className="grid-col">
-                            //         <div className="details-container">
-                            //             <span className="song-text"><Link href={`/album/${track.album.id}`}>{track.album.name}</Link></span>
-                            //         </div>
-                            //     </div>
-                            //     <div className="grid-col">
-                            //         <div className="duration">
-                            //             <span className="song-text">{formatDuration(track.duration_ms)}</span>
-                            //         </div>
-                            //         <SongActionsBtn songArtist={track.artists[0]?.name} songCover={track.album.images[0]?.url} songId={track.id} artistId={track.artists[0].id} songName={track.name} songAlbum={track.album.name} releaseType={track.type} popularity={track.popularity} albumId={track.album.id} releaseDate={track.album.release_date}/>
-                            //     </div>
-                            // </li>
                         ))}
                     </ul>
                 </div>

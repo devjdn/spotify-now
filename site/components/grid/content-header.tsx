@@ -20,7 +20,7 @@ export default function ContentHeader ({title, description, genres, spotifyUrl, 
     return(
         <header className="content-header">
             <div className="cover-art">
-                <Image fill priority src={imageUrl} alt={title} />
+                <img src={imageUrl} alt={title} />
             </div>
             <div className="content-info">
                 <div className="details-container">
