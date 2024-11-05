@@ -7,13 +7,11 @@
     text-wrap: balance;
   }
 }
-@mixin flex-col{
+
+@mixin flex ($direction, $gap){
   display: flex;
-  flex-direction: column;
-}
-@mixin flex-row{
-  display: flex;
-  flex-direction: row;
+  flex-direction: $direction;
+  gap: $gap;
 }
 
 *{
@@ -99,7 +97,7 @@ h4{
 
 
 .info{
-  @include flex-col;
+  @include flex($direction: column, $gap: 0);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -121,7 +119,7 @@ h4{
   overflow: hidden;
   max-width: 100%;
   white-space: nowrap;
-  @include flex-col;
+  @include flex($direction: column, $gap: 0);
 
   > *{
     text-overflow: ellipsis;
@@ -145,8 +143,7 @@ h4{
 }
 
 .scroll-btn-group{
-  @include flex-row;
-  gap: 10px;
+  @include flex($direction: row, $gap: 10px);
 
   button.scroll-btn{
     height: 30px;
@@ -199,16 +196,14 @@ body {
     background: var(--bg-3);
     border-right: var(--bd-1);
     padding: 0px 20px 30px;
-    @include flex-col;
-    gap: 40px;
+    gap: 20px;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height: 100dvh;
+    height: 100svh;
 
     header.sidebar-header{
-      @include flex-row;
+      @include flex($direction: row, $gap: 20px);
       padding-top: 10px;
-      gap: 20px;
       justify-content: space-between;
       align-items: center;
 
@@ -239,8 +234,7 @@ body {
             button.nav-btn{
               padding: 10px;
               border-radius: 6px;
-              @include flex-row;
-              gap: 8px;
+              @include flex($direction: row, $gap: 8px);
               align-items: center;
               width: 100%;
   
@@ -254,8 +248,7 @@ body {
     }
 
     footer.sidebar-footer{
-      @include flex-col;
-      gap: 10px;
+      @include flex($direction: column, $gap: 10px);
       position: relative;
       img{
         width: 60%;
@@ -280,7 +273,7 @@ span.logo{
   letter-spacing: -.015em;
   color: var(--t-1);
   font-weight: 500;
-  @include flex-row;
+  @include flex($direction: row, $gap: 0);
   align-items: center;
   gap: 4px;
 
@@ -298,7 +291,9 @@ section{
 
   &.intro{
     padding-top: 50px;
-    padding-inline: var(--container-inline-padding);
+    padding-bottom: 6px;
+    margin-inline: var(--container-inline-padding);
+    border-bottom: var(--bd-1);
   }
 }
 section.content{
@@ -325,18 +320,21 @@ section.content{
     }
 
     .content-info{
-      @include flex-col;
+      @include flex($direction: column, $gap: 0);
       justify-content: space-between;
       height: 60%;
 
+      .details-container > *{
+        white-space: wrap;
+        overflow: unset;
+      }
+
       .content-actions{
-        @include flex-row;
+        @include flex($direction: row, $gap: 10px);
         margin-top: 10px;
-        gap: 10px;
 
         button.action-btn{
-          @include flex-row;
-          gap: 6px;
+          @include flex($direction: row, $gap: 6px);
           background: var(--brand);
           border-radius: 8px;
           align-items: center;
@@ -356,7 +354,7 @@ section.content{
 
 
   .grid-container{
-    @include flex-col;
+    @include flex($direction: column, $gap: 0);
 
     header.grid-header{
       padding: 10px 0;
@@ -373,7 +371,7 @@ section.content{
     }
 
     ul.grid-ul{
-      @include flex-col;
+      @include flex($direction: column, $gap: 0);
       width: 100%;
 
       li.grid-li{
@@ -433,10 +431,9 @@ section.content{
           }
         }
         .grid-col:last-of-type{
-          @include flex-row();
+          @include flex($direction: row, $gap: 10px);
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
         }
 
       }
@@ -514,7 +511,7 @@ section.content{
         display: block;
 
         ul.song-actions-ul{
-          @include flex-col;
+          @include flex($direction: column, $gap: 0);
           border-radius: inherit;
 
           li.song-actions-li{
@@ -545,10 +542,9 @@ section.content{
             }
 
             button.action{
-              @include flex-row;
+              @include flex($direction: row, $gap: 6px);
               justify-content: space-between;
               align-items: center;
-              gap: 6px;
               width: 250px;
               padding: 8px 14px;
 
@@ -584,16 +580,14 @@ section.content{
       box-shadow: var(--shadow);
       background: var(--bg-1);
       padding: 20px;
-      @include flex-col;
-      gap: 10px;
+      @include flex($direction: column, $gap: 10px);
       border-radius: 14px;
       place-self: center;
 
       header.song-details-header{
-        @include flex-row;
+        @include flex($direction: row, $gap: 20px);
         justify-content: space-between;
         align-items: flex-start;
-        gap: 20px;
 
         button.close-song-details-menu-btn{
           margin-left: auto;
@@ -639,14 +633,12 @@ section.content{
     header{
       margin-bottom: 20px;
       padding-inline: var(--container-inline-padding);
-      @include flex-row;
-      gap: 20px;
+      @include flex($direction: row, $gap: 20px);
       align-items: center;
       justify-content: space-between;
 
       .scroll-btn-group{
-        @include flex-row;
-        gap: 10px;
+        @include flex($direction: row, $gap: 10px);
 
         button.scroll-btn{
           height: 30px;
@@ -705,7 +697,7 @@ section.content{
         }
 
         li{
-          @include flex-col;
+          @include flex($direction: column, $gap: 0);
           scroll-snap-align: start;
           width: 140px;
   
@@ -731,8 +723,7 @@ section.content{
 
 section.track{
   .song-lyrics{
-    @include flex-col;
-    gap: 20px;
+    @include flex($direction: column, $gap: 20px);
 
     h3{
       border-bottom: var(--bd-1);
@@ -740,8 +731,7 @@ section.track{
     }
 
     .lyrics{
-      @include flex-col;
-      gap: 6px;
+      @include flex($direction: column, $gap: 6px);
     }
   }
 }
@@ -749,7 +739,7 @@ section.track{
 section.top-50{
   .chart-ranking-container{
     ol.chart-ranking-ol{
-      @include flex-col;
+      @include flex($direction: column, $gap: 0);
 
       li.chart-ranking-li{
         display: grid;
@@ -797,14 +787,15 @@ section.top-50{
   }
   header.shelf-header{
     margin-bottom: 10px;
-    @include flex-row;
+    @include flex($direction: row, $gap: 0);
     align-items: center;
     justify-content: space-between;
-    padding-inline: var(--container-inline-padding);
+    margin-inline: var(--container-inline-padding);
+    padding: 6px 0;
+    border-bottom: var(--bd-1);
 
     .page-btns{
-      @include flex-row;
-      gap: 8px;
+      @include flex($direction: row, $gap: 8px);
 
       button{
         height: 32px;
@@ -837,6 +828,7 @@ section.top-50{
   }
   .shelf-scroll{
     width: 100%;
+    padding-inline: var(--container-inline-padding);
 
     ul.shelf-ul{
       display: grid;
@@ -849,9 +841,6 @@ section.top-50{
       row-gap: 20px;
       padding-bottom: 20px;
       scroll-snap-type: x mandatory;
-      padding-inline: var(--container-inline-padding);
-      scroll-padding-inline: var(--container-inline-padding);
-
   
       li.shelf-li{
         width: 100%;
@@ -941,7 +930,7 @@ section.top-50{
 
   section.content{
     header.content-header{
-      @include flex-col;
+      @include flex($direction: column, $gap: 10px);
       align-items: center;
       width: 100%;
       text-align: center;
@@ -1038,7 +1027,7 @@ section.top-50{
 
 @media screen and (max-width: 668px) {
   body{
-    @include flex-col;
+    @include flex($direction: column, $gap: 0);
     height: unset;
     padding-top: 50px;
     

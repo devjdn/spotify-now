@@ -52,7 +52,7 @@ export function ShelfLi({itemArtwork, itemTitle, itemDetails, titleId, detailsId
     return(
         <li className="shelf-li">
             <div className="artwork-container">
-                <Image fill loading="lazy" src={itemArtwork} alt={itemTitle}/>
+                <img loading="lazy" src={itemArtwork} alt={itemTitle}/>
             </div>
             <div className="shelf-item-details">
                 <div className="details-container">
