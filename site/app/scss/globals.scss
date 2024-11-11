@@ -234,12 +234,22 @@ body {
             button.nav-btn{
               padding: 10px;
               border-radius: 6px;
-              @include flex($direction: row, $gap: 8px);
-              align-items: center;
+              display: grid;
               width: 100%;
-  
-              svg{
-                stroke: var(--brand);
+
+              span.nav-btn-content{
+                max-width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+                @include flex($direction: row, $gap: 8px);
+                align-items: center;
+                justify-content: flex-start;
+
+                svg{
+                  stroke: var(--brand);
+                }
               }
             }
           }

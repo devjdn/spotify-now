@@ -61,8 +61,10 @@ export function Nav({featured}: NavProps) {
                                     'hover:bg-neutral-200 dark:hover:bg-neutral-800',
                                     {'bg-neutral-200 dark:bg-neutral-800': link.href === pathname}
                                     )}`}>
-                                        {link.icon}
-                                        {link.name}
+                                        <span className="nav-btn-content">
+                                            {link.icon}
+                                            {link.name}
+                                        </span>
                                     </button>
                                 </Link>
                             </li>
