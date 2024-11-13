@@ -90,6 +90,7 @@ const ContentGrid: React.FC<ContentGridProps> = async ({ fetchData, fetchTopTrac
                             trackNumber={item.track_number}
                             trackId={item.id}
                             trackName={item.name}
+                            artistId={item.artists[0].id}
                             key={trackIndex}
                             duration={item.duration_ms}
                             previewUrl={item.preview_url}
