@@ -4,7 +4,9 @@ import { createContext, useCallback, useContext, useState } from 'react';
 
 interface SidebarContextProps {
     isOpen: boolean;
-    toggleSidebar: () => void;
+    toggleMobileSidebar: () => void;
+    sidebarMode: 'full' | 'minimized';
+    toggleSidebarMode: () => void;
 }
 
 const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
@@ -19,16 +21,21 @@ export const useSidebar = () => {
 
 export const SidebarProvider = ({children}: {children: React.ReactNode}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [sidebarMode, setSidebarMode] = useState<'full' | 'minimized'>('full');
 
-    const toggleSidebar = useCallback(() => {
+    const toggleMobileSidebar = useCallback(() => {
         if (window.innerWidth < 669) {
             setIsOpen(prev => !prev);
             document.body.style.overflowY = isOpen ? 'auto' : 'hidden';
         }
     }, [isOpen]);
 
+    const toggleSidebarMode = useCallback(() => {
+            setSidebarMode((prevMode) => (prevMode === 'full' ? 'minimized' : 'full'));
+    },[sidebarMode])
+
     return(
-        <SidebarContext.Provider value={{isOpen, toggleSidebar}}>
+        <SidebarContext.Provider value={{isOpen, toggleMobileSidebar, sidebarMode, toggleSidebarMode}}>
             {children}
         </SidebarContext.Provider>
     );

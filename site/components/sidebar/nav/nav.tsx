@@ -4,10 +4,10 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LayoutGrid, ChartNoAxesCombined, Home, Sparkles, Star, CalendarClock, Loader } from "lucide-react";
+import { LayoutGrid, ChartNoAxesCombined, Home, CalendarClock } from "lucide-react";
 import { FeaturedPlaylist } from "@/lib/global";
-import { fetchQuickPlaylistLinks } from "@/api/quick-playlist-links";
-import { useSidebar } from "../contexts/sidebar-context";
+import { useSidebar } from "../../contexts/sidebar-context";
+import NavTooltip from "./nav-tooltips";
 
 interface NavProps {
     featured: FeaturedPlaylist[];
@@ -15,8 +15,7 @@ interface NavProps {
 
 export function Nav({featured}: NavProps) {
     const pathname = usePathname();
-    const router = useRouter();
-    const {isOpen, toggleSidebar} = useSidebar();
+    const {isOpen, toggleMobileSidebar, sidebarMode} = useSidebar();
     const [navLinks, setNavLinks] = useState([
         {
             group: 'Explore',
@@ -52,21 +51,22 @@ export function Nav({featured}: NavProps) {
         <nav className="header-nav">
             {navLinks.map((linkGroup, linkIndex) => (
                 <div className="nav-group"  key={linkIndex}>
-                    <h4>{linkGroup.group}</h4>
+                    {sidebarMode === 'full' ? (<h4>{linkGroup.group}</h4>) : null}
                     <ul className="nav-ul">
                         {linkGroup.links.map((link, index) => (
                             <li className="nav-li" key={index}>
-                                <Link href={link.href} onClick={toggleSidebar}>
+                                <Link href={link.href} onClick={toggleMobileSidebar}>
                                     <button className={`nav-btn ${clsx(
                                     'hover:bg-neutral-200 dark:hover:bg-neutral-800',
                                     {'bg-neutral-200 dark:bg-neutral-800': link.href === pathname}
                                     )}`}>
                                         <span className="nav-btn-content">
                                             {link.icon}
-                                            {link.name}
+                                            {sidebarMode === 'full' ? link.name : null}
                                         </span>
                                     </button>
                                 </Link>
+                                <NavTooltip tooltipText={link.name}/>
                             </li>
                         ))}
                     </ul>

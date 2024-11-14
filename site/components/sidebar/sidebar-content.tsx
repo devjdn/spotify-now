@@ -3,35 +3,41 @@ import { useSidebar } from '../contexts/sidebar-context';
 import Link from 'next/link';
 import Image from "next/image";
 import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";
-import { Nav } from './nav';
+import { Nav } from './nav/nav';
 import SpotifyLargeTextLogo from '@/public/Spotify_Logo_CMYK_Green.png';
-import SidebarBtn from './sidebar-toggle';
+import MobileSidebarToggle from './sidebar-buttons/mobile-sidebar-toggle';
 import { FeaturedPlaylist } from '@/lib/global';
+import SidebarModeToggle from './sidebar-buttons/sidebar-mode-toggle';
 
 interface SidebarContentProps {
     featured: FeaturedPlaylist[];
 }
 
 export default function SidebarContent({featured}: SidebarContentProps) {
-    const {isOpen} = useSidebar();
+    const {isOpen, sidebarMode} = useSidebar();
 
     return(
-        <div className="sidebar" aria-expanded={isOpen}>
+        <div className="sidebar" aria-expanded={isOpen} data-sidebar-mode={sidebarMode}>
             <header className="sidebar-header">
-                <Link href="/">
-                    <span className="logo">
-                        <Image width={28} height={28} priority src={SpotifyIcon} alt="Spotify icon logo in green" /> Now
-                    </span>
-                </Link>
-                <SidebarBtn/>
+                {sidebarMode === 'full' ? (
+                    <Link href="/">
+                        <span className="logo">
+                            <Image width={28} height={28} priority src={SpotifyIcon} alt="Spotify icon logo in green" /> Now
+                        </span>
+                    </Link>
+                ) : null}
+                <MobileSidebarToggle/>
+                <SidebarModeToggle/>
             </header>
             <Nav featured={featured}/>
-            <footer className="sidebar-footer">
-                <span className='song-text'>All media via</span>
-                <a href="https://open.spotify.com">
-                    <Image priority={true} alt='Spotify large text logo' src={SpotifyLargeTextLogo} />
-                </a>
-            </footer>
+            {sidebarMode === 'full' ? (
+                <footer className="sidebar-footer">
+                    <span className='song-text'>All media via</span>
+                    <a href="https://open.spotify.com">
+                        <Image priority={true} alt='Spotify large text logo' src={SpotifyLargeTextLogo} />
+                    </a>
+                </footer>
+            ): null}
         </div>
     );
 }

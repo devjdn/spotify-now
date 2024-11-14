@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
-import { BookAudio, Ellipsis, LibraryBig, MicVocal, X } from 'lucide-react';
+import { Ellipsis, GalleryVerticalEnd, MicVocal } from 'lucide-react';
 import { FaSpotify } from 'react-icons/fa';
 import { SongDetailsMenu } from '../song-details-menu';
 
@@ -47,7 +47,7 @@ export const SongActionsBtn = ({albumId, artistId, songId, songName, songArtist,
     });
 
     const songActions = [
-        albumId ? { name: 'Go to album', icon: <LibraryBig size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/album/${albumId}`) } : null,
+        albumId ? { name: 'Go to album', icon: <GalleryVerticalEnd size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/album/${albumId}`) } : null,
         { name: 'Go to artist', icon: <MicVocal size={20} strokeWidth={1.75}/>, onClick: () => router.push(`/artist/${artistId}`) },
         // { name: 'Song details', icon: <BookAudio size={20} strokeWidth={1.75}/>, onClick: () => setIsSongMenuOpen(true) },
         { name: 'Listen on Spotify', icon: <FaSpotify size={20}/>, onClick: () => router.push(`https://open.spotify.com/track/${songId}`) },
