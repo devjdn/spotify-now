@@ -30,14 +30,6 @@ export default function SidebarContent({featured}: SidebarContentProps) {
                 <SidebarModeToggle/>
             </header>
             <Nav featured={featured}/>
-            {sidebarMode === 'full' ? (
-                <footer className="sidebar-footer">
-                    <span className='song-text'>All media via</span>
-                    <a href="https://open.spotify.com">
-                        <Image priority={true} alt='Spotify large text logo' src={SpotifyLargeTextLogo} />
-                    </a>
-                </footer>
-            ): null}
         </div>
     );
 }

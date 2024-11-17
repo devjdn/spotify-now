@@ -31,7 +31,9 @@ export const SidebarProvider = ({children}: {children: React.ReactNode}) => {
     }, [isOpen]);
 
     const toggleSidebarMode = useCallback(() => {
+        if (window.innerWidth > 669) {
             setSidebarMode((prevMode) => (prevMode === 'full' ? 'minimized' : 'full'));
+        }
     },[sidebarMode])
 
     return(
