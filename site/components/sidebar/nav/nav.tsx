@@ -9,11 +9,11 @@ import { FeaturedPlaylist } from "@/lib/global";
 import { useSidebar } from "../../contexts/sidebar-context";
 import NavTooltip from "./nav-tooltips";
 
-interface NavProps {
-    featured: FeaturedPlaylist[];
-}
+// interface NavProps {
+//     featured: FeaturedPlaylist[];
+// }
 
-export function Nav({featured}: NavProps) {
+export function Nav() {
     const pathname = usePathname();
     const {isOpen, toggleMobileSidebar, sidebarMode} = useSidebar();
     const [navLinks, setNavLinks] = useState([
@@ -25,27 +25,23 @@ export function Nav({featured}: NavProps) {
                 { name: 'New Music Friday', href: '/new-music-friday', icon: <CalendarClock size={22}/> },
             ],
         },
-        {
-            group: 'Quick Playlists',
-            links: [],
-        }
     ]);
     
-    useEffect(() => {
-        const featuredLinks = featured.map(pLink => ({
-            name: pLink.name,
-            href: `/playlist/${pLink.id}`,
-            icon: <LayoutGrid size={22} />,
-        }));
+    // useEffect(() => {
+    //     const featuredLinks = featured.map(pLink => ({
+    //         name: pLink.name,
+    //         href: `/playlist/${pLink.id}`,
+    //         icon: <LayoutGrid size={22} />,
+    //     }));
     
-        setNavLinks(prevNavLinks => 
-            prevNavLinks.map(navGroup => 
-                navGroup.group === 'Quick Playlists' 
-                    ? { ...navGroup, links: featuredLinks } 
-                    : navGroup
-            )
-        );
-    }, [featured]);
+    //     setNavLinks(prevNavLinks => 
+    //         prevNavLinks.map(navGroup => 
+    //             navGroup.group === 'Quick Playlists' 
+    //                 ? { ...navGroup, links: featuredLinks } 
+    //                 : navGroup
+    //         )
+    //     );
+    // }, [featured]);
 
     return(
         <nav className="header-nav">

@@ -6,14 +6,9 @@ import SpotifyIcon from "@/public/Spotify_Icon_CMYK_Green.png";
 import { Nav } from './nav/nav';
 import SpotifyLargeTextLogo from '@/public/Spotify_Logo_CMYK_Green.png';
 import MobileSidebarToggle from './sidebar-buttons/mobile-sidebar-toggle';
-import { FeaturedPlaylist } from '@/lib/global';
 import SidebarModeToggle from './sidebar-buttons/sidebar-mode-toggle';
 
-interface SidebarContentProps {
-    featured: FeaturedPlaylist[];
-}
-
-export default function SidebarContent({featured}: SidebarContentProps) {
+export default function SidebarContent() {
     const {isOpen, sidebarMode} = useSidebar();
 
     return(
@@ -29,7 +24,7 @@ export default function SidebarContent({featured}: SidebarContentProps) {
                 <MobileSidebarToggle/>
                 <SidebarModeToggle/>
             </header>
-            <Nav featured={featured}/>
+            <Nav/>
         </div>
     );
 }
